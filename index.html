@@ -261,6 +261,9 @@
 			basketMarkers.push(marker);
 			marker.setMap(map);
 		}
+
+		var jsonText = JSON.stringify(marker.getPosition());
+		$.post('dataSend.php', {variable: jsonText});
 	}
 
 	function changeMarker(changetype){
