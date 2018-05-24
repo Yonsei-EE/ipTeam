@@ -168,7 +168,7 @@ function addMarker(position, iwContent) {
 	}
 
 	var jsonText = JSON.stringify(marker.getPosition());
-	$.post('dataSend.php', {variable: jsonText});
+	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
 }
 
 function changeMarker(changetype){
@@ -222,4 +222,14 @@ function setBasketMarkers(map) {
 	for (var i = 0; i < basketMarkers.length; i++) {  
 		basketMarkers[i].setMap(map);
 	}        
+}
+
+function loadMarkers(typeList) {
+	for (var type in typeList) {
+		var pos = <?php= getData(type, 'position'); ?> 
+		for (var position in typeList) {
+			var posObj = JSON.parse(position);
+			addMarker(posObj, 'loaded');
+		}
+	}
 }

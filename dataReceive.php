@@ -1,15 +1,22 @@
 <?php
 	require 'openMysql.php';
 	
-	$sql = open();
+	function getData($table, $col) {
+		$sql = open();
+		
+		$table = $table + 'Markers';
 	
-	$query = $sql->prepare('SELECT * from marker');
-	$query->execute();
+		$query = $sql->prepare('SELECT $col from $table');
+		$query->execute();
 	
-	$query->setFetchMode(PDO::FETCH_ASSOC);
+		//$query->setFetchMode(PDO::FETCH_ASSOC);
 	
-	while($row = $query->fetch()) {
-		echo$row['position'].'<br/>';
+		$data = $query->fetchAll();
+	
+	 	print_r($data);
+
+		$sql = null;
+
+		return $data;
 	}
-	$sql = null;
 ?>
