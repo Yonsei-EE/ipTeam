@@ -223,13 +223,3 @@ function setBasketMarkers(map) {
 		basketMarkers[i].setMap(map);
 	}        
 }
-
-function loadMarkers(typeList) {
-	for (var type in typeList) {
-		var pos = <?php= getData(type, 'position'); ?> 
-		for (var position in typeList) {
-			var posObj = JSON.parse(position);
-			addMarker(posObj, 'loaded');
-		}
-	}
-}
