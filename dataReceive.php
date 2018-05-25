@@ -1,22 +1,18 @@
 <?php
+
+	$table = $_GET['table'].'Markers';
+	$col = $_GET['col'];
+	
 	require 'openMysql.php';
 	
-	function getData($table, $col) {
-		$sql = open();
-		
-		$table = $table + 'Markers';
-	
-		$query = $sql->prepare('SELECT $col from $table');
-		$query->execute();
-	
-		//$query->setFetchMode(PDO::FETCH_ASSOC);
-	
-		$data = $query->fetchAll();
-	
-	 	print_r($data);
+	$sql = open();
 
-		$sql = null;
+	$query = $sql->prepare('SELECT '.$col.' from '.$table);
+	$query->execute();
 
-		return $data;
-	}
+	$data = $query->fetchAll(PDO::FETCH_COLUMN);
+
+	$sql = null;
+
+	echo json_encode($data);
 ?>

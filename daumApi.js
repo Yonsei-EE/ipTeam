@@ -125,7 +125,7 @@ function addMarker(position, iwContent) {
 		myInfowindow.close();
 		marker.setMap(null);
 	});
-
+	
 	var skateMenu = document.getElementById('skateMenu');
 	var basketMenu = document.getElementById('basketMenu');
 				
@@ -222,4 +222,22 @@ function setBasketMarkers(map) {
 	for (var i = 0; i < basketMarkers.length; i++) {  
 		basketMarkers[i].setMap(map);
 	}        
+}
+
+function loadMarkers(type, markerset) {
+	$.ajax({
+		method:"GET", url:"dataReceive.php", async:false,
+		data:{col: 'position', table: type},
+		success:
+			function (data, status) {
+				lDO = JSON.parse(data);
+				for (num in lDO) {
+					var temp =  new daum.maps.Marker({
+						position: JSON.parse(lDO[num]),
+						clickable: true,
+					});
+					markerset.push(temp);
+				}
+			}
+	});
 }

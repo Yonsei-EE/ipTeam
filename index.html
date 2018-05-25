@@ -4,12 +4,12 @@
 	<meta charset="utf-8">
 	<title>Test Map</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>
-	<script type="text/javascript" src="daumApi.js"></script>
 	<link rel="stylesheet" href="style.css" type="text/css">
-	<?php require 'dataReceive.php'; ?>
 </head>
 <body>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>
+	<script type="text/javascript" src="daumApi.js"></script>
+	
 	<div id="mapwrap"> 
    	<!-- 지도가 표시될 div -->
     <div id="map" style="width:100%;height:500px;"></div>
@@ -35,17 +35,24 @@
 	<button id="setGeolocation" class="mapButton" type="button" style="position:absolute; top:510px; left:150px">Set Map to My Location</button>
 	<div id="result" style="width:100%;"></div>
 	<script>
+	
 		// 지도를 생성합니다.
 		var map = map_initialize();
 		geoLocation();
 		
 		// 마커를 생성합니다.
 		var type = 'skate';
-		var typeList = ['skate', 'basket']; //마커 종류 추가시 배열에도 추가해주세요.
 		var skateMarkers = [];
 		var basketMarkers = [];
-
-		//loadMarkers(typeList);
+		
+		//var typeList = ['skate', 'basket']; //마커 종류 추가시 배열에도 추가해주세요.
+		//var typeSet = ['skate': skateMarkers,'bastet': basketMarkers];
+		
+		loadMarkers('skate', skateMarkers);
+		loadMarkers('basket', basketMarkers);
+		
+		//setSkateMarkers(map);
+		//setBasketMarkers(map);
 
 		document.getElementById("setMarker").addEventListener("click", function() {
 			iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다	
