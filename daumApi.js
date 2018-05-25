@@ -168,7 +168,7 @@ function addMarker(position, iwContent) {
 	}
 
 	var jsonText = JSON.stringify(marker.getPosition());
-	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
+	$.post('./db/dataSend.php', {col: 'position', table: type, data: jsonText});
 }
 
 function changeMarker(changetype){
