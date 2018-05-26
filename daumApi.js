@@ -37,6 +37,7 @@ function showPosition(position) {
 	console.log("myLng : " + myLng);
 
 	map.panTo(new daum.maps.LatLng(myLat, myLng));
+	currentLocation = new daum.maps.LatLng(myLat, myLng);
 }
 
 function showError(error) {
@@ -83,6 +84,7 @@ function apiGeolocationSuccess(position) {
 	console.log("myLat : " + position.coords.latitude);
 	console.log("myLng : " + position.coords.longitude);
 	map.setCenter(new daum.maps.LatLng(position.coords.latitude, position.coords.longitude));
+	currentLocation = new daum.maps.LatLng(position.coords.latitude, position.coords.longitude);
 }
 
 function addMarker(position, iwContent) {
