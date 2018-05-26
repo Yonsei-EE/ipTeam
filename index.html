@@ -69,18 +69,21 @@
 			document.getElementById("createPolyline").style.display = 'inline';
 		});
 		document.getElementById("createPolyline").addEventListener("click", function() {
-			var linepath = [];
+			var polygonPath = [];
 			for (marker in areaMarkers) {
-				linepath.push(marker.position);
+				polygonPath.push(marker.position);
 			}
-			var polyline = new daum.maps.Polyline({
-    		path: linePath, // 선을 구성하는 좌표배열 입니다
-    		strokeWeight: 5, // 선의 두께 입니다
-    		strokeColor: '#FFAE00', // 선의 색깔입니다
-    		strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-    		strokeStyle: 'solid' // 선의 스타일입니다
+			var polygon = new daum.maps.Polygon({
+    		path:polygonPath, // 그려질 다각형의 좌표 배열입니다
+    		strokeWeight: 3, // 선의 두께입니다
+    		strokeColor: '#39DE2A', // 선의 색깔입니다
+    		strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+    		strokeStyle: 'longdash', // 선의 스타일입니다
+    		fillColor: '#A2FF99', // 채우기 색깔입니다
+    		fillOpacity: 0.7 // 채우기 불투명도 입니다
 			});
-			polyline.setMap(map);  
+			// 지도에 다각형을 표시합니다
+			polygon.setMap(map);
 		});
 
 		// 지도에 클릭 이벤트를 등록합니다
