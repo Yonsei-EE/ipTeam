@@ -88,21 +88,10 @@
 
 }
 
-.category .ico_comm {
 
-	display:block;
-
-	margin:0 auto 2px;
-
-	width:22px;
-
-	height:26px;
-
-}
 
 .category .ico_skate {
 
-	background-position:-10px 0;
 
 	background:url('images/Icon_Skateboard.png') no-repeat;
 
