@@ -43,14 +43,9 @@
 	padding-top:5px;
 	cursor:pointer;
 }
-.category .ico_comm {
-	display:block;
-	margin:0 auto 2px;
-	width:22px;
-	height:26px;
-}
+
 .category .ico_skate {
-	background:url('images/Icon_Skateboard.png') no-repeat;
+	background:url('images/Icon_Skateboard.png');
 }
 .category .ico_basket {
 	background-position:-10px -36px;
