@@ -1,6 +1,6 @@
 function map_initialize() {
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { 
+	var options = {
 		center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
 		level: 3 //지도의 레벨(확대, 축소 정도)
 	};
@@ -101,11 +101,11 @@ function addMarker(position, iwContent) {
 	// 인포윈도우를 생성합니다
 	var myInfowindow = new daum.maps.InfoWindow({
 		position : position,
-		content : iwContent 
+		content : iwContent
 	});
 
 	daum.maps.event.addListener(marker, 'mouseover', function() {
-		myInfowindow.open(map, marker);  
+		myInfowindow.open(map, marker);
 	});
 	daum.maps.event.addListener(marker, 'mouseout', function() {
 		myInfowindow.close();
@@ -125,10 +125,10 @@ function addMarker(position, iwContent) {
 		myInfowindow.close();
 		marker.setMap(null);
 	});
-	
+
 	var skateMenu = document.getElementById('skateMenu');
 	var basketMenu = document.getElementById('basketMenu');
-				
+
 	// 커피숍 카테고리가 클릭됐을 때
 	if (type === 'skate') {
 		/*
@@ -140,14 +140,14 @@ function addMarker(position, iwContent) {
 				alt: "Marker Image",
 				shape: "poly",
 				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
-			}	
+			}
 		);
 
 		marker.image = markerImage;
 		*/
 		skateMarkers.push(marker);
 		marker.setMap(map);
-	} 
+	}
 	else if (type === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		/*
 		var markerImage = new daum.maps.MarkerImage(
@@ -158,12 +158,16 @@ function addMarker(position, iwContent) {
 				alt: "Marker Image",
 				shape: "poly",
 				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
-			}	
+			}
 		);
 
 		marker.image = markerImage;
 		*/
 		basketMarkers.push(marker);
+		marker.setMap(map);
+	}
+	else if (type === 'area') {
+		areaMarkers.push(marker);
 		marker.setMap(map);
 	}
 
@@ -175,10 +179,10 @@ function changeMarker(changetype){
 	var skateMenu = document.getElementById('skateMenu');
 	var basketMenu = document.getElementById('basketMenu');
 	var allMunu = document.getElementById('allMenu');
-				
+
 	// 커피숍 카테고리가 클릭됐을 때
 	if (changetype === 'skate') {
-								
+
 		// 커피숍 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = 'menu_selected';
 		basketMenu.className = '';
@@ -187,13 +191,13 @@ function changeMarker(changetype){
 		// 커피숍 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
 		setBasketMarkers(null);
-	} 
+	}
 	else if (changetype === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		// 편의점 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = '';
 		basketMenu.className = 'menu_selected';
 		allMenu.className = '';
-																														
+
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(null);
 		setBasketMarkers(map);
@@ -203,25 +207,33 @@ function changeMarker(changetype){
 		skateMenu.className = '';
 		basketMenu.className = '';
 		allMenu.className = 'menu_selected';
-																														
+
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
 		setBasketMarkers(map);
+	}
+	else if(changetype === 'area') {
+		skateMenu.className = '';
+		basketMenu.className = '';
+		allMenu.className = '';
+
+		setSkateMarkers(null);
+		setBasketMarkers(null);
 	}
 
 	type = changetype;
 }
 
-function setSkateMarkers(map) {        
-	for (var i = 0; i < skateMarkers.length; i++) {  
+function setSkateMarkers(map) {
+	for (var i = 0; i < skateMarkers.length; i++) {
 		skateMarkers[i].setMap(map);
-	}        
+	}
 }
 
-function setBasketMarkers(map) {        
-	for (var i = 0; i < basketMarkers.length; i++) {  
+function setBasketMarkers(map) {
+	for (var i = 0; i < basketMarkers.length; i++) {
 		basketMarkers[i].setMap(map);
-	}        
+	}
 }
 
 function loadMarkers(type, markerset) {

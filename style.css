@@ -1,4 +1,4 @@
-@charset "utf-8"
+@charset "utf-8";
 
 .mapButton {
 	width : 120px;
@@ -13,7 +13,7 @@
 	margin:0;
 	padding:0;
 	color:#000;
-}   
+}
 .category {
 	position:absolute;
 	overflow:hidden;
@@ -34,7 +34,7 @@
 	border-left:1px solid #915B2F;
 	border-right:1px solid #915B2F;
 	margin:0 -1px;
-} 
+}
 .category li{
 	list-style:none;
 	float:left;
@@ -42,20 +42,20 @@
 	height:45px;
 	padding-top:5px;
 	cursor:pointer;
-} 
+}
 .category .ico_comm {
 	display:block;
 	margin:0 auto 2px;
 	width:22px;
 	height:26px;
 	background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png') no-repeat;
-} 
+}
 .category .ico_skate {
 	background-position:-10px 0;
-}  
+}
 .category .ico_basket {
 	background-position:-10px -36px;
 }
 .category .ico_all {
 	background-position:-10px -72px;
-}   
+}
