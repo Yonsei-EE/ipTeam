@@ -13,24 +13,25 @@
 
 	<div id="mapwrap">
    	<!-- 지도가 표시될 div -->
-    <div id="map" style="width:100%;height:500px;"></div>
-	    <!-- 지도 위에 표시될 마커 카테고리 -->
-	    <div class="category">
-	        <ul>
-	            <li id="skateMenu" class="menu_selected" onclick="changeMarker('skate')">
-            	    <span class="ico_comm ico_skate"></span>
-                	스케이트보드
-		        </li>
-	            <li id="basketMenu" onclick="changeMarker('basket')">
-               		<span class="ico_comm ico_basket"></span>
-                	농구
-		        </li>
-				<li id="allMenu" onclick="changeMarker('all')">
-               		<span class="ico_comm ico_all"></span>
-                	모두표시
-		        </li>
-	        </ul>
-    </div>
+	    <div id="map" style="width:100%;height:500px;"></div>
+		    <!-- 지도 위에 표시될 마커 카테고리 -->
+		    <div class="category">
+			<ul>
+			    <li id="skateMenu" class="menu_selected" onclick="changeMarker('skate')">
+			    <span class="ico_comm ico_skate"></span>
+				스케이트보드
+				</li>
+			    <li id="basketMenu" onclick="changeMarker('basket')">
+				<span class="ico_comm ico_basket"></span>
+				농구
+				</li>
+					<li id="allMenu" onclick="changeMarker('all')">
+				<span class="ico_comm ico_all"></span>
+				모두표시
+				</li>
+			</ul>
+		</div>
+	</div>
 	</div>
 	<button id="setMarker" class="mapButton" type="button" style="position:absolute; top:510px;">중앙에 마커표시</button>
 	<button id="setGeolocation" class="mapButton" type="button" style="position:absolute; top:510px; left:150px">내위치</button>
@@ -82,5 +83,40 @@
 		});
 	</script>
 
+	<div class="st-container">
+			
+	<input type="radio" name="radio-set" checked="checked" id="st-control-1"/>
+	<a href="#st-panel-1">Serendipity</a>
+	
+	<input type="radio" name="radio-set" id="st-control-2"/>
+	<a href="#st-panel-2">Happiness</a>
+	
+	<input type="radio" name="radio-set" id="st-control-3"/>
+	<a href="#st-panel-3">Tranquillity</a>
+	
+	<input type="radio" name="radio-set" id="st-control-4"/>
+	<a href="#st-panel-4">Positivity</a>
+	
+	<input type="radio" name="radio-set" id="st-control-5"/>
+	<a href="#st-panel-5">Passion</a>
+	
+	<div class="st-scroll">
+
+		<section class="st-panel" id="st-panel-1">
+			<div class="st-deco" data-icon="H"></div>
+			<h2>Serendipity</h2>
+			<p>Banksy adipisicing eiusmod banh mi sed...</p>
+		</section>
+		
+		<section class="st-panel st-color" id="st-panel-2">
+			<!-- ... -->
+		</section>
+		
+		<!-- ... st-panel-3, st-panel-4, st-panel-5 -->
+
+	</div><!-- // st-scroll -->
+	
+	</div><!-- // st-container -->
+	
 </body>
 </html>
