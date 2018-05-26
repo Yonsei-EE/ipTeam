@@ -7,7 +7,8 @@
 	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>
+<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a251234a41a2bd0ec1c296f3f1cf04b"></script>-->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>
 	<script type="text/javascript" src="daumApi.js"></script>
 
 	<div id="mapwrap">
@@ -35,7 +36,7 @@
 	<button id="setGeolocation" class="mapButton" type="button" style="position:absolute; top:510px; left:150px">내위치</button>
 	<button id="setArea" class="mapButton" type="button" style="position:absolute; top:510px; left:290px;">장소설정</button>
 	<button id="createPolyline" class="mapButton" type="button" style="position:absolute; top:510px; left:290px; display:none;">확인</button>
-	<div id="result" style="width:100%;"></div>
+	<div id="result" style="position:absolute; top:600px; width:100%; height:100px;"></div>
 	<script>
 
 		// 지도를 생성합니다.
@@ -47,12 +48,13 @@
 		var skateMarkers = [];
 		var basketMarkers = [];
 		var areaMarkers = [];
+		var areas = [];
 
 		//var typeList = ['skate', 'basket']; //마커 종류 추가시 배열에도 추가해주세요.
 		//var typeSet = ['skate': skateMarkers,'bastet': basketMarkers];
 
-		loadMarkers('skate', skateMarkers);
-		loadMarkers('basket', basketMarkers);
+		//loadMarkers('skate', skateMarkers);
+		//loadMarkers('basket', basketMarkers);
 
 		//setSkateMarkers(map);
 		//setBasketMarkers(map);
@@ -68,23 +70,7 @@
 			document.getElementById("setArea").style.display = 'none';
 			document.getElementById("createPolyline").style.display = 'inline';
 		});
-		document.getElementById("createPolyline").addEventListener("click", function() {
-			var polygonPath = [];
-			for (marker in areaMarkers) {
-				polygonPath.push(marker.position);
-			}
-			var polygon = new daum.maps.Polygon({
-    		path:polygonPath, // 그려질 다각형의 좌표 배열입니다
-    		strokeWeight: 3, // 선의 두께입니다
-    		strokeColor: '#39DE2A', // 선의 색깔입니다
-    		strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-    		strokeStyle: 'longdash', // 선의 스타일입니다
-    		fillColor: '#A2FF99', // 채우기 색깔입니다
-    		fillOpacity: 0.7 // 채우기 불투명도 입니다
-			});
-			// 지도에 다각형을 표시합니다
-			polygon.setMap(map);
-		});
+		document.getElementById("createPolyline").addEventListener("click", addPolygon);
 
 		// 지도에 클릭 이벤트를 등록합니다
 		daum.maps.event.addListener(map, 'click', function(mouseEvent) {
