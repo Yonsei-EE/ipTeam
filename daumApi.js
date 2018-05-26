@@ -128,8 +128,10 @@ function addMarker(position, iwContent) {
 		marker.setMap(null);
 	});
 
-	var skateMenu = document.getElementById('skateMenu');
-	var basketMenu = document.getElementById('basketMenu');
+	marker.type = type;
+
+	//var skateMenu = document.getElementById('skateMenu');
+	//var basketMenu = document.getElementById('basketMenu');
 
 	// 커피숍 카테고리가 클릭됐을 때
 	if (type === 'skate') {
