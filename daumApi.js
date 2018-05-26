@@ -85,12 +85,12 @@ function apiGeolocationSuccess(position) {
 	map.setCenter(new daum.maps.LatLng(position.coords.latitude, position.coords.longitude));
 }
 
-function addMarker(position, iwContent) {
+function addMarker(position, iwContent, type) {
 	if(type == 'all') {
 		alert("Please specify marker category.");
 		return;
 	}
-
+	
 	var marker = new daum.maps.Marker({
 		position: position,
 		clickable: true,
@@ -166,9 +166,6 @@ function addMarker(position, iwContent) {
 		basketMarkers.push(marker);
 		marker.setMap(map);
 	}
-
-	var jsonText = JSON.stringify(marker.getPosition());
-	$.post('./db/dataSend.php', {col: 'position', table: type, data: jsonText});
 }
 
 function changeMarker(changetype){
@@ -224,20 +221,3 @@ function setBasketMarkers(map) {
 	}        
 }
 
-function loadMarkers(type, markerset) {
-	$.ajax({
-		method:"GET", url:"dataReceive.php", async:false,
-		data:{col: 'position', table: type},
-		success:
-			function (data, status) {
-				lDO = JSON.parse(data);
-				for (num in lDO) {
-					var temp =  new daum.maps.Marker({
-						position: JSON.parse(lDO[num]),
-						clickable: true,
-					});
-					markerset.push(temp);
-				}
-			}
-	});
-}
