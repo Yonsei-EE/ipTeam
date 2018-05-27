@@ -128,6 +128,8 @@ function addMarker(position, iwContent) {
 
 	var skateMenu = document.getElementById('skateMenu');
 	var basketMenu = document.getElementById('basketMenu');
+	var fishingMenu=document.getElementById('fishingMenu');
+	var badmintonMenu=document.getElementById('badmintonMenu');
 
 	// 커피숍 카테고리가 클릭됐을 때
 	if (type === 'skate') {
@@ -168,8 +170,16 @@ function addMarker(position, iwContent) {
 		*/
 		basketMarkers.push(marker);
 		marker.setMap(map);
+	}else if (type === 'fishing') { // 편의점 카테고리가 클릭됐을 때
+		
+		fishingMarkers.push(marker);
+		marker.setMap(map);
 	}
-	else if (type === 'area') {
+	else if (type === 'badminton') {
+		badmintonMarkers.push(marker);
+		marker.setMap(map);
+		
+	}else if (type === 'area') {
 		areaMarkers.push(marker);
 		marker.setMap(map);
 	}
@@ -182,6 +192,8 @@ function addMarker(position, iwContent) {
 function changeMarker(changetype){
 	var skateMenu = document.getElementById('skateMenu');
 	var basketMenu = document.getElementById('basketMenu');
+	var fishingMenu=document.getElementById('fishingMenu');
+	var badmintonMenu=document.getElementById('badmintonMenu');
 	var allMunu = document.getElementById('allMenu');
 
 	// 커피숍 카테고리가 클릭됐을 때
@@ -190,42 +202,86 @@ function changeMarker(changetype){
 		// 커피숍 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = 'menu_selected';
 		basketMenu.className = '';
+		fishingMenu.className='';
+		badmintonMenu.className='';
 		allMenu.className = '';
 
 		// 커피숍 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
 		setBasketMarkers(null);
+		setFishingMarkers(null);
+		setBadmintonMarkers(null);
 		setAreaMarkers(null);
 	}
 	else if (changetype === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		// 편의점 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = '';
 		basketMenu.className = 'menu_selected';
+		fishingMenu.className='';
+		badmintonMenu.className='';
 		allMenu.className = '';
 
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(null);
 		setBasketMarkers(map);
+		setFishingMarkers(null);
+		setBadmintonMarkers(null);
+		setAreaMarkers(null);
+	}else if (changetype === 'fishing') { // 편의점 카테고리가 클릭됐을 때
+		// 편의점 카테고리를 선택된 스타일로 변경하고
+		skateMenu.className = '';
+		basketMenu.className = '';
+		fishingMenu.className='menu_selected';
+		badmintonMenu.className='';
+		allMenu.className = '';
+
+		// 편의점 마커들만 지도에 표시하도록 설정합니다
+		setSkateMarkers(null);
+		setBasketMarkers(null);
+		setFishingMarkers(map);
+		setBadmintonMarkers(null);
+		setAreaMarkers(null);
+	}else if (changetype === 'badminton') { // 편의점 카테고리가 클릭됐을 때
+		// 편의점 카테고리를 선택된 스타일로 변경하고
+		skateMenu.className = '';
+		basketMenu.className = '';
+		fishingMenu.className='';
+		badmintonMenu.className='menu_selected';
+		allMenu.className = '';
+
+		// 편의점 마커들만 지도에 표시하도록 설정합니다
+		setSkateMarkers(null);
+		setBasketMarkers(null);
+		setFishingMarkers(null);
+		setBadmintonMarkers(map);
 		setAreaMarkers(null);
 	}
 	else if (changetype === 'all') { // 편의점 카테고리가 클릭됐을 때
 		// 편의점 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = '';
 		basketMenu.className = '';
+		fishingMenu.className='';
+		badmintonMenu.className='';
 		allMenu.className = 'menu_selected';
 
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
 		setBasketMarkers(map);
+		setFishingMarkers(map);
+		setBadmintonMarkers(map);
 		setAreaMarkers(null);
 	}
 	else if(changetype === 'area') {
 		skateMenu.className = '';
 		basketMenu.className = '';
+		fishingMenu.className='';
+		badmintonMenu.className='';
 		allMenu.className = '';
 
 		setSkateMarkers(null);
 		setBasketMarkers(null);
+		setFishingMarkers(null);
+		setBadmintonMarkers(null);
 		setAreaMarkers(null);
 	}
 
@@ -241,6 +297,18 @@ function setSkateMarkers(map) {
 function setBasketMarkers(map) {
 	for (var i = 0; i < basketMarkers.length; i++) {
 		basketMarkers[i].setMap(map);
+	}
+}
+
+function setFishingMarkers(map) {
+	for (var i = 0; i < fishingMarkers.length; i++) {
+		fishingMarkers[i].setMap(map);
+	}
+}
+
+function setBadmintonMarkers(map) {
+	for (var i = 0; i < badmintonMarkers.length; i++) {
+		badmintonMarkers[i].setMap(map);
 	}
 }
 
