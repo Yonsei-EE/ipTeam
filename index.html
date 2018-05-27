@@ -82,10 +82,10 @@ ul.sidenav li a{
 	<div>
 		<ul class="sidenav">
 			<li><a class="active" href="#">스포츠 종류</a></li>
-			<li><a href="#">스케이트 보드</a></li>
-			<li><a href="#">농구</a></li>
-			<li><a href="#">낚시</a></li>
-			<li><a href="#">배드민턴</a></li>
+			<li id="skateMenu" class="menu_selected" onclick="changeMarker('skate')"><a href="#">스케이트 보드</a></li>
+			<li id="basketMenu" onclick="changeMarker('basket')"><a href="#">농구</a></li>
+			<li id="fishingMenu" onclick="changeMarker('fish')"><a href="#">낚시</a></li>
+			<li id="badminton" onclick="changeMarker('baaminton')"><a href="#">배드민턴</a></li>
 		</ul>
 	</div>
 	
@@ -158,6 +158,9 @@ ul.sidenav li a{
 		});
 		
 		
+		
+		
+// 마커 미미지 변경 	
 		
 		var skatePositions = [];
 		//var basketPositions=[];
