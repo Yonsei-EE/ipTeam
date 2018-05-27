@@ -194,7 +194,7 @@ function changeMarker(changetype){
 	var basketMenu = document.getElementById('basketMenu');
 	var fishingMenu=document.getElementById('fishingMenu');
 	var badmintonMenu=document.getElementById('badmintonMenu');
-	var allMunu = document.getElementById('allMenu');
+	var allMenu = document.getElementById('allMenu');
 
 	// 커피숍 카테고리가 클릭됐을 때
 	if (changetype === 'skate') {
