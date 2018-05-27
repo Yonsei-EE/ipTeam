@@ -146,6 +146,7 @@ function addMarker(position, iwContent) {
 		marker.image = markerImage;
 		*/
 		
+		
 		skateMarkers.push(marker);
 		marker.setMap(map);
 		
