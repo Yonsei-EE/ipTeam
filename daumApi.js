@@ -131,7 +131,7 @@ function addMarker(position, iwContent) {
 
 	// 커피숍 카테고리가 클릭됐을 때
 	if (type === 'skate') {
-		
+		/*
 		var markerImage = new daum.maps.MarkerImage(
 			'images/Icon_Skateboard(150x150).png',
 			new daum.maps.Size(512, 512),
@@ -144,10 +144,10 @@ function addMarker(position, iwContent) {
 		);
 
 		marker.image = markerImage;
-	
+	*/
 		
 		
-		skateMarkers.push(markerImage);
+		skateMarkers.push(marker);
 		marker.setMap(map);
 		
 	}
