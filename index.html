@@ -72,9 +72,9 @@ ul.sidenav li a{
 	<div>
 	<ul class="sidenav">
 			<li><a class="active" href="#">스포츠 종류</a></li>
-		        <li><a href="" id="skateMenu" class="menu_selected" onclick="changeMarker('skate')"><img src="images/Icon_Skateboard(150x150).png" height="100" width="100" alt="skateboard" /></a></li>
-                        <li><a href="" id="basketMenu" onclick="changeMarker('basket')"><img src="images/Icon_Basketball(150x150).png" height="100" width="100" alt="basket" /></a></li>
-                        <li><a href="" id="allMenu" onclick="changeMarker('all')"><img src="images/Icon_Fishing(150x150).png" height="100" width="100" alt="finshing" /></a></li>
+		        <li><a href=""><img src="images/Icon_Skateboard(150x150).png" height="100" width="100" alt="skateboard" /></a></li>
+                        <li><a href=""><img src="images/Icon_Basketball(150x150).png" height="100" width="100" alt="basket" /></a></li>
+                        <li><a href=""><img src="images/Icon_Fishing(150x150).png" height="100" width="100" alt="finshing" /></a></li>
 			<li><a href=""><img src="images/marker.png" height="100" width="100" alt="skateboard" /></a></li>
 		</ul>
 	</div>
@@ -86,15 +86,15 @@ ul.sidenav li a{
 	    <!-- 지도 위에 표시될 마커 카테고리 -->
 	    <div class="category">
 	        <ul>
-	            <li  onclick="changeMarker('skate')">
+	            <li  id="skateMenu" class="menu_selected" onclick="changeMarker('skate')">
             	    <span class="ico_comm ico_skate"></span>
                 	스케이트보드
 		        </li>
-	            <li  onclick="changeMarker('basket')">
+	            <li  onclick="changeMarker('basket')" id="basketMenu" onclick="changeMarker('basket')">
                		<span class="ico_comm ico_basket"></span>
                 	농구
 		        </li>
-				<li>
+				<li id="allMenu" onclick="changeMarker('all')">
                		<span class="ico_comm ico_all"></span>
                 	모두표시
 		        </li>
