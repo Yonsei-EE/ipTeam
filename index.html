@@ -5,68 +5,83 @@
 	<title>Test Map</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="style.css" type="text/css">
-</head>
-<body>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>
 	<script type="text/javascript" src="daumApi.js"></script>
+</head>
+<body>
 	
-	<div id="mapwrap"> 
+<!-- 스크롤 테스트 -->
+	
+	<div class="st-container">
+			
+	<input type="radio" name="radio-set" checked="checked" id="st-control-1"/>
+	<a href="#st-panel-1">MenuOne</a>
+	
+	<input type="radio" name="radio-set" id="st-control-2"/>
+	<a href="#st-panel-2">Map</a>
+	
+	<input type="radio" name="radio-set" id="st-control-3"/>
+	<a href="#st-panel-3">Posts</a>
+	
+		
+
+	<div class="st-scroll">
+
+		<section class="st-panel" id="st-panel-1">
+			<div class="st-deco" data-icon="H"></div>
+			<h2>First Window</h2>
+			<p>This is the first</p>
+		</section>
+		
+		<section class="st-panel" id="st-panel-2">
+			<div class="st-deco" data-icon="H"></div>
+			<h2>Second Window</h2>
+			<div id="mapwrap">
    	<!-- 지도가 표시될 div -->
-    <div id="map" style="width:100%;height:500px;"></div>
-	    <!-- 지도 위에 표시될 마커 카테고리 -->
-	    <div class="category">
-	        <ul>
-	            <li id="skateMenu" class="menu_selected" onclick="changeMarker('skate')">
-            	    <span class="ico_comm ico_skate"></span>
-                	스케이트보드
-		        </li>
-	            <li id="basketMenu" onclick="changeMarker('basket')">
-               		<span class="ico_comm ico_basket"></span>
-                	농구
-		        </li>
+	<div id="map" style="width:100%;height:500px;"></div>
+		<!-- 지도 위에 표시될 마커 카테고리 -->
+		<div class="category">
+			<ul>
+				<li id="skateMenu" class="menu_selected" onclick="changeMarker('skate')">
+				<span class="ico_comm ico_skate"></span>
+				스케이트보드
+				</li>
+				<li id="basketMenu" onclick="changeMarker('basket')">
+				<span class="ico_comm ico_basket"></span>
+				농구
+				</li>
 				<li id="allMenu" onclick="changeMarker('all')">
-               		<span class="ico_comm ico_all"></span>
-                	모두표시
-		        </li>
-	        </ul>
-    </div>
+				<span class="ico_comm ico_all"></span>
+				모두표시
+				</li>
+			</ul>
+		</div>
 	</div>
-	<button id="setMarker" class="mapButton" type="button" style="position:absolute; top:510px;">Create Marker at Center</button>
-	<button id="setGeolocation" class="mapButton" type="button" style="position:absolute; top:510px; left:150px">Set Map to My Location</button>
-	<div id="result" style="width:100%;"></div>
-	<script>
+	<!-- 지도 div 종료 -->
+			<p>This is the second</p>
+			
+		</section>
+		
+		<section class="st-panel" id="st-panel-3">
+			<div class="st-deco" data-icon="H"></div>
+			<h2>Third Window</h2>
+			<p>Banksy adipisicing eiusmod banh mi sed...</p>
+		</section>
+
+	</div><!-- // st-scroll -->
 	
-		// 지도를 생성합니다.
-		var map = map_initialize();
-		geoLocation();
-		
-		// 마커를 생성합니다.
-		var type = 'skate';
-		var skateMarkers = [];
-		var basketMarkers = [];
-		
-		//var typeList = ['skate', 'basket']; //마커 종류 추가시 배열에도 추가해주세요.
-		//var typeSet = ['skate': skateMarkers,'bastet': basketMarkers];
-		
-		loadMarkers('skate', skateMarkers);
-		loadMarkers('basket', basketMarkers);
-		
-		//setSkateMarkers(map);
-		//setBasketMarkers(map);
-		document.getElementById("setMarker").addEventListener("click", function() {
-			iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다	
-			addMarker(map.getCenter(), iwContent);
-		});
-		document.getElementById("setGeolocation").addEventListener("click", geoLocation);
-		// 지도에 클릭 이벤트를 등록합니다
-		daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
-			// 클릭한 위도, 경도 정보를 가져옵니다 
-			var latlng = mouseEvent.latLng;
-			// 마커 위치를 클릭한 위치로 옮깁니다
-			iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다	
-			addMarker(latlng, iwContent);
-		});
-	</script>
+	</div><!-- // st-container -->
+
+<!-- // 스크롤 테스트  -->
+	
+	<button id="setMarker" class="mapButton" type="button" style="position:absolute; top:510px;">중앙에 마커표시</button>
+	<button id="setGeolocation" class="mapButton" type="button" style="position:absolute; top:510px; left:150px">내위치</button>
+	<!--<button id="setArea" class="mapButton" type="button" style="position:absolute; top:510px; left:290px;">장소설정</button>
+	<button id="createPolyline" class="mapButton" type="button" style="position:absolute; top:510px; left:290px; display:none;">확인</button>-->
+	<div id="result" style="position:absolute; top:600px; width:100%; height:100px;"></div>
+	
+	<script type="text/javascript" src="./db/jsForDB.js"></script>
+	<script type="text/javascript" src="mainControl.js"></script>
 
 </body>
 </html>
