@@ -131,43 +131,50 @@ function addMarker(position, iwContent) {
 				
 	// 커피숍 카테고리가 클릭됐을 때
 	if (type === 'skate') {
-////////////////////////	
+	
 
 
 		
-    var imageSrc = 'images/Icon_Skateboard(150x150).png', // 마커이미지의 주소입니다    
-    imageSize = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
-    imageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    var imageSrc1 = 'images/Icon_Skateboard(150x150).png', // 마커이미지의 주소입니다    
+    imageSize1 = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
+    imageOption1 = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       
-// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption),
-    markerPosition = marker.getPosition();// 마커가 표시될 위치입니다
+    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    var markerImage1 = new daum.maps.MarkerImage(imageSrc1, imageSize1, imageOption1),
+    markerPosition1 = marker.getPosition();// 마커가 표시될 위치입니다
 
-// 마커를 생성합니다
-var marker1 = new daum.maps.Marker({
-    position: markerPosition, 
-    image: markerImage // 마커이미지 설정 
+    // 마커를 생성합니다
+    var marker1 = new daum.maps.Marker({
+    position: markerPosition1, 
+    image: markerImage1 // 마커이미지 설정 
 });
 	
 		skateMarkers.push(marker1);
 		marker1.setMap(map);
-	} 
-	else if (type === 'basket') { // 편의점 카테고리가 클릭됐을 때
-		/*
-		var markerImage = new daum.maps.MarkerImage(
-			'images/marker.png',
-			new daum.maps.Size(512, 512),
-			{
-				offset: new daum.maps.Point(256,510),
-				alt: "Marker Image",
-				shape: "poly",
-				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
-			}	
-		);
+	
+	
+	
+	} else if (type === 'basket') { // 편의점 카테고리가 클릭됐을 때
+		
+		
+    var imageSrc2 = 'images/Icon_Basketball(150x150).png', // 마커이미지의 주소입니다    
+    imageSize2 = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
+    imageOption2 = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      
+    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    var markerImage2 = new daum.maps.MarkerImage(imageSrc2, imageSize2, imageOption2),
+    markerPosition2 = marker.getPosition();// 마커가 표시될 위치입니다
 
-		marker.image = markerImage;
-		*/
-		basketMarkers.push(marker);
+    // 마커를 생성합니다
+    var marker2 = new daum.maps.Marker({
+    position: markerPosition2, 
+    image: markerImage2 // 마커이미지 설정 
+});
+	
+		
+		
+		
+		basketMarkers.push(marker2);
 		marker.setMap(map);
 	}
 
