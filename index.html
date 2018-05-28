@@ -166,58 +166,7 @@ ul.sidenav li a{
 		
 		
 		
-// 마커 이미지 변경 	
-		
-		var skatePositions = [];
-		//var basketPositions=[];
-		//var fishPositions=[];
-		//var badmintonPostions[];
-		
-		var markerImageSrc='images/Icon_Skateboard(150x150).png';
-		skateMarkers=[];
-		//createSkateMarkers();
-		//changeMarker('skate');
-		
-function createMarkerImage(src, size, options) {
-    var markerImage = new daum.maps.MarkerImage(src, size, options);
-    return markerImage;            
-}
 
-// 좌표와 마커이미지를 받아 마커를 생성하여 리턴하는 함수입니다
-function createMarker(position, image) {
-    var marker = new daum.maps.Marker({
-        position: position,
-        image: image
-    });
-    
-    return marker;  
-}   
-		
-function createskateMarkers() {
-    
-    for (var i = 0; i < skatePositions.length; i++) {  
-        
-        var imageSize = new daum.maps.Size(22, 26),
-            imageOptions = {  
-                spriteOrigin: new daum.maps.Point(10, 0),    
-                spriteSize: new daum.maps.Size(36, 98)  
-            };     
-        
-        // 마커이미지와 마커를 생성합니다
-        var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),    
-            marker = createMarker(skatePositions[i], markerImage);  
-        
-        // 생성된 마커를 커피숍 마커 배열에 추가합니다
-        skateMarkers.push(marker);
-    }     		
-}		
-
-function setskateMarkers(map) {        
-    for (var i = 0; i < skateMarkers.length; i++) {  
-        skateMarkers[i].setMap(map);
-    }        
-}
-// 이미지 변경		
 		
 		
 		
