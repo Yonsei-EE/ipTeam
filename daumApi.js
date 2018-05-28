@@ -273,6 +273,11 @@ function setBasketMarkers(map) {
 		basketMarkers[i].setMap(map);
 	}        
 }
+function setFishingMarkers(map) {        
+	for (var i = 0; i < fishingMarkers.length; i++) {  
+		fishingMarkers[i].setMap(map);
+	}        
+}
 
 function loadMarkers(type, markerset) {
 	$.ajax({
