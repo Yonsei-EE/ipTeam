@@ -132,13 +132,9 @@ function addMarker(position, iwContent) {
 	// 커피숍 카테고리가 클릭됐을 때
 	if (type === 'skate') {
 ////////////////////////	
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new daum.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
-        level: 4 // 지도의 확대 레벨
-    };
 
-var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+
 		
     var imageSrc = 'images/Icon_Skateboard(150x150).png', // 마커이미지의 주소입니다    
     imageSize = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
