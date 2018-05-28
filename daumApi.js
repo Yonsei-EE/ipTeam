@@ -134,7 +134,6 @@ function addMarker(position, iwContent) {
 ////////////////////////	
 
 
-
 		
     var imageSrc = 'images/Icon_Skateboard(150x150).png', // 마커이미지의 주소입니다    
     imageSize = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
@@ -142,7 +141,7 @@ function addMarker(position, iwContent) {
       
 // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption),
-    markerPosition = new daum.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
+    markerPosition = marker.getPosition();// 마커가 표시될 위치입니다
 
 // 마커를 생성합니다
 var marker1 = new daum.maps.Marker({
