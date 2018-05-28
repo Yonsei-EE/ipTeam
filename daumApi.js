@@ -175,7 +175,7 @@ function addMarker(position, iwContent) {
 		
 		
 		basketMarkers.push(marker2);
-		marker.setMap(map);
+		marker2.setMap(map);
 	}
 
 	var jsonText = JSON.stringify(marker.getPosition());
