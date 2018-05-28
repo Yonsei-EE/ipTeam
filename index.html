@@ -99,32 +99,34 @@ ul.sidenav li a{
 	
 		
 	<div id="mapwrap">
-   	<!-- 지도가 표시될 div -->	
-	    <div id="map" class="map" style="width:100%;height:500px;"></div>
+   	<!-- 지도가 표시될 div -->
+	    <div id="map" style="width:100%;height:500px;"></div>
 		    <!-- 지도 위에 표시될 마커 카테고리 -->
 		    <div class="category">
-			<li id="skateMenu" class="menu_selected" onclick="changeMarker('skate')">
-            	    <span class="ico_comm ico_skate"></span>
-                	스케이트보드
-		        </li>
-	            <li id="basketMenu" onclick="changeMarker('basket')">
-               		<span class="ico_comm ico_basket"></span>
-                	농구
-		        </li>
-				<li id="allMenu" onclick="changeMarker('all')">
-               		<span class="ico_comm ico_all"></span>
-                	모두표시
-		        </li>
-		   </div>
-	    </div>
-	   <div id="setbutton">
+			<ul>
+			    <li id="skateMenu" class="menu_selected" onclick="changeMarker('skate')">
+			    <span class="ico_comm ico_skate">
+				 
+				    </span>
+				스케이트보드
+				</li>
+			    <li id="basketMenu" onclick="changeMarker('basket')">
+				<span class="ico_comm ico_basket"></span>
+				농구
+				</li>
+					<li id="allMenu" onclick="changeMarker('all')">
+				<span class="ico_comm ico_all"></span>
+				모두표시
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
 	<button id="setMarker" class="mapButton" type="button" style="position:absolute; top:510px;">중앙에 마커표시</button>
 	<button id="setGeolocation" class="mapButton" type="button" style="position:absolute; top:510px; left:150px">내위치</button>
 	<button id="setArea" class="mapButton" type="button" style="position:absolute; top:510px; left:290px;">장소설정</button>
 	<button id="createPolyline" class="mapButton" type="button" style="position:absolute; top:510px; left:290px; display:none;">확인</button>
 	<div id="result" style="position:absolute; top:600px; width:100%; height:100px;"></div>
-	</div>
-	</div>
 	<script>
 		// 지도를 생성합니다.
 		var map = map_initialize();
@@ -160,15 +162,6 @@ ul.sidenav li a{
 			iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 			addMarker(latlng, iwContent);
 		});
-		
-		
-		
-		
-
-		
-		
-		
-		
 	</script>
 
 	<div class="st-container">
@@ -211,3 +204,5 @@ ul.sidenav li a{
 
 </body>
 </html>
+
+
