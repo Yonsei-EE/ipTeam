@@ -5,12 +5,81 @@
 	<title>Test Map</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="style.css" type="text/css">
+<style>
+ul.sidenav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+ul.sidenav li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+ 
+ul.sidenav li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+ul.sidenav li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+	
+ul.sidenav li a{
+	text-align: center;
+	}
+	
+#mapwrap {
+    margin-top: 0;
+    margin-left: 15%;
+    padding: 1px 16px;
+    height: 1000px;
+}
+@media screen and (max-width: 900px) {
+    ul.sidenav {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    ul.sidenav li a {
+        float: left;
+        padding: 15px;
+    }
+    
+	
+}
+@media screen and (max-width: 400px) {
+    ul.sidenav li a {
+        text-align: center;
+        float: none;
+    }
+ 
+}
+</style>
 </head>
 <body>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>
 	<script type="text/javascript" src="daumApi.js"></script>
 	
+	
 	<div id="mapwrap"> 
+		<div>
+		<ul class="sidenav">
+			<li><a class="active" href="#">스포츠 종류</a></li>
+		        <li><a href="">skateboard</a></li>
+                        <li><a href="">basket</a></li>
+                        <li><a href="">finshing</a></li>
+			<li><a href="">badmintor</a></li>
+		</ul>
+	</div>
+		
    	<!-- 지도가 표시될 div -->
     <div id="map" style="width:100%;height:500px;"></div>
 	    <!-- 지도 위에 표시될 마커 카테고리 -->
