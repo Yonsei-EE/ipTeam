@@ -91,11 +91,15 @@ ul.sidenav li a{
                 	스케이트보드
 		        </li>
 	            <li  onclick="changeMarker('basket')" id="basketMenu" onclick="changeMarker('basket')">
-               		<span class="ico_comm ico_basket"></span>
+               	    <span class="ico_comm ico_basket"></span>
                 	농구
 		        </li>
-				<li id="allMenu" onclick="changeMarker('all')">
-               		<span class="ico_comm ico_all"></span>
+		    <li  onclick="changeMarker('fishing')" id="fishingMenu" onclick="changeMarker('fishing')">
+               	    <span class="ico_comm ico_fishing"></span>
+                        낚시
+		        </li>
+		    <li id="allMenu" onclick="changeMarker('all')">
+               	    <span class="ico_comm ico_all"></span>
                 	모두표시
 		        </li>
 	        </ul>
@@ -114,12 +118,13 @@ ul.sidenav li a{
 		var type = 'skate';
 		var skateMarkers = [];
 		var basketMarkers = [];
-		
+                var fishingMarkers = [];
 		//var typeList = ['skate', 'basket']; //마커 종류 추가시 배열에도 추가해주세요.
 		//var typeSet = ['skate': skateMarkers,'bastet': basketMarkers];
 		
 		loadMarkers('skate', skateMarkers);
 		loadMarkers('basket', basketMarkers);
+		loadMarkers('fishing', fishingMarkers);
 		
 		//setSkateMarkers(map);
 		//setBasketMarkers(map);
