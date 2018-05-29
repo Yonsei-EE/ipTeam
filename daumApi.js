@@ -134,7 +134,8 @@ function addMarker(position, iwContent) {
 	// 커피숍 카테고리가 클릭됐을 때
 	if (type === 'skate') {
 	
-              var imageSrc1 = 'images/Icon_Skateboard(150x150).png', // 마커이미지의 주소입니다    
+              var gpsimage = 'images/gps.png',
+	      imageSrc1 = 'images/Icon_Skateboard(150x150).png', // 마커이미지의 주소입니다    
               imageSize1 = new daum.maps.Size(22, 24), // 마커이미지의 크기입니다
              // imageOption1 = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
               imageOption1 = { 
@@ -143,6 +144,7 @@ function addMarker(position, iwContent) {
 	};
     // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
               var markerImage1 = new daum.maps.MarkerImage(imageSrc1, imageSize1, imageOption1),
+		  gpsImage = new daum.maps.MarkerImage(gpsimage, imageSize1, imageOption1),
               markerPosition1 = marker.getPosition();// 마커가 표시될 위치입니다
 
     // 마커를 생성합니다
@@ -150,9 +152,14 @@ function addMarker(position, iwContent) {
                   position: markerPosition1, 
                   image: markerImage1 // 마커이미지 설정 
               });
+	    
+	      var marker = new daum.maps.Marker({
+                  position: markerPosition1, 
+                  image: gpsImage // 마커이미지 설정 
+              });
 	
 		skateMarkers.push(marker1);
-		marker1.setMap(map);
+		marker.setMap(map);
 	
 	
 	
