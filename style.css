@@ -24,7 +24,7 @@
 	overflow:hidden;
 	top:10px;
 	left:10px;
-	width:150px;
+	width:200px;
 	height:50px;
 	z-index:10;
 	border:1px solid black;
@@ -54,22 +54,32 @@
 
 }
 
+.category .ico_comm {
+	display:block;
+	margin:0 auto 2px;
+	width:22px;
+	height:26px;
+}
 
 .category .ico_skate {
 	background:url('images/1.png');
+	background-position:-10px 0;
 
 }
 
 .category .ico_basket {
 	background:url('images/2.png');
+	background-position:-10px 0;
 }
 
 .category .ico_fishing {
 	background:url('images/3.png');
+	background-position:-10px 0;
 }
 
 .category .ico_badminton {
 	background:url('images/4.png');
+	background-position:-10px 0;
 }
 .category .ico_all {
 	background-position:-10px -144px;
