@@ -129,6 +129,7 @@ function addMarker(position, iwContent) {
 	var skateMenu = document.getElementById('skateMenu');
 	var basketMenu = document.getElementById('basketMenu');
 	var fishingMenu = document.getElementById('fishingMenu');
+	var badmintonMenu = document.getElementById('badmintonMenu');
 				
 	// 커피숍 카테고리가 클릭됐을 때
 	if (type === 'skate') {
@@ -197,14 +198,38 @@ function addMarker(position, iwContent) {
     position: markerPosition3, 
     image: markerImage3 // 마커이미지 설정 
 });
-	
-		
-		
-		
 		fishingMarkers.push(marker3);
 		marker3.setMap(map);
+
+	}else if(type === 'badminton') { // 편의점 카테고리가 클릭됐을 때
+		
+		
+    var imageSrc4 = 'images/Icon_Fishing(150x150).png', // 마커이미지의 주소입니다    
+    imageSize4 = new daum.maps.Size(22, 24), // 마커이미지의 크기입니다
+    imageOption4 = {        // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      
+    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    var markerImage4 = new daum.maps.MarkerImage(imageSrc4, imageSize4, imageOption4),
+    markerPosition4 = marker.getPosition();// 마커가 표시될 위치입니다
+
+    // 마커를 생성합니다
+    var marker4 = new daum.maps.Marker({
+    position: markerPosition4, 
+    image: markerImage4 // 마커이미지 설정 
+});
+		badmintonMarkers.push(marker4);
+		marker4.setMap(map);
 	}
 
+	
+	
+	
+	
+	
+	
 	var jsonText = JSON.stringify(marker.getPosition());
 	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
 }
@@ -213,6 +238,7 @@ function changeMarker(changetype){
 	var skateMenu = document.getElementById('skateMenu');
 	var basketMenu = document.getElementById('basketMenu');
 	var fishingMenu = document.getElementById('fishingMenu');
+	var badmintonMenu = document.getElementById('badmintonMenu');
 	var allMenu = document.getElementById('allMenu');
 				
 	// 커피숍 카테고리가 클릭됐을 때
@@ -222,24 +248,28 @@ function changeMarker(changetype){
 		skateMenu.className = 'menu_selected';
 		basketMenu.className = '';
 		fishingMenu.className = '';
+		badmintonMenu.className = '';
 		allMenu.className = '';
 
 		// 커피숍 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
 		setBasketMarkers(null);
 		setFishingMarkers(null);
+		setBadmintonMarkers(null);
 	} 
 	else if (changetype === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		// 편의점 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = '';
 		basketMenu.className = 'menu_selected';
 		fishingMenu.className = '';
+		badmintonMenu.className = '';
 		allMenu.className = '';
 																														
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(null);
 		setBasketMarkers(map);
 		setFishingMarkers(null);
+		setBadmintonMarkers(null);
 		
 	}else if (changetype === 'fishing'){
 		
@@ -251,20 +281,39 @@ function changeMarker(changetype){
 		setSkateMarkers(null);
 		setBasketMarkers(null);
 		setFishingMarkers(map);
+		setBadmintonMarkers(null);
 		
 	
 
-        }else if (changetype === 'all') { // 편의점 카테고리가 클릭됐을 때
+        }else if (changetype === 'badminton'){
+		
+		skateMenu.className = '';
+		basketMenu.className = '';
+		fishingMenu.className = '';
+		badmintonMenu.className = 'menu_selected';
+		allMenu.className = '';
+		
+		setSkateMarkers(null);
+		setBasketMarkers(null);
+		setFishingMarkers(null);
+		setBadmintonMarkers(map);
+		
+	
+
+        }
+	else if (changetype === 'all') { // 편의점 카테고리가 클릭됐을 때
 		// 편의점 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = '';
 		basketMenu.className = '';
 		fishingMenu.className = '';
+		badmintonMenu.className = '';
 		allMenu.className = 'menu_selected';
 																														
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
 		setBasketMarkers(map);
 		setFishingMarkers(map);
+		setBadmintonMarkers(map);
 	}
 
 	type = changetype;
@@ -286,7 +335,11 @@ function setFishingMarkers(map) {
 		fishingMarkers[i].setMap(map);
 	}        
 }
-
+function setBadmintonMarkers(map) {        
+	for (var i = 0; i < badmintonMarkers.length; i++) {  
+		badmintonMarkers[i].setMap(map);
+	}        
+}
 function loadMarkers(type, markerset) {
 	$.ajax({
 		method:"GET", url:"dataReceive.php", async:false,
