@@ -144,7 +144,7 @@ function addMarker(position, iwContent) {
 	};
     // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
               var markerImage1 = new daum.maps.MarkerImage(imageSrc1, imageSize1, imageOption1),
-		  gpsImage = new daum.maps.MarkerImage(gpsimage, imageSize1, imageOption1),
+		  gpsImage11 = new daum.maps.MarkerImage(gpsimage, imageSize1, imageOption1),
               markerPosition1 = marker.getPosition();// 마커가 표시될 위치입니다
 
     // 마커를 생성합니다
@@ -153,13 +153,13 @@ function addMarker(position, iwContent) {
                   image: markerImage1 // 마커이미지 설정 
               });
 	    
-	      var marker = new daum.maps.Marker({
+	      var marker11 = new daum.maps.Marker({
                   position: markerPosition1, 
-                  image: gpsImage // 마커이미지 설정 
+                  image: gpsImage11 // 마커이미지 설정 
               });
 	
 		skateMarkers.push(marker1);
-		marker.setMap(map);
+		marker11.setMap(map);
 	
 	
 	
@@ -174,7 +174,7 @@ function addMarker(position, iwContent) {
 	};
     // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
                var markerImage2 = new daum.maps.MarkerImage(imageSrc2, imageSize2, imageOption2),
-		    gpsImage = new daum.maps.MarkerImage(gpsimage, imageSize1, imageOption2),
+		    gpsImage22 = new daum.maps.MarkerImage(gpsimage, imageSize2, imageOption2),
                markerPosition2 = marker.getPosition();// 마커가 표시될 위치입니2
 
     // 마커를 생성합니다
@@ -182,12 +182,12 @@ function addMarker(position, iwContent) {
                position: markerPosition2, 
                image: markerImage2 // 마커이미지 설정 
 });
-	      var marker = new daum.maps.Marker({
+	      var marker22 = new daum.maps.Marker({
                position: markerPosition2, 
-               image: gpsImage // 마커이미지 설정 
+               image: gpsImage22 // 마커이미지 설정 
 });
 	       basketMarkers.push(marker2);
-	       marker.setMap(map);
+	       marker22.setMap(map);
 		
 		
 	}else if(type === 'fishing') { // 편의점 카테고리가 클릭됐을 때
