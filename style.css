@@ -54,28 +54,23 @@
 
 }
 
-.category .ico_comm {
-	display:block;
-	margin:0 auto 2px;
-	width:22px;
-	height:26px;
-	background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png')  no-repeat;
-
-}
 
 .category .ico_skate {
-	background-position:-10px 0;
+	background:url('images/1.png');
 
 }
 
 .category .ico_basket {
-	background-position:-10px -36px;
+	background:url('images/2.png');
 }
 
 .category .ico_fishing {
-	background-position:-10px -72px;
+	background:url('images/3.png');
 }
 
+.category .ico_badminton {
+	background:url('images/4.png');
+}
 .category .ico_all {
 	background-position:-10px -144px;
 
