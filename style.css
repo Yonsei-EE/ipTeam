@@ -57,12 +57,13 @@
 .category .ico_comm {
 	display:block;
 	margin:0 auto 2px;
-	width:22px;
-	height:26px;
+	width:32px;
+	height:32px;
 }
 
 .category .ico_skate {
 	background:url('images/1.png');
+       
 
 
 }
