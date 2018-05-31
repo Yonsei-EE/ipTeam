@@ -152,17 +152,44 @@ function addMarker(position, iwContent) {
               markerPosition1 = marker.getPosition();// 마커가 표시될 위치입니다
 
     // 마커를 생성합니다
-               marker = new daum.maps.Marker({
+              var marker1 = new daum.maps.Marker({
                   position: markerPosition1, 
                   image: markerImage1 // 마커이미지 설정 
               });
 	    
 	      
 	
-		skateMarkers.push(marker);
-		marker.setMap(map);
+		skateMarkers.push(marker1);
+		marker1.setMap(map);
 	
 	
+		
+		
+		
+		
+	daum.maps.event.addListener(marker1, 'mouseover', function() {
+		myInfowindow.open(map, marker1);  
+	});
+	daum.maps.event.addListener(marker1, 'mouseout', function() {
+		myInfowindow.close();
+	});
+	daum.maps.event.addListener(marker1, 'dragstart', function() {
+		myInfowindow.close();
+	});
+	daum.maps.event.addListener(marker1, 'dragend', function() {
+		myInfowindow.open(map, marker1);
+	});
+
+	daum.maps.event.addListener(marker, 'click', function() {
+		window.location.href = "https://www.naver.com";
+	});
+
+	daum.maps.event.addListener(marker1, 'rightclick', function() {
+		myInfowindow.close();
+		marker1.setMap(null);
+	});
+	
+		
 	
 	} else if (type === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		
