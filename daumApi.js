@@ -87,7 +87,7 @@ function apiGeolocationSuccess(position) {
 	currentLocation = new daum.maps.LatLng(position.coords.latitude, position.coords.longitude);
 }
 
-function addMarker(position, iwContent) {
+function addMarker(position, iwContent, currentType) {
 	if(type == 'all') {
 		//alert("Please specify marker category.");
 		return;
@@ -128,13 +128,11 @@ function addMarker(position, iwContent) {
 		marker.setMap(null);
 	});
 
-	marker.type = type;
-
 	//var skateMenu = document.getElementById('skateMenu');
 	//var basketMenu = document.getElementById('basketMenu');
 
 	// 커피숍 카테고리가 클릭됐을 때
-	if (type === 'skate') {
+	if (currentType === 'skate') {
 		/*
 		var markerImage = new daum.maps.MarkerImage(
 			'images/marker.png',
@@ -152,7 +150,7 @@ function addMarker(position, iwContent) {
 		skateMarkers.push(marker);
 		marker.setMap(map);
 	}
-	else if (type === 'basket') { // 편의점 카테고리가 클릭됐을 때
+	else if (currentType === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		/*
 		var markerImage = new daum.maps.MarkerImage(
 			'images/marker.png',
@@ -170,7 +168,7 @@ function addMarker(position, iwContent) {
 		basketMarkers.push(marker);
 		marker.setMap(map);
 	}
-	else if (type === 'area') {
+	else if (currentType === 'area') {
 		areaMarkers.push(marker);
 		marker.setMap(map);
 	}
@@ -178,6 +176,10 @@ function addMarker(position, iwContent) {
 	var jsonText = JSON.stringify(marker.getPosition());
 	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
 	*/
+	else if (currentType === 'me') {
+		document.getElementById('result').innerHTML = "debug";
+		me = marker;
+	}
 }
 
 function changeMarker(changetype){

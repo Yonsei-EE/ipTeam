@@ -7,8 +7,8 @@
 	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-	<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a251234a41a2bd0ec1c296f3f1cf04b"></script>-->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a251234a41a2bd0ec1c296f3f1cf04b"></script>
+	<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>-->
 	<script type="text/javascript" src="daumApi.js"></script>
 
 	<div id="mapwrap">
@@ -50,6 +50,8 @@
 		var basketMarkers = [];
 		var areaMarkers = [];
 		var areas = [];
+		var me;
+		var interval;
 
 		//var typeList = ['skate', 'basket']; //마커 종류 추가시 배열에도 추가해주세요.
 		//var typeSet = ['skate': skateMarkers,'bastet': basketMarkers];
@@ -61,8 +63,13 @@
 		//setBasketMarkers(map);
 
 		document.getElementById("setMarker").addEventListener("click", function() {
-			iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-			addMarker(map.getCenter(), iwContent);
+			iwContent = '<div style="padding:5px;">This is me!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+			addMarker(map.getCenter(), iwContent, 'me');
+			interval = setInterval(function() {
+					geoLocation();
+					me.setPosition(currentLocation);
+					}, 3000)
+			
 		});
 
 		document.getElementById("setGeolocation").addEventListener("click", geoLocation);
@@ -79,7 +86,7 @@
 			var latlng = mouseEvent.latLng;
 			// 마커 위치를 클릭한 위치로 옮깁니다
 			iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-			addMarker(latlng, iwContent);
+			addMarker(latlng, iwContent, type);
 		});
 	</script>
 
