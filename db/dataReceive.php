@@ -2,7 +2,7 @@
 
 	$table = $_GET['table'].'Markers';
 	$col = $_GET['col'];
-	
+
 	require 'openMysql.php';
 	
 	$sql = open();

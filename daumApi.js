@@ -42,7 +42,6 @@ function showPosition(position) {
 		startup = false;
 	}
 }
-
 function showError(error) {
 	var str;
 	switch (error.code)
@@ -97,11 +96,11 @@ function apiGeolocationSuccess(position) {
 }
 
 function addMarker(position, iwContent, currentType) {
-	if(type == 'all') {
+	if(currentType == 'all') {
 		//alert("Please specify marker category.");
 		return;
 	}
-
+	
 	var marker = new daum.maps.Marker({
 		position: position,
 		clickable: true,
@@ -261,7 +260,6 @@ function setBasketMarkers(map) {
 	for (var i = 0; i < basketMarkers.length; i++) {
 		basketMarkers[i].setMap(map);
 	}
-}
 
 function setAreaMarkers(map) {
 	for (var i = 0; i < areaMarkers.length; i++) {
@@ -269,22 +267,69 @@ function setAreaMarkers(map) {
 	}
 }
 
-function loadMarkers(type, markerset) {
-	$.ajax({
-		method:"GET", url:"dataReceive.php", async:false,
-		data:{col: 'position', table: type},
-		success:
-			function (data, status) {
-				lDO = JSON.parse(data);
-				for (num in lDO) {
-					var temp =  new daum.maps.Marker({
-						position: JSON.parse(lDO[num]),
-						clickable: true,
-					});
-					markerset.push(temp);
-				}
-			}
-	});
+function addPolygon() {
+		var polygonPath = [];
+		var center = [0,0];
+		var position;
+
+		for (i in areaMarkers) {
+			position = areaMarkers[i].getPosition();
+			polygonPath.push(position);
+			center[0] += position.getLat();
+			center[1] += position.getLng();
+		}
+		center[0] /= areaMarkers.length;
+		center[1] /= areaMarkers.length;
+
+		var myInfowindow = new daum.maps.InfoWindow({
+			position : new daum.maps.LatLng(center[0], center[1]),
+			content : '<div style="padding:5px;">Hello World!</div>'
+		});
+
+		var polygon = new daum.maps.Polygon({
+   			path:polygonPath, // 그려질 다각형의 좌표 배열입니다
+   			strokeWeight: 3, // 선의 두께입니다
+   			strokeColor: '#39DE2A', // 선의 색깔입니다
+   			strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+   			strokeStyle: 'longdash', // 선의 스타일입니다
+   			fillColor: '#A2FF99', // 채우기 색깔입니다
+   			fillOpacity: 0.7 // 채우기 불투명도 입니다
+		});
+
+		var mouseoverOption = { 
+			fillColor: '#EFFFED', // 채우기 색깔입니다
+			fillOpacity: 0.8 // 채우기 불투명도 입니다        
+		};
+
+		// 다각형에 마우스아웃 이벤트가 발생했을 때 변경할 채우기 옵션입니다
+		var mouseoutOption = {
+			fillColor: '#A2FF99', // 채우기 색깔입니다 
+			fillOpacity: 0.7 // 채우기 불투명도 입니다        
+		};
+		
+		// 다각형에 마우스오버 이벤트를 등록합니다
+        daum.maps.event.addListener(polygon, 'mouseover', function() {
+	        // 다각형의 채우기 옵션을 변경합니다
+    	    polygon.setOptions(mouseoverOption);
+			myInfowindow.open(map);
+		});   
+		daum.maps.event.addListener(polygon, 'mouseout', function() { 
+            // 다각형의 채우기 옵션을 변경합니다
+            polygon.setOptions(mouseoutOption); 
+			myInfowindow.close();
+        }); 
+		daum.maps.event.addListener(polygon, 'click', function() {
+			window.location.href = "https://www.naver.com";
+		});
+		
+		// 지도에 다각형을 표시합니다
+		polygon.setMap(map);
+		changeMarker("all");
+		document.getElementById("setArea").style.display = 'inline';
+		document.getElementById("createPolyline").style.display = 'none';
+
+		areaMarkers = [];
+		areas.push(polygon);
 }
 
 function addPolygon(polygonPath, currentType) {
