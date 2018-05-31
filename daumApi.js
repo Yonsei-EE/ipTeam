@@ -162,7 +162,8 @@ function addMarker(position, iwContent, currentType) {
 		
 		basketMarkers.push(marker);
 		marker.setMap(map);
-// 	}else if (currentType === 'fishing') { // 편의점 카테고리가 클릭됐을 때
+ 	}
+		//else if (currentType === 'fishing') { // 편의점 카테고리가 클릭됐을 때
 		
 // 		var markerImage = new daum.maps.MarkerImage(
 // 			'images/3.png',
