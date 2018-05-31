@@ -275,19 +275,23 @@ function loadMarkers(type, markerset) {
 	});
 }
 
-function addPolygon() {
-		var polygonPath = [];
+function addPolygon(polygonPath) {
 		var center = [0,0];
 		var position;
 
-		for (i in areaMarkers) {
-			position = areaMarkers[i].getPosition();
-			polygonPath.push(position);
-			center[0] += position.getLat();
-			center[1] += position.getLng();
+		if(polygonPath.length == 0) {
+			for (i in areaMarkers) {
+				position = areaMarkers[i].getPosition();
+				polygonPath.push(position);
+			}
 		}
-		center[0] /= areaMarkers.length;
-		center[1] /= areaMarkers.length;
+
+		for (i in polygonPath) {
+			center[0] += polygonPath[i].getLat();
+			center[1] += polygonPath[i].getLng();
+		}
+		center[0] /= polygonPath.length;
+		center[1] /= polygonPath.length;
 
 		var myInfowindow = new daum.maps.InfoWindow({
 			position : new daum.maps.LatLng(center[0], center[1]),

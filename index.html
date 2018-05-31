@@ -7,8 +7,8 @@
 	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a251234a41a2bd0ec1c296f3f1cf04b"></script>-->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a251234a41a2bd0ec1c296f3f1cf04b"></script>
+<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>-->
 	<script type="text/javascript" src="daumApi.js"></script>
 
 	<div id="mapwrap">
@@ -83,7 +83,8 @@ document.getElementById("setGeolocation").addEventListener("click", function() {
 			document.getElementById("setArea").style.display = 'none';
 			document.getElementById("createPolyline").style.display = 'inline';
 		});
-		document.getElementById("createPolyline").addEventListener("click", addPolygon);
+document.getElementById("createPolyline").addEventListener("click", function() {
+			addPolygon([]));
 
 		// 지도에 클릭 이벤트를 등록합니다
 		daum.maps.event.addListener(map, 'click', function(mouseEvent) {
