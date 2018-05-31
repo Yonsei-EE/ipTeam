@@ -152,15 +152,15 @@ function addMarker(position, iwContent) {
               markerPosition1 = marker.getPosition();// 마커가 표시될 위치입니다
 
     // 마커를 생성합니다
-               marker = new daum.maps.Marker({
+              var marker1 = new daum.maps.Marker({
                   position: markerPosition1, 
                   image: markerImage1 // 마커이미지 설정 
               });
 	    
 	      
 	
-		skateMarkers.push(marker);
-		marker.setMap(map);
+		skateMarkers.push(marker1);
+		marker1.setMap(map);
 	
 	
 	
