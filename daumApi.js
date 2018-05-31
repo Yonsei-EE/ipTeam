@@ -85,9 +85,9 @@ function apiGeolocationSuccess(position) {
 	map.setCenter(new daum.maps.LatLng(position.coords.latitude, position.coords.longitude));
 }
 
-function addMarker(position, iwContent) {
+function addMarker(position, iwContent, currentType) {
 	if(type == 'all') {
-		alert("Please specify marker category.");
+		//alert("Please specify marker category.");
 		return;
 	}
 
@@ -101,11 +101,11 @@ function addMarker(position, iwContent) {
 	// 인포윈도우를 생성합니다
 	var myInfowindow = new daum.maps.InfoWindow({
 		position : position,
-		content : iwContent 
+		content : iwContent
 	});
 
 	daum.maps.event.addListener(marker, 'mouseover', function() {
-		myInfowindow.open(map, marker);  
+		myInfowindow.open(map, marker);
 	});
 	daum.maps.event.addListener(marker, 'mouseout', function() {
 		myInfowindow.close();
@@ -124,150 +124,74 @@ function addMarker(position, iwContent) {
 	daum.maps.event.addListener(marker, 'rightclick', function() {
 		myInfowindow.close();
 		marker.setMap(null);
+		clearInterval(interval);
 	});
-	
-	
-	
-	
-	
-	
-	var skateMenu = document.getElementById('skateMenu');
-	var basketMenu = document.getElementById('basketMenu');
-	var fishingMenu = document.getElementById('fishingMenu');
-	var badmintonMenu = document.getElementById('badmintonMenu');
-	
-				
+
+	//var skateMenu = document.getElementById('skateMenu');
+	//var basketMenu = document.getElementById('basketMenu');
+
 	// 커피숍 카테고리가 클릭됐을 때
-	if (type === 'skate') {
-	
-              var imageSrc1 = 'images/Icon_Skateboard(150x150).png', // 마커이미지의 주소입니다    
-              imageSize1 = new daum.maps.Size(42, 44), // 마커이미지의 크기입니다
-             // imageOption1 = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-              imageOption1 = { 
-		center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-		level: 3 //지도의 레벨(확대, 축소 정도)
-	};
-    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-              var markerImage1 = new daum.maps.MarkerImage(imageSrc1, imageSize1, imageOption1),
-              markerPosition1 = marker.getPosition();// 마커가 표시될 위치입니다
-
-    // 마커를 생성합니다
-              var marker1 = new daum.maps.Marker({
-                  position: markerPosition1, 
-                  image: markerImage1 // 마커이미지 설정 
-              });
-	    
-	      
-	
-		skateMarkers.push(marker1);
-		marker1.setMap(map);
-	
-	
-		
-		
-		
-		
-	daum.maps.event.addListener(marker1, 'mouseover', function() {
-		myInfowindow.open(map, marker1);  
-	});
-	daum.maps.event.addListener(marker1, 'mouseout', function() {
-		myInfowindow.close();
-	});
-	daum.maps.event.addListener(marker1, 'dragstart', function() {
-		myInfowindow.close();
-	});
-	daum.maps.event.addListener(marker1, 'dragend', function() {
-		myInfowindow.open(map, marker1);
-	});
-
-	daum.maps.event.addListener(marker, 'click', function() {
-		window.location.href = "https://www.naver.com";
-	});
-
-	daum.maps.event.addListener(marker1, 'rightclick', function() {
-		myInfowindow.close();
-		marker1.setMap(null);
-	});
-	
-		
-	
-	} else if (type === 'basket') { // 편의점 카테고리가 클릭됐을 때
-		
-		
-               var imageSrc2 = 'images/Icon_Basketball(150x150).png', // 마커이미지의 주소입니다    
-               imageSize2 = new daum.maps.Size(42, 44), // 마커이미지의 크기입니다
-               imageOption2 = { // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-		center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-		level: 3 //지도의 레벨(확대, 축소 정도)
-	};
-    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-               var markerImage2 = new daum.maps.MarkerImage(imageSrc2, imageSize2, imageOption2),
-               markerPosition2 = marker.getPosition();// 마커가 표시될 위치입니2
-
-    // 마커를 생성합니다
-               var marker2 = new daum.maps.Marker({
-               position: markerPosition2, 
-               image: markerImage2 // 마커이미지 설정 
-});
-	      
-	       basketMarkers.push(marker2);
-	       marker2.setMap(map);
-		
-		
-	}else if(type === 'fishing') { // 편의점 카테고리가 클릭됐을 때
-		
-		
-    var imageSrc3 = 'images/Icon_Fishing(150x150).png', // 마커이미지의 주소입니다    
-    imageSize3 = new daum.maps.Size(42, 44), // 마커이미지의 크기입니다
-    imageOption3 = {        // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-		center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-		level: 3 //지도의 레벨(확대, 축소 정도)
-	}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
-    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-    var markerImage3 = new daum.maps.MarkerImage(imageSrc3, imageSize3, imageOption3),
-    markerPosition3 = marker.getPosition();// 마커가 표시될 위치입니다
-
-    // 마커를 생성합니다
-    var marker3 = new daum.maps.Marker({
-    position: markerPosition3, 
-    image: markerImage3 // 마커이미지 설정 
-});
-		fishingMarkers.push(marker3);
-		marker3.setMap(map);
-
-	}else if(type === 'badminton') { // 편의점 카테고리가 클릭됐을 때
-		
-		
-    var imageSrc4 = 'images/marker.png', // 마커이미지의 주소입니다    
-    imageSize4 = new daum.maps.Size(42, 44), // 마커이미지의 크기입니다
-    imageOption4 = {        // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-		center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-		level: 3 //지도의 레벨(확대, 축소 정도)
-	}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
-    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-    var markerImage4 = new daum.maps.MarkerImage(imageSrc4, imageSize4, imageOption4),
-    markerPosition4 = marker.getPosition();// 마커가 표시될 위치입니다
-
-    // 마커를 생성합니다
-    var marker4 = new daum.maps.Marker({
-    position: markerPosition4, 
-    image: markerImage4 // 마커이미지 설정 
-});
-		badmintonMarkers.push(marker4);
-		marker4.setMap(map);
+	if (currentType === 'skate') {
+		var markerImage = new daum.maps.MarkerImage(
+			'images/1.png',
+			new daum.maps.Size(512, 512),
+			{
+				offset: new daum.maps.Point(73,76),
+				alt: "Marker Image",
+				shape: "poly",
+				coords: "12,10,10,140,140,142,141,9"
+			}
+		);
+		marker.image = markerImage;
+		skateMarkers.push(marker);
+		marker.setMap(map);
 	}
-
-	
-	
-	
-	
-	
-	
+	else if (currentType === 'basket') { // 편의점 카테고리가 클릭됐을 때
+		/*
+		var markerImage = new daum.maps.MarkerImage(
+			'images/2.png',
+			new daum.maps.Size(512, 512),
+			{
+				offset: new daum.maps.Point(256,510),
+				alt: "Marker Image",
+				shape: "poly",
+				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
+			}
+		);
+		marker.image = markerImage;
+		*/
+		basketMarkers.push(marker);
+		marker.setMap(map);
+	}
+	else if (currentType === 'area') {
+		areaMarkers.push(marker);
+		marker.setMap(map);
+	}
+	/*
 	var jsonText = JSON.stringify(marker.getPosition());
 	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
+	*/
+	else if (currentType === 'me') {
+/*
+		var markerImage = new daum.maps.MarkerImage(
+			'images/marker.png',
+			new daum.maps.Size(512, 512),
+			{
+				offset: new daum.maps.Point(256,510),
+				alt: "Marker Image",
+				shape: "poly",
+				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
+			}
+		);
+		marker.image = markerImage;
+		*/
+		if(myMarker==null) {
+			myMarker = marker;
+			myMarker.setMap(map);
+		}
+	}
 }
+
 
 function changeMarker(changetype){
 	var skateMenu = document.getElementById('skateMenu');
