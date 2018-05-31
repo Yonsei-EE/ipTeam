@@ -43,6 +43,7 @@
 		var map = map_initialize();
 		var currentLocation;
 		geoLocation();
+		map.panTo(currentLocation);
 
 		// 마커를 생성합니다.
 		var type = 'skate';
@@ -73,7 +74,10 @@
 			
 		});
 
-		document.getElementById("setGeolocation").addEventListener("click", geoLocation);
+document.getElementById("setGeolocation").addEventListener("click", function() {
+			geoLocation();
+			map.panTo(currentLocation);
+		});
 		document.getElementById("setArea").addEventListener("click", function() {
 			changeMarker("area");
 			document.getElementById("setArea").style.display = 'none';

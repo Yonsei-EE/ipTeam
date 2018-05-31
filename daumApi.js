@@ -36,7 +36,6 @@ function showPosition(position) {
 	console.log("myLat : " + myLat);
 	console.log("myLng : " + myLng);
 
-	map.panTo(new daum.maps.LatLng(myLat, myLng));
 	currentLocation = new daum.maps.LatLng(myLat, myLng);
 }
 
