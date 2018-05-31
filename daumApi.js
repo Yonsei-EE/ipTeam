@@ -200,6 +200,20 @@ function addMarker(position, iwContent, currentType) {
 		marker.setMap(map);
 	}
 	else if (currentType === 'area') {
+		
+		 markerImage = new daum.maps.MarkerImage(
+			'images/area.png',
+			new daum.maps.Size(512, 512),
+			{
+				offset: new daum.maps.Point(15,30),
+				alt: "Marker Image",
+				shape: "poly",
+				coords: "0,3,2,31,30,30,32,1"
+			}
+		);
+		marker.image = markerImage;
+		
+	
 		areaMarkers.push(marker);
 		marker.setMap(map);
 	}
