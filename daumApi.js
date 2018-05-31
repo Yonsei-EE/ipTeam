@@ -131,8 +131,11 @@ function addMarker(position, iwContent, currentType) {
 	//var basketMenu = document.getElementById('basketMenu');
 
 	// 커피숍 카테고리가 클릭됐을 때
+	
+	var markerImage;
+	
 	if (currentType === 'skate') {
-		var markerImage = new daum.maps.MarkerImage(
+		 markerImage = new daum.maps.MarkerImage(
 			'images/1.png',
 			new daum.maps.Size(512, 512),
 			{
@@ -148,7 +151,7 @@ function addMarker(position, iwContent, currentType) {
 	}
 	else if (currentType === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		
-		var markerImage = new daum.maps.MarkerImage(
+		markerImage = new daum.maps.MarkerImage(
 			'images/2.png',
 			new daum.maps.Size(512, 512),
 			{
@@ -165,7 +168,7 @@ function addMarker(position, iwContent, currentType) {
  	}
 		else if (currentType === 'fishing') { // 편의점 카테고리가 클릭됐을 때
 		
-		var markerImage = new daum.maps.MarkerImage(
+		 markerImage = new daum.maps.MarkerImage(
 			'images/3.png',
 			new daum.maps.Size(512, 512),
 			{
@@ -181,7 +184,7 @@ function addMarker(position, iwContent, currentType) {
 		marker.setMap(map);
 	}else if (currentType === 'badminton') { // 편의점 카테고리가 클릭됐을 때
 		
-		var markerImage = new daum.maps.MarkerImage(
+		 markerImage = new daum.maps.MarkerImage(
 			'images/4.png',
 			new daum.maps.Size(512, 512),
 			{
