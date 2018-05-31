@@ -32,7 +32,7 @@ body {
 .st-container > a {
 	z-index: 10;
 	font-weight: 700;
-	background: #e23a6e;
+	background: #821010;
 	color: #fff;
 	text-align: center;
 	text-shadow: 1px 1px 1px rgba(151,24,64,0.2);
@@ -48,7 +48,7 @@ body {
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-	border-bottom-color: #821134;
+	border-bottom-color: #821010;
 	border-width: 20px;
 	left: 50%;
 	margin-left: -20px;
