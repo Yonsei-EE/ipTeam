@@ -104,96 +104,31 @@ function addMarker(position, iwContent) {
 		content : iwContent 
 	});
 
-	daum.maps.event.addListener(marker1, 'mouseover', function() {
-		myInfowindow.open(map, marker1);  
+	daum.maps.event.addListener(marker, 'mouseover', function() {
+		myInfowindow.open(map, marker);  
 	});
-	daum.maps.event.addListener(marker1, 'mouseout', function() {
+	daum.maps.event.addListener(marker, 'mouseout', function() {
 		myInfowindow.close();
 	});
-	daum.maps.event.addListener(marker1, 'dragstart', function() {
+	daum.maps.event.addListener(marker, 'dragstart', function() {
 		myInfowindow.close();
 	});
-	daum.maps.event.addListener(marker1, 'dragend', function() {
-		myInfowindow.open(map, marker1);
+	daum.maps.event.addListener(marker, 'dragend', function() {
+		myInfowindow.open(map, marker);
 	});
 
-	daum.maps.event.addListener(marker1, 'click', function() {
+	daum.maps.event.addListener(marker, 'click', function() {
 		window.location.href = "https://www.naver.com";
 	});
 
-	daum.maps.event.addListener(marker1, 'rightclick', function() {
+	daum.maps.event.addListener(marker, 'rightclick', function() {
 		myInfowindow.close();
 		marker.setMap(null);
 	});
 	
 	
 	
-	daum.maps.event.addListener(marker2, 'mouseover', function() {
-		myInfowindow.open(map, marker2);  
-	});
-	daum.maps.event.addListener(marker2, 'mouseout', function() {
-		myInfowindow.close();
-	});
-	daum.maps.event.addListener(marker2, 'dragstart', function() {
-		myInfowindow.close();
-	});
-	daum.maps.event.addListener(marker2, 'dragend', function() {
-		myInfowindow.open(map, marker2);
-	});
-
-	daum.maps.event.addListener(marker2, 'click', function() {
-		window.location.href = "https://www.naver.com";
-	});
-
-	daum.maps.event.addListener(marker2, 'rightclick', function() {
-		myInfowindow.close();
-		marker.setMap(null);
-	});
 	
-	daum.maps.event.addListener(marker3, 'mouseover', function() {
-		myInfowindow.open(map, marker3);  
-	});
-	daum.maps.event.addListener(marker3, 'mouseout', function() {
-		myInfowindow.close();
-	});
-	daum.maps.event.addListener(marker3, 'dragstart', function() {
-		myInfowindow.close();
-	});
-	daum.maps.event.addListener(marker3, 'dragend', function() {
-		myInfowindow.open(map, marker3);
-	});
-
-	daum.maps.event.addListener(marker3, 'click', function() {
-		window.location.href = "https://www.naver.com";
-	});
-
-	daum.maps.event.addListener(marker3, 'rightclick', function() {
-		myInfowindow.close();
-		marker.setMap(null);
-	});
-	
-		
-	daum.maps.event.addListener(marker4, 'mouseover', function() {
-		myInfowindow.open(map, marker4);  
-	});
-	daum.maps.event.addListener(marker4, 'mouseout', function() {
-		myInfowindow.close();
-	});
-	daum.maps.event.addListener(marker4, 'dragstart', function() {
-		myInfowindow.close();
-	});
-	daum.maps.event.addListener(marker4, 'dragend', function() {
-		myInfowindow.open(map, marker4);
-	});
-
-	daum.maps.event.addListener(marker4, 'click', function() {
-		window.location.href = "https://www.naver.com";
-	});
-
-	daum.maps.event.addListener(marker4, 'rightclick', function() {
-		myInfowindow.close();
-		marker.setMap(null);
-	});
 	
 	
 	var skateMenu = document.getElementById('skateMenu');
