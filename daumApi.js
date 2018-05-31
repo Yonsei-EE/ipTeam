@@ -146,23 +146,23 @@ function addMarker(position, iwContent, currentType) {
 		skateMarkers.push(marker);
 		marker.setMap(map);
 	}
-	else if (currentType === 'basket') { // 편의점 카테고리가 클릭됐을 때
+// 	else if (currentType === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		
-		var markerImage = new daum.maps.MarkerImage(
-			'images/2.png',
-			new daum.maps.Size(512, 512),
-			{
-				offset: new daum.maps.Point(75,139),
-				alt: "Marker Image",
-				shape: "poly",
-				coords: "10,11,9,138,141,140,141,9"
-			}
-		);
-		marker.image = markerImage;
+// 		var markerImage = new daum.maps.MarkerImage(
+// 			'images/2.png',
+// 			new daum.maps.Size(512, 512),
+// 			{
+// 				offset: new daum.maps.Point(75,139),
+// 				alt: "Marker Image",
+// 				shape: "poly",
+// 				coords: "10,11,9,138,141,140,141,9"
+// 			}
+// 		);
+// 		marker.image = markerImage;
 		
-		basketMarkers.push(marker);
-		marker.setMap(map);
- 	}
+// 		basketMarkers.push(marker);
+// 		marker.setMap(map);
+//  	}
 		//else if (currentType === 'fishing') { // 편의점 카테고리가 클릭됐을 때
 		
 // 		var markerImage = new daum.maps.MarkerImage(
