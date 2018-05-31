@@ -37,7 +37,10 @@ function showPosition(position) {
 	console.log("myLng : " + myLng);
 
 	currentLocation = new daum.maps.LatLng(myLat, myLng);
-	console.log(currentLocation);
+	if(startup) {
+		map.panTo(currentLocation);
+		startup = false;
+	}
 }
 
 function showError(error) {
@@ -126,6 +129,7 @@ function addMarker(position, iwContent, currentType) {
 	daum.maps.event.addListener(marker, 'rightclick', function() {
 		myInfowindow.close();
 		marker.setMap(null);
+		clearInterval(interval);
 	});
 
 	//var skateMenu = document.getElementById('skateMenu');
@@ -177,9 +181,8 @@ function addMarker(position, iwContent, currentType) {
 	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
 	*/
 	else if (currentType === 'me') {
-		document.getElementById('result').innerHTML = "debug";
-		me = marker;
-		me.setMap(map);
+		myMarker = marker;
+		myMarker.setMap(map);
 	}
 }
 

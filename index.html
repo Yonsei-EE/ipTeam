@@ -8,7 +8,7 @@
 </head>
 <body>
 <!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a251234a41a2bd0ec1c296f3f1cf04b"></script>-->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3d99118be6f66b213e232f75ada21ada"></script>
 	<script type="text/javascript" src="daumApi.js"></script>
 
 	<div id="mapwrap">
@@ -41,10 +41,9 @@
 
 		// 지도를 생성합니다.
 		var map = map_initialize();
+		var startup = true;
 		var currentLocation;
 		geoLocation();
-		console.log(currentLocation);
-		map.panTo(currentLocation);
 
 		// 마커를 생성합니다.
 		var type = 'skate';
@@ -52,7 +51,7 @@
 		var basketMarkers = [];
 		var areaMarkers = [];
 		var areas = [];
-		var me;
+		var myMarker;
 		var interval;
 
 		//var typeList = ['skate', 'basket']; //마커 종류 추가시 배열에도 추가해주세요.
@@ -69,8 +68,8 @@
 			addMarker(map.getCenter(), iwContent, 'me');
 			interval = setInterval(function() {
 					geoLocation();
-					me.setPosition(currentLocation);
-					me.setMap(map);
+					myMarker.setPosition(currentLocation);
+					myMarker.setMap(map);
 					}, 3000)
 			
 		});
