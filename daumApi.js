@@ -36,8 +36,11 @@ function showPosition(position) {
 	console.log("myLat : " + myLat);
 	console.log("myLng : " + myLng);
 
-	map.panTo(new daum.maps.LatLng(myLat, myLng));
 	currentLocation = new daum.maps.LatLng(myLat, myLng);
+	if(startup) {
+		map.panTo(currentLocation);
+		startup = false;
+	}
 }
 
 function showError(error) {
@@ -87,7 +90,7 @@ function apiGeolocationSuccess(position) {
 	currentLocation = new daum.maps.LatLng(position.coords.latitude, position.coords.longitude);
 }
 
-function addMarker(position, iwContent, type) {
+function addMarker(position, iwContent, currentType) {
 	if(type == 'all') {
 		//alert("Please specify marker category.");
 		return;
@@ -126,15 +129,11 @@ function addMarker(position, iwContent, type) {
 	daum.maps.event.addListener(marker, 'rightclick', function() {
 		myInfowindow.close();
 		marker.setMap(null);
+		clearInterval(interval);
 	});
 
-	marker.type = type;
-
-	//var skateMenu = document.getElementById('skateMenu');
-	//var basketMenu = document.getElementById('basketMenu');
-
 	// 커피숍 카테고리가 클릭됐을 때
-	if (type === 'skate') {
+	if (currentType === 'skate') {
 		/*
 		var markerImage = new daum.maps.MarkerImage(
 			'images/marker.png',
@@ -152,7 +151,7 @@ function addMarker(position, iwContent, type) {
 		skateMarkers.push(marker);
 		marker.setMap(map);
 	}
-	else if (type === 'basket') { // 편의점 카테고리가 클릭됐을 때
+	else if (currentType === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		/*
 		var markerImage = new daum.maps.MarkerImage(
 			'images/marker.png',
@@ -170,12 +169,18 @@ function addMarker(position, iwContent, type) {
 		basketMarkers.push(marker);
 		marker.setMap(map);
 	}
-/*
-	else if (type === 'area') {
+	else if (currentType === 'area') {
 		areaMarkers.push(marker);
 		marker.setMap(map);
 	}
-*/
+	/*
+	var jsonText = JSON.stringify(marker.getPosition());
+	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
+	*/
+	else if (currentType === 'me') {
+		myMarker = marker;
+		myMarker.setMap(map);
+	}
 }
 
 function changeMarker(changetype){
@@ -249,19 +254,25 @@ function setAreaMarkers(map) {
 	}
 }
 
-function addPolygon() {
-		var polygonPath = [];
+function addPolygon(polygonPath, currentType) {
 		var center = [0,0];
 		var position;
 
-		for (i in areaMarkers) {
-			position = areaMarkers[i].getPosition();
-			polygonPath.push(position);
-			center[0] += position.getLat();
-			center[1] += position.getLng();
+		if(polygonPath.length == 0) {
+			for (i in areaMarkers) {
+				position = areaMarkers[i].getPosition();
+				polygonPath.push(position);
+			}
 		}
-		center[0] /= areaMarkers.length;
-		center[1] /= areaMarkers.length;
+
+		for (i in polygonPath) {
+			center[0] += polygonPath[i].getLat();
+			center[1] += polygonPath[i].getLng();
+		}
+		center[0] /= polygonPath.length;
+		center[1] /= polygonPath.length;
+
+		console.log(polygonPath);
 
 		var myInfowindow = new daum.maps.InfoWindow({
 			position : new daum.maps.LatLng(center[0], center[1]),
@@ -271,21 +282,19 @@ function addPolygon() {
 		var polygon = new daum.maps.Polygon({
    			path:polygonPath, // 그려질 다각형의 좌표 배열입니다
    			strokeWeight: 3, // 선의 두께입니다
-   			strokeColor: '#39DE2A', // 선의 색깔입니다
    			strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
    			strokeStyle: 'longdash', // 선의 스타일입니다
-   			fillColor: '#A2FF99', // 채우기 색깔입니다
    			fillOpacity: 0.7 // 채우기 불투명도 입니다
 		});
 
 		var mouseoverOption = { 
-			fillColor: '#EFFFED', // 채우기 색깔입니다
-			fillOpacity: 0.8 // 채우기 불투명도 입니다        
+			//fillColor: '#EFFFED', // 채우기 색깔입니다
+			fillOpacity: 0.9 // 채우기 불투명도 입니다        
 		};
 
 		// 다각형에 마우스아웃 이벤트가 발생했을 때 변경할 채우기 옵션입니다
 		var mouseoutOption = {
-			fillColor: '#A2FF99', // 채우기 색깔입니다 
+			//fillColor: '#A2FF99', // 채우기 색깔입니다 
 			fillOpacity: 0.7 // 채우기 불투명도 입니다        
 		};
 		
@@ -303,13 +312,33 @@ function addPolygon() {
 		daum.maps.event.addListener(polygon, 'click', function() {
 			window.location.href = "https://www.naver.com";
 		});
-		
-		// 지도에 다각형을 표시합니다
+
 		polygon.setMap(map);
-		changeMarker("all");
+
+		if(currentType === 'skate') {
+			polygon.setOptions({
+   				strokeColor: '#39DE2A', // 선의 색깔입니다
+   				fillColor: '#A2FF99', // 채우기 색깔입니다
+			});
+			skateAreas.push(polygon);
+		}
+
+		else if(currentType === 'basket') {
+			polygon.setOptions({
+   				strokeColor: '#ff3333', // 선의 색깔입니다
+   				fillColor: '#ffb3b3', // 채우기 색깔입니다
+			});
+			skateAreas.push(polygon);
+		}
+
+			basketAreas.push(polygon);
+
+		// 지도에 다각형을 표시합니다
+		//changeMarker("all");
 		document.getElementById("setArea").style.display = 'inline';
 		document.getElementById("createPolyline").style.display = 'none';
 
 		areaMarkers = [];
 		areas.push(polygon);
 }
+
