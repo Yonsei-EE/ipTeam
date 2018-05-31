@@ -179,6 +179,7 @@ function addMarker(position, iwContent, currentType) {
 	else if (currentType === 'me') {
 		document.getElementById('result').innerHTML = "debug";
 		me = marker;
+		me.setMap(map);
 	}
 }
 
