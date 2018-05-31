@@ -1,2 +1,0 @@
-get token for instagram API
-https://gist.github.com/mojaray2k/b502d75dd7a9fa277876

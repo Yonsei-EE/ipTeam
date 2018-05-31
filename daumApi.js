@@ -44,20 +44,26 @@ function showPosition(position) {
 }
 
 function showError(error) {
+	var str;
 	switch (error.code)
 	{
 		case error.PERMISSION_DENIED:
-			alert("User denied the request for Geolocation. Trying Google Geoloction API.");
+			str = "User denied the request for Geolocation.";
 			break;
 		case error.POSITION_UNAVAILABLE:
-			alert("Location information is unavailable. Trying Google Geoloction API.");
+			str = "Location information is unavailable.";
 			break;
 		case error.TIMEOUT:
-			alert("The request to get user location timed out. Trying Google Geoloction API.");
+			str = "The request to get user location timed out.";
 			break;
 		case error.UNKNOWN_ERROR:
-			alert("An unknown error occured. Trying Google Geoloction API.");
+			str = "An unknown error occured."; 
 			break;
+	}
+	str += " Trying Google Geolocation API.";
+	if(!alerted) {
+		alert(str);
+		alerted = true;
 	}
 	tryAPIGeolocation();
 }
@@ -91,7 +97,7 @@ function apiGeolocationSuccess(position) {
 }
 
 function addMarker(position, iwContent, currentType) {
-	if(type == 'all') {
+	if(currentType == 'all') {
 		//alert("Please specify marker category.");
 		return;
 	}
@@ -131,6 +137,9 @@ function addMarker(position, iwContent, currentType) {
 		marker.setMap(null);
 		clearInterval(interval);
 	});
+
+	//var skateMenu = document.getElementById('skateMenu');
+	//var basketMenu = document.getElementById('basketMenu');
 
 	// 커피숍 카테고리가 클릭됐을 때
 	if (currentType === 'skate') {
@@ -178,8 +187,24 @@ function addMarker(position, iwContent, currentType) {
 	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
 	*/
 	else if (currentType === 'me') {
-		myMarker = marker;
-		myMarker.setMap(map);
+/*
+		var markerImage = new daum.maps.MarkerImage(
+			'images/marker.png',
+			new daum.maps.Size(512, 512),
+			{
+				offset: new daum.maps.Point(256,510),
+				alt: "Marker Image",
+				shape: "poly",
+				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
+			}
+		);
+
+		marker.image = markerImage;
+		*/
+		if(myMarker==null) {
+			myMarker = marker;
+			myMarker.setMap(map);
+		}
 	}
 }
 
@@ -222,17 +247,8 @@ function changeMarker(changetype){
 		setSkateMarkers(map);
 		setBasketMarkers(map);
 		setAreaMarkers(null);
-	}
-	else if(changetype === 'area') {
-		skateMenu.className = '';
-		basketMenu.className = '';
-		allMenu.className = '';
 
-		setSkateMarkers(null);
-		setBasketMarkers(null);
-		setAreaMarkers(null);
 	}
-
 	type = changetype;
 }
 
@@ -338,7 +354,7 @@ function addPolygon(polygonPath, currentType) {
 		document.getElementById("setArea").style.display = 'inline';
 		document.getElementById("createPolyline").style.display = 'none';
 
+		setAreaMarkers(null);
 		areaMarkers = [];
 		areas.push(polygon);
 }
-

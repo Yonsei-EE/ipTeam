@@ -1,4 +1,5 @@
 // 지도를 생성합니다.
+var alerted = false;
 var map = map_initialize();
 var startup = true;
 var currentLocation;
@@ -6,14 +7,14 @@ geoLocation();
 
 // 마커를 생성합니다.
 var prevType;
-var type = 'skate';
+var type = 'all';
 var skateMarkers = [];
 var basketMarkers = [];
 var areaMarkers = [];
 var areas = [];
 var skateAreas = [];
 var basketAreas = [];
-var myMarker;
+var myMarker = null;
 var interval;
 
 var typeList = ['skate', 'basket']; //마커 종류 추가시 배열에도 추가해주세요.
@@ -21,13 +22,15 @@ var typeList = ['skate', 'basket']; //마커 종류 추가시 배열에도 추�
 loadMarkers(typeList);
 
 document.getElementById("setMarker").addEventListener("click", function() {
-	iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다	
+	iwContent = '<div style="padding:5px;">This is me!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 	addMarker(map.getCenter(), iwContent, 'me');
 	interval = setInterval(function() {
 			geoLocation();
-			myMarker.setPosition(currentLocation);
-			myMarker.setMap(map);
-			}, 3000);
+			if(currentLocation!=null) {
+				myMarker.setPosition(currentLocation);
+				myMarker.setMap(map);
+			}
+			}, 3000)
 });
 
 document.getElementById("setGeolocation").addEventListener("click", function() {
@@ -55,6 +58,5 @@ daum.maps.event.addListener(map, 'click', function(mouseEvent) {
 	// 마커 위치를 클릭한 위치로 옮깁니다
 	iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 	addMarker(latlng, iwContent, type);
-	saveMarker(map.getCenter(), iwContent, type);
+	saveMarker(latlng, iwContent, type);
 });
-
