@@ -1,4 +1,5 @@
 // 지도를 생성합니다.
+var alerted = false;
 var map = map_initialize();
 var startup = true;
 var currentLocation;
@@ -13,7 +14,7 @@ var areaMarkers = [];
 var areas = [];
 var skateAreas = [];
 var basketAreas = [];
-var myMarker;
+var myMarker = null;
 var interval;
 
 //var typeList = ['skate', 'basket']; //마커 종류 추가시 배열에도 추가해주세요.
@@ -30,8 +31,10 @@ document.getElementById("setMarker").addEventListener("click", function() {
 	addMarker(map.getCenter(), iwContent, 'me');
 	interval = setInterval(function() {
 			geoLocation();
-			myMarker.setPosition(currentLocation);
-			myMarker.setMap(map);
+			if(currentLocation!=null) {
+				myMarker.setPosition(currentLocation);
+				myMarker.setMap(map);
+			}
 			}, 3000)
 	
 });
