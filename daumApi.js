@@ -162,66 +162,66 @@ function addMarker(position, iwContent, currentType) {
 		
 		basketMarkers.push(marker);
 		marker.setMap(map);
-	}else if (currentType === 'fishing') { // 편의점 카테고리가 클릭됐을 때
+// 	}else if (currentType === 'fishing') { // 편의점 카테고리가 클릭됐을 때
 		
-		var markerImage = new daum.maps.MarkerImage(
-			'images/3.png',
-			new daum.maps.Size(512, 512),
-			{
-				offset: new daum.maps.Point(75,139),
-				alt: "Marker Image",
-				shape: "poly",
-				coords: "11,8,9,137,139,139,140,8"
-			}
-		);
-		marker.image = markerImage;
+// 		var markerImage = new daum.maps.MarkerImage(
+// 			'images/3.png',
+// 			new daum.maps.Size(512, 512),
+// 			{
+// 				offset: new daum.maps.Point(75,139),
+// 				alt: "Marker Image",
+// 				shape: "poly",
+// 				coords: "11,8,9,137,139,139,140,8"
+// 			}
+// 		);
+// 		marker.image = markerImage;
 		
-		fishingMarkers.push(marker);
-		marker.setMap(map);
-	}else if (currentType === 'badminton') { // 편의점 카테고리가 클릭됐을 때
+// 		fishingMarkers.push(marker);
+// 		marker.setMap(map);
+// 	}else if (currentType === 'badminton') { // 편의점 카테고리가 클릭됐을 때
 		
-		var markerImage = new daum.maps.MarkerImage(
-			'images/4.png',
-			new daum.maps.Size(512, 512),
-			{
-				offset: new daum.maps.Point(75,139),
-				alt: "Marker Image",
-				shape: "poly",
-				coords: "161,26,70,130,70,263,117,344,253,508,426,300,453,175,401,65,288,0"
-			}
-		);
-		marker.image = markerImage;
+// 		var markerImage = new daum.maps.MarkerImage(
+// 			'images/4.png',
+// 			new daum.maps.Size(512, 512),
+// 			{
+// 				offset: new daum.maps.Point(75,139),
+// 				alt: "Marker Image",
+// 				shape: "poly",
+// 				coords: "161,26,70,130,70,263,117,344,253,508,426,300,453,175,401,65,288,0"
+// 			}
+// 		);
+// 		marker.image = markerImage;
 		
-		badmintonMarkers.push(marker);
-		marker.setMap(map);
-	}
-	else if (currentType === 'area') {
-		areaMarkers.push(marker);
-		marker.setMap(map);
-	}
-	/*
-	var jsonText = JSON.stringify(marker.getPosition());
-	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
-	*/
-	else if (currentType === 'me') {
-/*
-		var markerImage = new daum.maps.MarkerImage(
-			'images/marker.png',
-			new daum.maps.Size(512, 512),
-			{
-				offset: new daum.maps.Point(256,510),
-				alt: "Marker Image",
-				shape: "poly",
-				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
-			}
-		);
-		marker.image = markerImage;
-		*/
-		if(myMarker==null) {
-			myMarker = marker;
-			myMarker.setMap(map);
-		}
-	}
+// 		badmintonMarkers.push(marker);
+// 		marker.setMap(map);
+// 	}
+// 	else if (currentType === 'area') {
+// 		areaMarkers.push(marker);
+// 		marker.setMap(map);
+// 	}
+// 	/*
+// 	var jsonText = JSON.stringify(marker.getPosition());
+// 	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
+// 	*/
+// 	else if (currentType === 'me') {
+// /*
+// 		var markerImage = new daum.maps.MarkerImage(
+// 			'images/marker.png',
+// 			new daum.maps.Size(512, 512),
+// 			{
+// 				offset: new daum.maps.Point(256,510),
+// 				alt: "Marker Image",
+// 				shape: "poly",
+// 				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
+// 			}
+// 		);
+// 		marker.image = markerImage;
+// 		*/
+// 		if(myMarker==null) {
+// 			myMarker = marker;
+// 			myMarker.setMap(map);
+// 		}
+// 	}
 }
 
 
