@@ -2,8 +2,10 @@
 
 			
 			//Geolocation constant for now
-			var lat = currentLocation.getLat();
-			var lng = currentLocation.getLng();
+      while(currentLocation == null){
+        var lat = currentLocation.getLat();
+        var lng = currentLocation.getLng();
+      }
       console.log(lat);
 			var access_token =  "7767454861.f70ce12.888f320125da4d6a823a27fce08aa7c7";
 			var distance = 5000;
