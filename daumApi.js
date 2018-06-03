@@ -133,6 +133,7 @@ function addMarker(position, iwContent, currentType) {
 	marker.named = false;
 
 	daum.maps.event.addListener(marker, 'click', function() {
+		if(currentType!='area'){
 		var mapDiv = document.getElementById('map');
 		var infoDiv = document.getElementById('info');
 		var currentMarker = this;
@@ -178,6 +179,29 @@ function addMarker(position, iwContent, currentType) {
 					currentMarker.Id = myName.value;
 					currentMarker.type = myType.value;
 					currentMarker.named = true;
+					if(currentMarker.type === 'skate') {
+						/*
+						var markerImage = new daum.maps.MarkerImage(
+							'images/marker.png',
+							new daum.maps.Size(512, 512),
+							{
+								offset: new daum.maps.Point(256,510),
+								alt: "Marker Image",
+								`shape: "poly",
+								coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
+							}
+						);
+		
+						marker.image = markerImage;
+						*/
+	
+						skateMarkers.push(marker);
+					}
+					else if(currentMarker.type === 'basket')
+						basketMarkers.push(marker);
+					else if(currentMarker.type === 'fish')
+						fishMarkers.push(marker);
+						
 					mapDiv.style.height = '100%';
 					infoDiv.style.height = '0%';
 					map.relayout();
@@ -217,6 +241,7 @@ function addMarker(position, iwContent, currentType) {
 				}
 			}
 		}
+	}
 	});
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
@@ -225,68 +250,10 @@ function addMarker(position, iwContent, currentType) {
 		clearInterval(interval);
 	});
 
-	//var skateMenu = document.getElementById('skateMenu');
-	//var basketMenu = document.getElementById('basketMenu');
-
 	// 커피숍 카테고리가 클릭됐을 때
-	if (currentType === 'skate') {
-		/*
-		var markerImage = new daum.maps.MarkerImage(
-			'images/marker.png',
-			new daum.maps.Size(512, 512),
-			{
-				offset: new daum.maps.Point(256,510),
-				alt: "Marker Image",
-				shape: "poly",
-				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
-			}
-		);
-
-		marker.image = markerImage;
-		*/
-		skateMarkers.push(marker);
-		marker.setMap(map);
-	}
-	else if (currentType === 'basket') { // 편의점 카테고리가 클릭됐을 때
-		/*
-		var markerImage = new daum.maps.MarkerImage(
-			'images/marker.png',
-			new daum.maps.Size(512, 512),
-			{
-				offset: new daum.maps.Point(256,510),
-				alt: "Marker Image",
-				shape: "poly",
-				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
-			}
-		);
-
-		marker.image = markerImage;
-		*/
-		basketMarkers.push(marker);
-		marker.setMap(map);
-	}
-	else if (currentType === 'fish') { // 편의점 카테고리가 클릭됐을 때
-		/*
-		var markerImage = new daum.maps.MarkerImage(
-			'images/marker.png',
-			new daum.maps.Size(512, 512),
-			{
-				offset: new daum.maps.Point(256,510),
-				alt: "Marker Image",
-				shape: "poly",
-				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
-			}
-		);
-
-		marker.image = markerImage;
-		*/
-		fishMarkers.push(marker);
-		marker.setMap(map);
-	}
-
-	else if (currentType === 'area') {
+	
+	if (currentType === 'area') {
 		areaMarkers.push(marker);
-		marker.setMap(map);
 	}
 	/*
 	var jsonText = JSON.stringify(marker.getPosition());
@@ -309,9 +276,9 @@ function addMarker(position, iwContent, currentType) {
 		*/
 		if(myMarker==null) {
 			myMarker = marker;
-			myMarker.setMap(map);
 		}
 	}
+	marker.setMap(map);
 }
 
 function changeMarker(changetype){
