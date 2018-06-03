@@ -1,4 +1,6 @@
 .container {
+	  padding-right:0;
+	  padding-left:0;
 	  width: 100%;
 }
 .category {
@@ -13,14 +15,8 @@
 .category:hover{
       opacity: 1.0;
 }
-.button {
-	width : 300px;
-	height : 70px;
-}
-.btn-lg {
-	position: absolute;
-	margin: auto;
-	width: 250;
+.btn-block {
+	height: 60%;
 }
  #skateMenu {
       position: absolute;
