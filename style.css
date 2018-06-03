@@ -19,9 +19,11 @@ ul.sidenav li span.active {
     background-color: #4CAF50;
     color: white;
 }
-ul.sidenav li span:hover:not(.active) {
-    background-color: #555;
-    color: white;
+@media screen and (min-width: 900px) { 
+	ul.sidenav li span:hover:not(.active) {
+	    background-color: #555;
+	    color: white;
+	}
 }
 	
 ul.sidenav li span{
@@ -48,6 +50,9 @@ ul.sidenav li span{
 	
 }
 @media screen and (max-width: 400px) {
+	ul.sidenav {
+		width: 50%;
+	}
     ul.sidenav li span {
         text-align: center;
         float: none;
