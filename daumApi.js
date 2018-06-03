@@ -218,8 +218,8 @@ function changeMarker(changetype){
 
 		// 커피숍 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = 'menu_selected';
-		basketMenu.className = '';
-		allMenu.className = '';
+		basketMenu.className = 'menu';
+		allMenu.className = 'menu';
 
 		// 커피숍 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
@@ -228,9 +228,9 @@ function changeMarker(changetype){
 	}
 	else if (changetype === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		// 편의점 카테고리를 선택된 스타일로 변경하고
-		skateMenu.className = '';
+		skateMenu.className = 'menu';
 		basketMenu.className = 'menu_selected';
-		allMenu.className = '';
+		allMenu.className = 'menu';
 
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(null);
@@ -239,8 +239,8 @@ function changeMarker(changetype){
 	}
 	else if (changetype === 'all') { // 편의점 카테고리가 클릭됐을 때
 		// 편의점 카테고리를 선택된 스타일로 변경하고
-		skateMenu.className = '';
-		basketMenu.className = '';
+		skateMenu.className = 'menu';
+		basketMenu.className = 'menu';
 		allMenu.className = 'menu_selected';
 
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
