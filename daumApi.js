@@ -154,7 +154,7 @@ function addMarker(position, iwContent, currentType) {
 			myType.id='type';
 			if(currentType!='me')
 				myType.value=currentType;
-			myForm.appendChild(myName);
+			myForm.appendChild(myType);
 			infoDiv.appendChild(myForm);
 
 			var nameLabel = document.createElement("LABEL");
