@@ -128,14 +128,20 @@ function addMarker(position, iwContent, currentType) {
 		myInfowindow.open(map, marker);
 	});
 
+	marker.clicked = false;
+
 	daum.maps.event.addListener(marker, 'click', function() {
 		var mapDiv = document.getElementById('map');
 		var infoDiv = document.getElementById('info');
-		if(mapDiv.style.height == '100%') {
-			mapDiv.style.height = '50%';
-			infoDiv.style.height = '50%';
-			map.relayout();
-			infoDiv.innerHTML = "Hello World";
+		if(this.clicked == false) {
+			infoDiv.innerHTML = [this.getPosition().getLat(), this.getPosition().getLng()];
+			this.clicked = true;
+			if(mapDiv.style.height == '100%') {
+				mapDiv.style.height = '50%';
+				infoDiv.style.height = '50%';
+				map.relayout();
+				infoDiv.innerHTML = "Hello World";
+			}
 		}
 		else {
 			mapDiv.style.height = '100%';
