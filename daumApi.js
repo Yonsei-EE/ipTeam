@@ -116,7 +116,6 @@ function addMarker(position, iwContent, currentType) {
 	});
 
 	marker.infoWindow = myInfowindow;
-	marker.type = currentType;
 
 	daum.maps.event.addListener(marker, 'mouseover', function() {
 		myInfowindow.open(map, marker);
@@ -138,7 +137,7 @@ function addMarker(position, iwContent, currentType) {
 		var infoDiv = document.getElementById('info');
 		var currentMarker = this;
 		if(this.named == false) {
-			infoDiv.innerHTML = 'Enter your name';
+			infoDiv.innerHTML = 'Enter your name and sport';
 		 	var myForm = document.createElement('FORM');
 			myForm.name='myForm';
 			myForm.method='POST';
@@ -146,22 +145,43 @@ function addMarker(position, iwContent, currentType) {
 
 			var myName = document.createElement('INPUT');
 			myName.type='TEXT';
-			myName.name='name';
+			myName.id='name';
 			myForm.appendChild(myName);
 			infoDiv.appendChild(myForm);
+
+			var myType = doument.createElement('INPUT');
+			myType.type='TEXT';
+			myType.id='type';
+			if(currentType!='me')
+				myType.value=currentType;
+			myForm.appendChild(myName);
+			infoDiv.appendChild(myForm);
+
+			var nameLabel = document.createElement("LABEL");
+			var nameLabelTxt = document.createTextNode("Name");
+			nameLabel.setAttribute("for", "name");
+			nameLabel.appendChild(nameLabelTxt);
+			document.getElementById("myForm").insertBefore(nameLabel,myName);
+
+			var typeLabel = document.createElement("LABEL");
+			var typeLabelTxt = document.createTextNode("Sport");
+			typeLabel.setAttribute("for", "type");
+			typeLabel.appendChild(nameLabelTxt);
+			document.getElementById("myForm").insertBefore(typeLabel,myType);
 			
 			var btn = document.createElement('BUTTON');
 			btn.addEventListener('click', function() {
 					currentMarker.infoWindow.setContent('<div>'+myName.value+'</div>');
 					currentMarker.Id = myName.value;
+					currentMarker.type = myType.value;
 					currentMarker.named = true;
 					mapDiv.style.height = '100%';
 					infoDiv.style.height = '0%';
 					map.relayout();
 
 			});
-			txt = document.createTextNode('Submit');
-			btn.appendChild(txt);
+			btnTxt = document.createTextNode('Submit');
+			btn.appendChild(btnTxt);
 			infoDiv.appendChild(btn);
 
 			if(mapDiv.style.height == '100%') {
@@ -175,6 +195,7 @@ function addMarker(position, iwContent, currentType) {
 				mapDiv.style.height = '100%';
 				infoDiv.style.height = '0%';
 				map.relayout();
+				currentId = 'empty';
 			}
 			else {
 				var str = 'This is ' + this.Id + '.';
