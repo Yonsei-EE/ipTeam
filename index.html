@@ -13,29 +13,29 @@
 <body>
 <div class="container-fluid">
 		<div class="row">
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="category" onclick="changeMarker('skate')">
-								<div id="skateMenu"></div>
+								<div id="skateMenu" class="menu"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="category" onclick="changeMarker('basket')">
-								<div id="basketMenu"></div>
+								<div id="basketMenu" class="menu"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="category" onclick="changeMarker('fishing')">
-								<div id="fishingMenu"></div>
+								<div id="fishingMenu" class="menu"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="category" onclick="changeMarker('all')">
-							  	<div id="allMenu"></div>
+							  	<div id="allMenu" class="menu"></div>
 							</div>
 						</div>
-						<div class="row buttons">
+						<div class="row" style="width:70%; margin:0 auto;">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							  	<button id="setMarker" class="btn btn-default btn-block" type="button">중앙마커</button>
 							</div>
@@ -49,7 +49,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+				<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 					<div id="map" style="width:100%;height:100%;"></div>
 				</div>
 					<script type="text/javascript" src="./db/jsForDB.js"></script>

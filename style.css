@@ -8,21 +8,19 @@
       width: 300px;
       height: 200px;
 	  margin: 0 auto;
-	  opacity: 0.5;
       border-style: solid;
       border-width: thin;
       border-color: white;
 }
-.category:hover{
+.menu {
+		opacity: 0.5;
+}
+.menu:hover{
       opacity: 1.0;
 }
-.buttons {
-		width: 70%;
-		margin: 0 auto;
-}
-.btn-block {
-		margin-top:10px;
-		margin-bottom:10px;
+.menu_selected {
+	border:2px solid #915B2F;
+	opacity: 1.0;
 }
  #skateMenu {
       position: absolute;
@@ -60,7 +58,8 @@
       background-image: url(images/Icon_GPS.png);
       background-size: 100% 100%;
     }
-.menu_selected {
-	border:2px solid #915B2F;
-	opacity: 1.0;
+.btn-block {
+		margin-top:10px;
+		margin-bottom:10px;
 }
+
