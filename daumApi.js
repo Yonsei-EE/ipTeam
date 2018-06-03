@@ -150,9 +150,10 @@ function addMarker(position, iwContent, currentType) {
 			
 			var btn = document.createElement('BUTTON');
 			btn.addEventListener('click', function() {
-					console.log(currentMarker);
 					currentMarker.infoWindow.setContent('<div>'+myName.value+'</div>');
 					currentMarker.Id = myName.value;
+					currentMarker.named = true;
+					currentId = currentMarker.Id;
 			});
 			txt = document.createTextNode('Submit');
 			btn.appendChild(txt);
@@ -163,8 +164,6 @@ function addMarker(position, iwContent, currentType) {
 				infoDiv.style.height = '50%';
 				map.relayout();
 			}
-			this.named = true;
-			currentId = this.Id;
 		}
 		else {
 			if(currentId == this.Id) {
