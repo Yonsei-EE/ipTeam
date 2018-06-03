@@ -115,6 +115,8 @@ function addMarker(position, iwContent, currentType) {
 		content : iwContent
 	});
 
+	marker.infoWindow = myInfowindow;
+
 	daum.maps.event.addListener(marker, 'mouseover', function() {
 		myInfowindow.open(map, marker);
 	});
@@ -128,22 +130,40 @@ function addMarker(position, iwContent, currentType) {
 		myInfowindow.open(map, marker);
 	});
 
-	marker.clicked = false;
+	marker.named = false;
 
 	daum.maps.event.addListener(marker, 'click', function() {
 		var mapDiv = document.getElementById('map');
 		var infoDiv = document.getElementById('info');
-		if(this.clicked == false) {
-			infoDiv.innerHTML = [this.getPosition().getLat(), this.getPosition().getLng()];
-			this.clicked = true;
+		if(this.named == false) {
+		 	myForm = document.createElement('FORM');
+			myForm.name='myForm';
+			myForm.method='POST';
+			myForm.action='';
+
+			myName = document.createElement('INPUT');
+			myName.type='TEXT';
+			myName.name='name';
+			myForm.appendChild(myName);
+			infoDiv.appendChild(myForm);
+			
+			btn = document.createElement('BUTTON');
+			btn.addEventListener('click', function() {
+					console.log(myName.value);
+			});
+			txt = document.createTextNode('Submit');
+			btn.appendChild(txt);
+			infoDiv.appendChild(btn);
+
 			if(mapDiv.style.height == '100%') {
 				mapDiv.style.height = '50%';
 				infoDiv.style.height = '50%';
 				map.relayout();
-				infoDiv.innerHTML = "Hello World";
 			}
+			this.named = true;
 		}
 		else {
+			this.clicked
 			mapDiv.style.height = '100%';
 			infoDiv.style.height = '0%';
 			map.relayout();
