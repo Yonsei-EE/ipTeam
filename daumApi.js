@@ -135,22 +135,24 @@ function addMarker(position, iwContent, currentType) {
 	daum.maps.event.addListener(marker, 'click', function() {
 		var mapDiv = document.getElementById('map');
 		var infoDiv = document.getElementById('info');
+		var currentMarker = this;
 		if(this.named == false) {
-		 	myForm = document.createElement('FORM');
+		 	var myForm = document.createElement('FORM');
 			myForm.name='myForm';
 			myForm.method='POST';
 			myForm.action='';
 
-			myName = document.createElement('INPUT');
+			var myName = document.createElement('INPUT');
 			myName.type='TEXT';
 			myName.name='name';
 			myForm.appendChild(myName);
 			infoDiv.appendChild(myForm);
 			
-			btn = document.createElement('BUTTON');
+			var btn = document.createElement('BUTTON');
 			btn.addEventListener('click', function() {
-					this.infoWindow.setContent('<div>'+myName.value+'</div>');
-					this.Id = myName.value;
+					console.log(currentMarker);
+					currentMarker.infoWindow.setContent('<div>'+myName.value+'</div>');
+					currentMarker.Id = myName.value;
 			});
 			txt = document.createTextNode('Submit');
 			btn.appendChild(txt);
