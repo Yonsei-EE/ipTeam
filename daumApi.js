@@ -129,7 +129,19 @@ function addMarker(position, iwContent, currentType) {
 	});
 
 	daum.maps.event.addListener(marker, 'click', function() {
-		window.location.href = "https://www.naver.com";
+		var mapDiv = document.getElementById('map');
+		var infoDiv = document.getElementById('info');
+		if(mapDiv.style.height == '100%') {
+			mapDiv.style.height = '50%';
+			infoDiv.style.height = '50%';
+			map.relayout();
+			infoDiv.innerHTML = "Hello World";
+		}
+		else {
+			mapDiv.style.height = '100%';
+			infoDiv.style.height = '0%';
+			map.relayout();
+		}
 	});
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
