@@ -23,8 +23,9 @@ ul.sidenav li span{
 	}
 #mapwrap {
     margin-top: 0;
-    padding: 1px 16px;
-    height: 1000px;
+    padding: 1px 1px;
+	width: 100%;
+    height: 100%;
 	position:relative;
 	overflow:hidden;
 }

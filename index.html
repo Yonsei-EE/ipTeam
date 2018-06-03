@@ -15,9 +15,13 @@
       position: relative;
       width: 300px;
       height: 200px;
+	  opacity: 0.5;
       border-style: solid;
       border-width: thin;
       border-color: white;
+}
+.category:hover{
+      opacity: 1.0;
 }
 .button {
 	width : 300px;
@@ -31,7 +35,6 @@
       height: 100%;
       background-image: url(images/Icon_Skateboard.png);
       background-size: 100% 100%;
-      filter: opacity(70%);
     }
  #basket {
       position: absolute;
@@ -62,40 +65,27 @@
     }
 </style>
 <body>
-<!--
-	<ul class="sidenav">
-			<li><span class="active" href="#">스포츠 종류</span</li>
-			<li id="skateMenu" onclick="changeMarker('skate')"><span><img src="images/Icon_Skateboard(150x150).png" height="100" width="100" alt="skateboard" /></span></li>
-            <li id="basketMenu" onclick="changeMarker('basket')"><span><img src="images/Icon_Basketball(150x150).png" height="100" width="100" alt="basket" /></span></li>
-            <li><span><img src="images/Icon_Fishing(150x150).png" height="100" width="100" alt="fishing" /></span></li>
-			<li id="allMenu" class="menu_selected" onclick="changeMarker('all')"><span><img src="images/Icon_GPS(150x150).png" height="100" width="100" alt="marker" /></span></li>
-			<li><span><button id="setMarker" class="mapButton" type="button">중앙에 마커표시</button></span></li>
-			<li><span><button id="setGeolocation" class="mapButton" type="button">내위치</button></span></li>
-			<li><span><button id="setArea" class="mapButton" type="button">장소설정</button>
-					<button id="createPolyline" class="mapButton" type="button">확인</button></span></li>
-	</ul>
--->
 <div class="container">
 		<div class="row">
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 					<div class="container">
 						<div class="row">
-							<div class="category">
+							<div class="category" onclick="changeMarker('skate')">
 								<div id="skate"></div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="category">
+							<div class="category" onclick="changeMarker('basket')">
 								<div id="basket"></div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="category">
+							<div class="category" onclick="changeMarker('fishing')">
 								<div id="fishing"></div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="category">
+							<div class="category" onclick="changeMarker('gps')">
 							  	<div id="gps"></div>
 							</div>
 						</div>
