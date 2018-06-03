@@ -1,3 +1,6 @@
+.container {
+	  width: 100%;
+}
 .category {
       position: relative;
       width: 300px;
@@ -13,6 +16,11 @@
 .button {
 	width : 300px;
 	height : 70px;
+}
+.btn-lg {
+	position: absolute;
+	margin: auto;
+	width: 250;
 }
  #skateMenu {
       position: absolute;
