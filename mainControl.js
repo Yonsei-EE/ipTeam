@@ -40,11 +40,13 @@ document.getElementById("setGeolocation").addEventListener("click", function() {
 });
 
 document.getElementById("setArea").addEventListener("click", function() {
-	//changeMarker("area");
-	prevType = type;
-	type = 'area';
-	document.getElementById("setArea").style.display = 'none';
-	document.getElementById("createPolyline").style.display = 'inline';
+	if(type!=all) {
+		//changeMarker("area");
+		prevType = type;
+		type = 'area';
+		document.getElementById("setArea").style.display = 'none';
+		document.getElementById("createPolyline").style.display = 'inline';
+	}
 });
 
 document.getElementById("createPolyline").addEventListener("click", function() {
