@@ -375,6 +375,7 @@ function setAreaMarkers(map) {
 function setFishMarkers(map) {
 	for (var i = 0; i < fishMarkers.length; i++) {
 		fishMarkers[i].setMap(map);
+	}
 }
 
 function addPolygon(polygonPath, currentType) {
