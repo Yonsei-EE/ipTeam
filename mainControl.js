@@ -40,7 +40,7 @@ document.getElementById("setGeolocation").addEventListener("click", function() {
 });
 
 document.getElementById("setArea").addEventListener("click", function() {
-	if(type!=all) {
+	if(type!='all') {
 		//changeMarker("area");
 		prevType = type;
 		type = 'area';
