@@ -54,11 +54,7 @@ ul.sidenav li span{
 		margin-left: 50%;
 	}
 }
-.mapButton {
-	width : 120px;
-	height : 50px;
-	margin : 10px;
-}
+
 .menu_selected {
 	background:#FF5F4A;
 	color:#fff;
