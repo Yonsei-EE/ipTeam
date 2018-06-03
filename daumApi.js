@@ -211,7 +211,7 @@ function addMarker(position, iwContent, currentType) {
 function changeMarker(changetype){
 	var skateMenu = document.getElementById('skateMenu');
 	var basketMenu = document.getElementById('basketMenu');
-	var allMunu = document.getElementById('allMenu');
+	var allMenu = document.getElementById('allMenu');
 
 	// 커피숍 카테고리가 클릭됐을 때
 	if (changetype === 'skate') {
