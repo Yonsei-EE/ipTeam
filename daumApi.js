@@ -149,7 +149,8 @@ function addMarker(position, iwContent, currentType) {
 			
 			btn = document.createElement('BUTTON');
 			btn.addEventListener('click', function() {
-					console.log(myName.value);
+					this.infoWindow.setContent('<div>'+myName.value+'</div>');
+					this.Id = myName.value;
 			});
 			txt = document.createTextNode('Submit');
 			btn.appendChild(txt);
@@ -161,12 +162,23 @@ function addMarker(position, iwContent, currentType) {
 				map.relayout();
 			}
 			this.named = true;
+			currentId = this.Id;
 		}
 		else {
-			this.clicked
-			mapDiv.style.height = '100%';
-			infoDiv.style.height = '0%';
-			map.relayout();
+			if(currentId == this.Id) {
+				mapDiv.style.height = '100%';
+				infoDiv.style.height = '0%';
+				map.relayout();
+			}
+			else {
+				infoDiv.innerHTML = 'This is '+this.value;
+				currentId = this.Id;
+				if(mapDiv.style.height == '100%') {
+				mapDiv.style.height = '50%';
+				infoDiv.style.height = '50%';
+				map.relayout();
+			}
+
 		}
 	});
 

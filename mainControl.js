@@ -3,6 +3,7 @@ var alerted = false;
 var map = map_initialize();
 var startup = true;
 var currentLocation;
+var currentId;
 geoLocation();
 
 // 마커를 생성합니다.
