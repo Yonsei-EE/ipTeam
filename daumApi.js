@@ -149,7 +149,7 @@ function addMarker(position, iwContent, currentType) {
 			myForm.appendChild(myName);
 			infoDiv.appendChild(myForm);
 
-			var myType = doument.createElement('INPUT');
+			var myType = document.createElement('INPUT');
 			myType.type='TEXT';
 			myType.id='type';
 			if(currentType!='me')
