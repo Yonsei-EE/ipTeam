@@ -179,9 +179,8 @@ function addMarker(position, iwContent, currentType) {
 					map.relayout();
 				}
 			}
-
 		}
-	}
+	});
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
 		myInfowindow.close();
