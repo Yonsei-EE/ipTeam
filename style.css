@@ -58,8 +58,8 @@
       background-image: url(images/Icon_GPS.png);
       background-size: 100% 100%;
     }
-.btn-block {
-		margin-top:10px;
-		margin-bottom:10px;
+.button {
+	margin: 0 auto;
+	width: 80%;
 }
 
