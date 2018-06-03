@@ -11,10 +11,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
 		<div class="row">
 				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-					<div class="container">
+					<div class="container-fluid">
 						<div class="row">
 							<div class="category" onclick="changeMarker('skate')">
 								<div id="skateMenu"></div>
@@ -35,14 +35,14 @@
 							  	<div id="allMenu"></div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="button col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							  	<button id="setMarker" class="btn btn-default btn-block" type="button">중앙에 마커표시</button>
+						<div class="row buttons">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							  	<button id="setMarker" class="btn btn-default btn-block" type="button">중앙마커</button>
 							</div>
-							<div class="button col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<button id="setGeolocation" class="btn btn-default btn-block" type="button">내위치</button>
 							</div>
-							<div class="button col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<button id="setArea" class="btn btn-default btn-block" type="button">장소설정</button>
 								<button id="createPolyline" class="btn btn-default btn-block" type="button">확인</button>
 							</div>
