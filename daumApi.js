@@ -147,7 +147,9 @@ function addMarker(position, iwContent, currentType) {
 			myName.type='TEXT';
 			myName.id='name';
 			myForm.appendChild(myName);
-			infoDiv.appendChild(myForm);
+
+			var br = document.createElement('BR');
+			myForm.appendChild(br);
 
 			var myType = document.createElement('INPUT');
 			myType.type='TEXT';
@@ -155,7 +157,6 @@ function addMarker(position, iwContent, currentType) {
 			if(currentType!='me')
 				myType.value=currentType;
 			myForm.appendChild(myType);
-			infoDiv.appendChild(myForm);
 
 			var nameLabel = document.createElement("LABEL");
 			var nameLabelTxt = document.createTextNode("Name");
@@ -168,6 +169,8 @@ function addMarker(position, iwContent, currentType) {
 			typeLabel.setAttribute("for", "type");
 			typeLabel.appendChild(nameLabelTxt);
 			myForm.insertBefore(typeLabel,myType);
+
+			infoDiv.appendChild(myForm);
 			
 			var btn = document.createElement('BUTTON');
 			btn.addEventListener('click', function() {
@@ -354,8 +357,8 @@ function changeMarker(changetype){
 
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(null);
-		setBasketMarkers(map);
-		setFishMarkers(null);
+		setBasketMarkers(null);
+		setFishMarkers(map);
 		setAreaMarkers(null);
 	}
 
