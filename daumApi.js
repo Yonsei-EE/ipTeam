@@ -288,8 +288,6 @@ function addPolygon(polygonPath, currentType) {
 		center[0] /= polygonPath.length;
 		center[1] /= polygonPath.length;
 
-		console.log(polygonPath);
-
 		var myInfowindow = new daum.maps.InfoWindow({
 			position : new daum.maps.LatLng(center[0], center[1]),
 			content : '<div style="padding:5px;">Hello World!</div>'
@@ -353,7 +351,7 @@ function addPolygon(polygonPath, currentType) {
 		//changeMarker("all");
 		document.getElementById("setArea").style.display = 'inline';
 		document.getElementById("createPolyline").style.display = 'none';
-
+		
 		setAreaMarkers(null);
 		areaMarkers = [];
 		areas.push(polygon);
