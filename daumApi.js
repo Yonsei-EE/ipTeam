@@ -161,13 +161,13 @@ function addMarker(position, iwContent, currentType) {
 			var nameLabelTxt = document.createTextNode("Name");
 			nameLabel.setAttribute("for", "name");
 			nameLabel.appendChild(nameLabelTxt);
-			document.getElementById("myForm").insertBefore(nameLabel,myName);
+			myForm.insertBefore(nameLabel,myName);
 
 			var typeLabel = document.createElement("LABEL");
 			var typeLabelTxt = document.createTextNode("Sport");
 			typeLabel.setAttribute("for", "type");
 			typeLabel.appendChild(nameLabelTxt);
-			document.getElementById("myForm").insertBefore(typeLabel,myType);
+			myForm.insertBefore(typeLabel,myType);
 			
 			var btn = document.createElement('BUTTON');
 			btn.addEventListener('click', function() {
