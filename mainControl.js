@@ -11,10 +11,12 @@ var prevType;
 var type = 'all';
 var skateMarkers = [];
 var basketMarkers = [];
+var fishMarkers = [];
 var areaMarkers = [];
 var areas = [];
 var skateAreas = [];
 var basketAreas = [];
+var fishAreas = [];
 var myMarker = null;
 var interval;
 

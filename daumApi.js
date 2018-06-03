@@ -116,6 +116,7 @@ function addMarker(position, iwContent, currentType) {
 	});
 
 	marker.infoWindow = myInfowindow;
+	marker.type = currentType;
 
 	daum.maps.event.addListener(marker, 'mouseover', function() {
 		myInfowindow.open(map, marker);
@@ -154,6 +155,10 @@ function addMarker(position, iwContent, currentType) {
 					currentMarker.infoWindow.setContent('<div>'+myName.value+'</div>');
 					currentMarker.Id = myName.value;
 					currentMarker.named = true;
+					mapDiv.style.height = '100%';
+					infoDiv.style.height = '0%';
+					map.relayout();
+
 			});
 			txt = document.createTextNode('Submit');
 			btn.appendChild(txt);
@@ -172,7 +177,14 @@ function addMarker(position, iwContent, currentType) {
 				map.relayout();
 			}
 			else {
-				infoDiv.innerHTML = 'This is '+this.Id;
+				var str = 'This is ' + this.Id + '.';
+				if(this.type==='skate')
+					str += ' He is skateboarding.';
+				else if(this.type==='basket')
+					str += ' He is playing basketball.';
+				else if(this.type==='fish')
+					str += ' He is fishing.';
+				infoDiv.innerHTML = str;
 				currentId = this.Id;
 				if(mapDiv.style.height == '100%') {
 					mapDiv.style.height = '50%';
@@ -229,6 +241,25 @@ function addMarker(position, iwContent, currentType) {
 		basketMarkers.push(marker);
 		marker.setMap(map);
 	}
+	else if (currentType === 'fish') { // 편의점 카테고리가 클릭됐을 때
+		/*
+		var markerImage = new daum.maps.MarkerImage(
+			'images/marker.png',
+			new daum.maps.Size(512, 512),
+			{
+				offset: new daum.maps.Point(256,510),
+				alt: "Marker Image",
+				shape: "poly",
+				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
+			}
+		);
+
+		marker.image = markerImage;
+		*/
+		fishMarkers.push(marker);
+		marker.setMap(map);
+	}
+
 	else if (currentType === 'area') {
 		areaMarkers.push(marker);
 		marker.setMap(map);
@@ -262,6 +293,7 @@ function addMarker(position, iwContent, currentType) {
 function changeMarker(changetype){
 	var skateMenu = document.getElementById('skateMenu');
 	var basketMenu = document.getElementById('basketMenu');
+	var fishMenu = document.getElementById('fishingMenu');
 	var allMenu = document.getElementById('allMenu');
 
 	// 커피숍 카테고리가 클릭됐을 때
@@ -270,33 +302,53 @@ function changeMarker(changetype){
 		// 커피숍 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = 'menu_selected';
 		basketMenu.className = 'menu';
+		fishMenu.className = 'menu';
 		allMenu.className = 'menu';
 
 		// 커피숍 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
 		setBasketMarkers(null);
+		setFishMarkers(null);
 		setAreaMarkers(null);
 	}
 	else if (changetype === 'basket') { // 편의점 카테고리가 클릭됐을 때
 		// 편의점 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = 'menu';
 		basketMenu.className = 'menu_selected';
+		fishMenu.className = 'menu';
 		allMenu.className = 'menu';
 
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(null);
 		setBasketMarkers(map);
+		setFishMarkers(null);
 		setAreaMarkers(null);
 	}
+	else if (changetype === 'fish') { // 편의점 카테고리가 클릭됐을 때
+		// 편의점 카테고리를 선택된 스타일로 변경하고
+		skateMenu.className = 'menu';
+		basketMenu.className = 'menu_selected';
+		fishMenu.className = 'menu';
+		allMenu.className = 'menu';
+
+		// 편의점 마커들만 지도에 표시하도록 설정합니다
+		setSkateMarkers(null);
+		setBasketMarkers(map);
+		setFishMarkers(null);
+		setAreaMarkers(null);
+	}
+
 	else if (changetype === 'all') { // 편의점 카테고리가 클릭됐을 때
 		// 편의점 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = 'menu';
 		basketMenu.className = 'menu';
+		fishMenu.className = 'menu';
 		allMenu.className = 'menu_selected';
 
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
 		setBasketMarkers(map);
+		setFishMarkers(null);
 		setAreaMarkers(null);
 
 	}
@@ -319,6 +371,10 @@ function setAreaMarkers(map) {
 	for (var i = 0; i < areaMarkers.length; i++) {
 		areaMarkers[i].setMap(map);
 	}
+}
+function setFishMarkers(map) {
+	for (var i = 0; i < fishMarkers.length; i++) {
+		fishMarkers[i].setMap(map);
 }
 
 function addPolygon(polygonPath, currentType) {
@@ -393,10 +449,15 @@ function addPolygon(polygonPath, currentType) {
    				strokeColor: '#ff3333', // 선의 색깔입니다
    				fillColor: '#ffb3b3', // 채우기 색깔입니다
 			});
-			skateAreas.push(polygon);
-		}
-
 			basketAreas.push(polygon);
+		}
+		else if(currentType === 'fish') {
+			polygon.setOptions({
+   				strokeColor: '#6699ff', // 선의 색깔입니다
+   				fillColor: '#ccddff', // 채우기 색깔입니다
+			});
+			fishAreas.push(polygon);
+		}
 
 		// 지도에 다각형을 표시합니다
 		//changeMarker("all");
