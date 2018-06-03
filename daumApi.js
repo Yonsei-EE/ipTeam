@@ -174,9 +174,10 @@ function addMarker(position, iwContent, currentType) {
 				infoDiv.innerHTML = 'This is '+this.value;
 				currentId = this.Id;
 				if(mapDiv.style.height == '100%') {
-				mapDiv.style.height = '50%';
-				infoDiv.style.height = '50%';
-				map.relayout();
+					mapDiv.style.height = '50%';
+					infoDiv.style.height = '50%';
+					map.relayout();
+				}
 			}
 
 		}
