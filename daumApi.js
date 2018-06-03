@@ -327,8 +327,8 @@ function changeMarker(changetype){
 	else if (changetype === 'fish') { // 편의점 카테고리가 클릭됐을 때
 		// 편의점 카테고리를 선택된 스타일로 변경하고
 		skateMenu.className = 'menu';
-		basketMenu.className = 'menu_selected';
-		fishMenu.className = 'menu';
+		basketMenu.className = 'menu';
+		fishMenu.className = 'menu_selected';
 		allMenu.className = 'menu';
 
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
