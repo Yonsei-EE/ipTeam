@@ -2,7 +2,6 @@ ul.sidenav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 15%;
     background-color: #f1f1f1;
     position: fixed;
     height: 100%;
@@ -19,26 +18,31 @@ ul.sidenav li span.active {
     background-color: #4CAF50;
     color: white;
 }
+ul.sidenav li span{
+	text-align: center;
+	}
+#mapwrap {
+    margin-top: 0;
+    padding: 1px 16px;
+    height: 1000px;
+	position:relative;
+	overflow:hidden;
+}
 @media screen and (min-width: 900px) { 
+	ul.sidenav {
+		width: 15%;
+	}
 	ul.sidenav li span:hover:not(.active) {
 	    background-color: #555;
 	    color: white;
 	}
-}
-	
-ul.sidenav li span{
-	text-align: center;
+	#mapwrap {
+		margin-left: 15%;
 	}
-	
-#mapwrap {
-    margin-top: 0;
-    margin-left: 15%;
-    padding: 1px 16px;
-    height: 1000px;
 }
 @media screen and (max-width: 900px) {
     ul.sidenav {
-        width: 100%;
+        width: 50%;
         height: auto;
         position: relative;
     }
@@ -46,46 +50,14 @@ ul.sidenav li span{
         float: left;
         padding: 15px;
     }
-    
-	
-}
-@media screen and (max-width: 400px) {
-	ul.sidenav {
-		width: 50%;
+	#mapwrap {
+		margin-left: 50%;
 	}
-    ul.sidenav li span {
-        text-align: center;
-        float: none;
-    }
- 
 }
 .mapButton {
 	width : 120px;
 	height : 50px;
 	margin : 10px;
-}
-#mapwrap{
-	position:relative;
-	overflow:hidden;
-}
-.category, .category *{
-	margin:0;
-	padding:0;
-	color:#000;
-}
-.category {
-	position:absolute;
-	overflow:hidden;
-	top:10px;
-	left:10px;
-	width:150px;
-	height:50px;
-	z-index:10;
-	border:1px solid black;
-	font-family:'Malgun Gothic','맑은 고딕',sans-serif;
-	font-size:12px;
-	text-align:center;
-	background-color:#fff;
 }
 .menu_selected {
 	background:#FF5F4A;
@@ -93,28 +65,4 @@ ul.sidenav li span{
 	border-left:1px solid #915B2F;
 	border-right:1px solid #915B2F;
 	margin:0 -1px;
-}
-.category li{
-	list-style:none;
-	float:left;
-	width:50px;
-	height:45px;
-	padding-top:5px;
-	cursor:pointer;
-}
-.category .ico_comm {
-	display:block;
-	margin:0 auto 2px;
-	width:22px;
-	height:26px;
-	background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png') no-repeat;
-}
-.category .ico_skate {
-	background-position:-10px 0;
-}
-.category .ico_basket {
-	background-position:-10px -36px;
-}
-.category .ico_all {
-	background-position:-10px -72px;
 }
