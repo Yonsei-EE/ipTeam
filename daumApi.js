@@ -137,6 +137,7 @@ function addMarker(position, iwContent, currentType) {
 		var infoDiv = document.getElementById('info');
 		var currentMarker = this;
 		if(this.named == false) {
+			infoDiv.innerHTML = 'Enter your name';
 		 	var myForm = document.createElement('FORM');
 			myForm.name='myForm';
 			myForm.method='POST';
@@ -153,7 +154,6 @@ function addMarker(position, iwContent, currentType) {
 					currentMarker.infoWindow.setContent('<div>'+myName.value+'</div>');
 					currentMarker.Id = myName.value;
 					currentMarker.named = true;
-					currentId = currentMarker.Id;
 			});
 			txt = document.createTextNode('Submit');
 			btn.appendChild(txt);
@@ -172,7 +172,7 @@ function addMarker(position, iwContent, currentType) {
 				map.relayout();
 			}
 			else {
-				infoDiv.innerHTML = 'This is '+this.value;
+				infoDiv.innerHTML = 'This is '+this.Id;
 				currentId = this.Id;
 				if(mapDiv.style.height == '100%') {
 					mapDiv.style.height = '50%';
