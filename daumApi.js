@@ -167,7 +167,7 @@ function addMarker(position, iwContent, currentType) {
 			var typeLabel = document.createElement("LABEL");
 			var typeLabelTxt = document.createTextNode("Sport");
 			typeLabel.setAttribute("for", "type");
-			typeLabel.appendChild(nameLabelTxt);
+			typeLabel.appendChild(typeLabelTxt);
 			myForm.insertBefore(typeLabel,myType);
 
 			infoDiv.appendChild(myForm);
