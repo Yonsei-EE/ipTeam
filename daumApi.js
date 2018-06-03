@@ -180,7 +180,7 @@ function addMarker(position, iwContent, currentType) {
 			}
 
 		}
-	});
+	}
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
 		myInfowindow.close();
