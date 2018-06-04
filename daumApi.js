@@ -152,12 +152,36 @@ function addMarker(position, iwContent, currentType) {
 			var br = document.createElement('BR');
 			myForm.appendChild(br);
 
-			var myType = document.createElement('INPUT');
-			myType.type='TEXT';
+			var myType = document.createElement('SELECT');
 			myType.id='type';
+
+		    var skateOption = document.createElement("option");
+			skateOption.setAttribute("value", "skate");
+			var basketOption = document.createElement("option");
+			basketOption.setAttribute("value", "basket");
+			var fishOption = document.createElement("option");
+			fishOption.setAttribute("value", "fish");
+
+			var skateTxt = document.createTextNode("skateboarding");
+			skateOption.appendChild(skateTxt);
+			var basketTxt = document.createTextNode("basketball");
+			basketOption.appendChild(basketTxt);
+			var fishTxt = document.createTextNode("fishing");
+			fishOption.appendChild(fishTxt);
+			myType.appendChild(skateOption);
+		    myType.appendChild(basketOption);
+			myType.appendChild(fishOption);
 			if(currentType!='me')
 				myType.value=currentType;
 			myForm.appendChild(myType);
+
+			var br = document.createElement('BR');
+			myForm.appendChild(br);
+
+			var myPW = document.createElement('INPUT');
+			myPW.type='PASSWORD';
+			myPW.id='pw';
+			myForm.appendChild(myPW);
 
 			var nameLabel = document.createElement("LABEL");
 			var nameLabelTxt = document.createTextNode("Name");
@@ -171,6 +195,12 @@ function addMarker(position, iwContent, currentType) {
 			typeLabel.appendChild(typeLabelTxt);
 			myForm.insertBefore(typeLabel,myType);
 
+			var pwLabel = document.createElement("LABEL");
+			var pwLabelTxt = document.createTextNode("PW");
+			pwLabel.setAttribute("for", "pw");
+			pwLabel.appendChild(pwLabelTxt);
+			myForm.insertBefore(pwLabel,myPW);
+
 			infoDiv.appendChild(myForm);
 			
 			var btn = document.createElement('BUTTON');
@@ -179,6 +209,7 @@ function addMarker(position, iwContent, currentType) {
 					currentMarker.Id = myName.value;
 					currentMarker.type = myType.value;
 					currentMarker.named = true;
+					currentMarker.pw = myPW.value;
 					if(currentMarker.type === 'skate') {
 						/*
 						var markerImage = new daum.maps.MarkerImage(
@@ -205,7 +236,8 @@ function addMarker(position, iwContent, currentType) {
 					mapDiv.style.height = '100%';
 					infoDiv.style.height = '0%';
 					map.relayout();
-
+					
+					saveMarker(currentMarker.getPosition(), currentMarker.infoWindow.getContent(), currentMarker.type, currentMarker.Id, currentMarker.pw, currentMarker.named);
 			});
 			btnTxt = document.createTextNode('Submit');
 			btn.appendChild(btnTxt);
@@ -242,12 +274,19 @@ function addMarker(position, iwContent, currentType) {
 			}
 		}
 	}
+
+
 	});
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
-		myInfowindow.close();
-		marker.setMap(null);
-		clearInterval(interval);
+		var pw = prompt("Enter password");
+		if(pw == this.pw) {
+			myInfowindow.close();
+			marker.setMap(null);
+			clearInterval(interval);
+		}
+		else
+			alert("Wrong password!");
 	});
 
 	// 커피숍 카테고리가 클릭됐을 때
@@ -279,6 +318,7 @@ function addMarker(position, iwContent, currentType) {
 		}
 	}
 	marker.setMap(map);
+	return marker;
 }
 
 function changeMarker(changetype){
@@ -339,7 +379,7 @@ function changeMarker(changetype){
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
 		setBasketMarkers(map);
-		setFishMarkers(null);
+		setFishMarkers(map);
 		setAreaMarkers(null);
 
 	}
