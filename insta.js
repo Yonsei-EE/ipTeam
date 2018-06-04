@@ -12,6 +12,13 @@ var insta_hide = true;
 document.getElementById("insta_button").addEventListener("click", showInsta, false);
 
 
+
+var instagram_tmp = document.getElementById("insta-photo");
+var instagram_template = document.getElementById("insta-photo").cloneNode(true);
+while (instagram_tmp.firstChild) {
+      instagram_tmp.removeChild(instagram_tmp.firstChild);
+}
+
 //Make photo gallery
 //
 /*
@@ -155,32 +162,28 @@ function showInsta() {
 			function buildInstaFeed(){
 
 				for(var post in insta_posts){
-
-          var div = document.getElementById("insta-photo");
+          var clone = instagram_template.cloneNode(true);
 					var slide_div = document.getElementById("insta-slide");
 					var instapost = document.createElement("div");
           instapost.className = "instapost";
 
-					var profile_div =  document.createElement("div");
-					profile_div.className = "insta_profile";
-
-          
 
           
 					var username = document.createTextNode(insta_posts[post].username);
-          var likes = document.createElement("p");
-          likes.innerHTML = " likes:" + insta_posts[post].likes;
-          //var likes document.createTextNode(insta_posts[post].likes);
+          clone.querySelector("#insta_user").appendChild(username);
+          var likes = document.createTextNode(insta_posts[post].likes);
+          clone.querySelector("#likes").appendChild(likes);
+          var location = document.createTextNode(insta_posts[post].location_name);
+          clone.querySelector("#insta_location").appendChild(location);
 
-          /*
-          if(insta_posts[post].profile_pic != null){
-            var profile_pic = document.createElement("img");
-            profile_pic.width= 64;
-            profile_pic.src = insta_posts[post].profile_pic;
-            profile_div.appendChild(profile_pic);
-          }*/
-					profile_div.appendChild(username);
-          profile_div.appendChild(likes);
+          //if(insta_posts[post].profile_pic != null){
+          //  var profile_pic = document.createElement("img");
+          //  profile_pic.width= 64;
+          //  profile_pic.src = insta_posts[post].profile_pic;
+          //  profile_div.appendChild(profile_pic);
+          //}
+					//profile_div.appendChild(username);
+         // profile_div.appendChild(likes);
 
           var thumb = document.createElement("div");
           var thumb_img = document.createElement("img");
@@ -189,16 +192,16 @@ function showInsta() {
           thumb.className = "instathumb";
           slide_div.appendChild(thumb);
 				  
-          var imgdiv = document.createElement("div");  
+          var imgdiv = clone.querySelector("#instaimg");
 					var img = document.createElement("img");
-					img.width = 480;
-          img.height = 480;
+					img.width = 500;
+          img.height = 500;;
 					img.src = insta_posts[post].image;
           imgdiv.appendChild(img);
 
-					instapost.appendChild(profile_div);
-					instapost.appendChild(imgdiv);
-					div.appendChild(instapost);
+					//instapost.appendChild(profile_div);
+					//instapost.appendChild(imgdiv);
+					document.getElementById("insta-photo").appendChild(clone);
 
 				}
 
