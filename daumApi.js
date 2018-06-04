@@ -159,6 +159,14 @@ function addMarker(position, iwContent, currentType) {
 				myType.value=currentType;
 			myForm.appendChild(myType);
 
+			var br = document.createElement('BR');
+			myForm.appendChild(br);
+
+			var myPW = document.createElement('PASSWORD');
+			myPW.type='TEXT';
+			myPW.id='pw';
+			myPW.appendChild(myType);
+
 			var nameLabel = document.createElement("LABEL");
 			var nameLabelTxt = document.createTextNode("Name");
 			nameLabel.setAttribute("for", "name");
@@ -171,6 +179,12 @@ function addMarker(position, iwContent, currentType) {
 			typeLabel.appendChild(typeLabelTxt);
 			myForm.insertBefore(typeLabel,myType);
 
+			var pwLabel = document.createElement("LABEL");
+			var pwLabelTxt = document.createTextNode("PW");
+			pwLabel.setAttribute("for", "pw");
+			pwLabel.appendChild(pwLabelTxt);
+			myForm.insertBefore(pwLabel,myPW);
+
 			infoDiv.appendChild(myForm);
 			
 			var btn = document.createElement('BUTTON');
@@ -179,6 +193,7 @@ function addMarker(position, iwContent, currentType) {
 					currentMarker.Id = myName.value;
 					currentMarker.type = myType.value;
 					currentMarker.named = true;
+					currentMarker.pw = myPW.value;
 					if(currentMarker.type === 'skate') {
 						/*
 						var markerImage = new daum.maps.MarkerImage(
@@ -242,6 +257,9 @@ function addMarker(position, iwContent, currentType) {
 			}
 		}
 	}
+
+	saveMarker(currentMarker.getPosition(), currentMarker.getContent(), currentMarker.type, currentMarker.Id, currentMarker.pw, currentMarker.named);
+					
 	});
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
