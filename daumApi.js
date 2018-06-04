@@ -166,7 +166,7 @@ function addMarker(position, iwContent, currentType) {
 			skateOption.appendChild(skateTxt);
 			var basketTxt = document.createTextNode("basketball");
 			basketOption.appendChild(basketTxt);
-			var fishTxt = document.createTextNode("basketball");
+			var fishTxt = document.createTextNode("fishing");
 			fishOption.appendChild(fishTxt);
 			myType.appendChild(skateOption);
 		    myType.appendChild(basketOption);
