@@ -166,7 +166,7 @@ function addMarker(position, iwContent, currentType) {
 			skateOption.appendChild(skateTxt);
 			var basketTxt = document.createTextNode("basketball");
 			basketOption.appendChild(basketTxt);
-			var fishTxt = document.createTextNode("basketball");
+			var fishTxt = document.createTextNode("fishing");
 			fishOption.appendChild(fishTxt);
 			myType.appendChild(skateOption);
 		    myType.appendChild(basketOption);
@@ -279,9 +279,14 @@ function addMarker(position, iwContent, currentType) {
 	});
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
-		myInfowindow.close();
-		marker.setMap(null);
-		clearInterval(interval);
+		var pw = prompt("Enter password");
+		if(pw == this.pw) {
+			myInfowindow.close();
+			marker.setMap(null);
+			clearInterval(interval);
+		}
+		else
+			alert("Wrong password!");
 	});
 
 	// 커피숍 카테고리가 클릭됐을 때
@@ -373,7 +378,7 @@ function changeMarker(changetype){
 		// 편의점 마커들만 지도에 표시하도록 설정합니다
 		setSkateMarkers(map);
 		setBasketMarkers(map);
-		setFishMarkers(null);
+		setFishMarkers(map);
 		setAreaMarkers(null);
 
 	}
