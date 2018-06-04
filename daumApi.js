@@ -162,10 +162,10 @@ function addMarker(position, iwContent, currentType) {
 			var br = document.createElement('BR');
 			myForm.appendChild(br);
 
-			var myPW = document.createElement('PASSWORD');
-			myPW.type='TEXT';
+			var myPW = document.createElement('INPUT');
+			myPW.type='PASSWORD';
 			myPW.id='pw';
-			myPW.appendChild(myType);
+			myForm.appendChild(myPW);
 
 			var nameLabel = document.createElement("LABEL");
 			var nameLabelTxt = document.createTextNode("Name");
@@ -220,7 +220,8 @@ function addMarker(position, iwContent, currentType) {
 					mapDiv.style.height = '100%';
 					infoDiv.style.height = '0%';
 					map.relayout();
-
+					
+					saveMarker(currentMarker.getPosition(), currentMarker.infoWindow.getContent(), currentMarker.type, currentMarker.Id, currentMarker.pw, currentMarker.named);
 			});
 			btnTxt = document.createTextNode('Submit');
 			btn.appendChild(btnTxt);
@@ -258,8 +259,7 @@ function addMarker(position, iwContent, currentType) {
 		}
 	}
 
-	saveMarker(currentMarker.getPosition(), currentMarker.getContent(), currentMarker.type, currentMarker.Id, currentMarker.pw, currentMarker.named);
-					
+
 	});
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
@@ -297,6 +297,7 @@ function addMarker(position, iwContent, currentType) {
 		}
 	}
 	marker.setMap(map);
+	return marker;
 }
 
 function changeMarker(changetype){

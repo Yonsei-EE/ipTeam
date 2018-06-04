@@ -74,9 +74,10 @@ function loadMarkers(typeList) {
 						var tempLatLng = new daum.maps.LatLng(ref.Lat, ref.Lng);
 
 						currentMarker = addMarker(tempLatLng, ref.iwContent, type);
-						currentMarker.InfoWindow = new daum.maps.InfoWindow({ content : iwContent });
-						currentMarker.id = ref.id;
+						currentMarker.InfoWindow = new daum.maps.InfoWindow({ content : ref.iwContent });
+						currentMarker.Id = ref.id;
 						currentMarker.pw = ref.pw;
+						currentMarker.named = ref.named;
 					}
 				}
 		});
