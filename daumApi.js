@@ -152,9 +152,25 @@ function addMarker(position, iwContent, currentType) {
 			var br = document.createElement('BR');
 			myForm.appendChild(br);
 
-			var myType = document.createElement('INPUT');
-			myType.type='TEXT';
+			var myType = document.createElement('SELECT');
 			myType.id='type';
+
+		    var skateOption = document.createElement("option");
+			skateOption.setAttribute("value", "skate");
+			var basketOption = document.createElement("option");
+			basketOption.setAttribute("value", "basket");
+			var fishOption = document.createElement("option");
+			fishOption.setAttribute("value", "fish");
+
+			var skateTxt = document.createTextNode("skateboarding");
+			skateOption.appendChild(skateTxt);
+			var basketTxt = document.createTextNode("basketball");
+			basketOption.appendChild(basketTxt);
+			var fishTxt = document.createTextNode("basketball");
+			fishOption.appendChild(fishTxt);
+			myType.appendChild(skateOption);
+		    myType.appendChild(basketOption);
+			myType.appendChild(fishOption);
 			if(currentType!='me')
 				myType.value=currentType;
 			myForm.appendChild(myType);
