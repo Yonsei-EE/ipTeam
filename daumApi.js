@@ -284,6 +284,7 @@ function addMarker(position, iwContent, currentType) {
 			myInfowindow.close();
 			marker.setMap(null);
 			clearInterval(interval);
+			deleteMarker(this.getPosition(), this.infoWindow.getContent(), this.type, this.Id, this.pw, this.named);
 		}
 		else
 			alert("Wrong password!");
