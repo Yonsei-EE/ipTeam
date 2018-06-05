@@ -9,9 +9,9 @@ function saveMarker(latlng, iwContent, type, id, pw, named) {
 
 function deleteMarker(latlng, iwContent, type, id, pw, named) {
 	
-	var markerLat = latlng.getLat();
-	var markerLng = latlng.getLng();
-	$.post('./db/dataDelete.php', {col: 'data', table: type, Lat: markerLat, Lng: markerLng});
+	var forJson = dataTrans(latlng.getLat(), latlng.getLng(), iwContent, type, id, pw, named);
+	//var jsonText = JSON.stringify(forJson);
+	$.post('./db/dataDelete.php', {col: 'data', table: type, data: forJson});
 }
 
 function saveArea(markerSet, areaType) {
