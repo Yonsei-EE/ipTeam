@@ -2,9 +2,16 @@ function saveMarker(latlng, iwContent, type, id, pw, named) {
 
 	if(type == 'all')
 		return;
-	var forJson = dataTrans(latlng.getLat(), latlng.getLng(), iwContent, id, pw, named);
+	var forJson = dataTrans(latlng.getLat(), latlng.getLng(), iwContent, type, id, pw, named);
 	var jsonText = JSON.stringify(forJson);
 	$.post('./db/dataSend.php', {col: 'data', table: type, data: jsonText});
+}
+
+function deleteMarker(latlng, iwContent, type, id, pw, named) {
+	
+	var markerLat = latlng.getLat();
+	var markerLng = latlng.getLng();
+	$.post('./db/dataDelete.php', {col: 'data', table: type, Lat: markerLat, Lng: markerLng});
 }
 
 function saveArea(markerSet, areaType) {
@@ -39,16 +46,17 @@ function dataTrans(data1, data2, data3) {
 	return Obj;
 }
 
-function dataTrans(data1, data2, data3, data4, data5, data6) {
+function dataTrans(data1, data2, data3, data4, data5, data6, data7) {
 
 	var Obj = {
 
 		Lat: data1,
 		Lng: data2,
 		iwContent: data3,
-		id: data4,
-		pw: data5,
-		named: data6
+		type: data4,
+		id: data5,
+		pw: data6,
+		named: data7
 	};
 	return Obj;
 }
@@ -77,6 +85,7 @@ function loadMarkers(typeList) {
 						currentMarker.InfoWindow = new daum.maps.InfoWindow({ content : ref.iwContent });
 						currentMarker.Id = ref.id;
 						currentMarker.pw = ref.pw;
+						currentMarker.type = ref.type;
 						currentMarker.named = ref.named;
 					}
 				}
@@ -102,7 +111,6 @@ function loadArea() {
 						continue;
 					
 					var polygonPath = new Array();
-					
 					var path = JSON.parse(ref.Path);
 					
 					for(pathNum in path) {
