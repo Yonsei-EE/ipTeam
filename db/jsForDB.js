@@ -70,7 +70,7 @@ function loadMarkers(typeList) {
 		$.ajax({
 
 			method:"GET", url:"./db/dataReceive.php", async:false,
-			data:{col: 'data', table: type},
+			data:{col: 'data', col2: 'created', table: type},
 			success:
 				function (data, status) {
 
@@ -78,15 +78,16 @@ function loadMarkers(typeList) {
 					
 					for (var objNum in lDO) {
 
-						var ref = JSON.parse(lDO[objNum]);
+						var ref = JSON.parse(lDO[objNum][0]);
 						var tempLatLng = new daum.maps.LatLng(ref.Lat, ref.Lng);
-
+						
 						currentMarker = addMarker(tempLatLng, ref.iwContent, type);
 						currentMarker.InfoWindow = new daum.maps.InfoWindow({ content : ref.iwContent });
 						currentMarker.Id = ref.id;
 						currentMarker.pw = ref.pw;
 						currentMarker.type = ref.type;
 						currentMarker.named = ref.named;
+						currentMarker.created = lDO[objNum][1];
 					}
 				}
 		});
@@ -98,10 +99,10 @@ function loadArea() {
 	$.ajax({
 
 		method:"GET", url:"./db/dataReceive.php", async:false,
-		data:{col: 'data', table: 'area'},
+		data:{col: 'data', col2: 'created', table: 'area'},
 		success:
 			function (data, status) {
-
+				
 				var lDO = JSON.parse(data);
 				
 				for (var objNum in lDO) {
