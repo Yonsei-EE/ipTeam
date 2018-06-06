@@ -12,7 +12,7 @@ var insta_hide = true;
 document.getElementById("insta_button").addEventListener("click", showInsta, false);
 
 
-
+//Clone template instagram node
 var instagram_tmp = document.getElementById("insta-photo");
 var instagram_template = document.getElementById("insta-photo").cloneNode(true);
 while (instagram_tmp.firstChild) {
@@ -49,15 +49,19 @@ function makeSlick(){
     slidesToScroll: 1,
     arrows: false,
     fade: true,
+    swipe: true,
     asNavFor: '.insta-slide'
-  });
-  $(".insta-slide").not('.slick-initialized').slick({
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    asNavFor: '.insta-photo',
-    dots: true,
+   });
+   $(".insta-slide").slick({
+     slidesToShow: 3,
+     slidesToScroll: 1,
+     useCSS: true,
+     asNavFor: '.insta-photo',
+     dots: true,
+    swipe: true,
     centerMode: true,
-    focusOnSelect: true
+    touchMove: true,
+    focusOnSelect: true,
   });
 }
 
@@ -67,14 +71,14 @@ function showInsta() {
         if(insta_hide == false){
           document.getElementById("insta_button").innerHTML = "Instagram";
           document.getElementById("insta").style.display = "none";
-		  document.getElementById("map").style.height = '100%';
+          document.getElementById("map").style.height = '100%';
           insta_hide = true;
           return;
         }
         insta_hide = false;
         document.getElementById("insta_button").innerHTML = "Close Instagram";
         document.getElementById("insta").style.display = "block";
-		document.getElementById("map").style.height = '50%';
+        document.getElementById("map").style.height = '50%';
 
         if(insta_received){
           return;
@@ -164,15 +168,16 @@ function showInsta() {
 				for(var post in insta_posts){
           var clone = instagram_template.cloneNode(true);
 					var slide_div = document.getElementById("insta-slide");
-					var instapost = document.createElement("div");
-          instapost.className = "instapost";
 
 
-          
 					var username = document.createTextNode(insta_posts[post].username);
-          clone.querySelector("#insta_user").appendChild(username);
+          var x = document.createElement("SPAN");
+          x.appendChild(username);
+          clone.querySelector("#insta_user").appendChild(x);
           var likes = document.createTextNode(insta_posts[post].likes);
-          clone.querySelector("#likes").appendChild(likes);
+          x = document.createElement("SPAN");
+          x.appendChild(likes);
+          clone.querySelector("#likes").appendChild(x);
           var location = document.createTextNode(insta_posts[post].location_name);
           clone.querySelector("#insta_location").appendChild(location);
 
@@ -190,6 +195,8 @@ function showInsta() {
           thumb_img.src = insta_posts[post].image_thumb;
           thumb.appendChild(thumb_img);
           thumb.className = "instathumb";
+          thumb.style.padding = "3px";
+
           slide_div.appendChild(thumb);
 				  
           var imgdiv = clone.querySelector("#instaimg");
@@ -199,8 +206,6 @@ function showInsta() {
 					img.src = insta_posts[post].image;
           imgdiv.appendChild(img);
 
-					//instapost.appendChild(profile_div);
-					//instapost.appendChild(imgdiv);
 					document.getElementById("insta-photo").appendChild(clone);
 
 				}
