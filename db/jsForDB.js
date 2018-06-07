@@ -55,6 +55,8 @@ function dataTrans(data1, data2, data3, data4, data5, data6) {
 
 function loadMarkers(typeList) {
 
+	tempMarker = new daum.maps.Marker();
+
 	for (var typeNum in typeList) {
 		
 		var type = typeList[typeNum];
@@ -131,6 +133,8 @@ function loadMarkers(typeList) {
 				}
 		});
 	}
+
+	tempMarker = null;
 }
 
 function loadArea() {
@@ -160,7 +164,33 @@ function loadArea() {
 						polygonPath.push(tempLatLng);
 					}
 
-					addPolygon(polygonPath, ref.type);
+					currentPolygon = addPolygon(polygonPath, ref.type);
+					currentPolygon.named = false;
+
+					if(currentPolygon.type === 'skate') {
+						currentPolygon.setOptions({
+			   				strokeColor: '#39DE2A', // 선의 색깔입니다
+			   				fillColor: '#A2FF99', // 채우기 색깔입니다
+						});
+						skateAreas.push(currentPolygon);
+					}
+			
+					else if(currentPolygon.type === 'basket') {
+						currentPolygon.setOptions({
+			   				strokeColor: '#ff3333', // 선의 색깔입니다
+			   				fillColor: '#ffb3b3', // 채우기 색깔입니다
+						});
+						basketAreas.push(currentPolygon);
+					}
+					else if(currentPolygon.type === 'fish') {
+						currentPolygon.setOptions({
+			   				strokeColor: '#6699ff', // 선의 색깔입니다
+			   				fillColor: '#ccddff', // 채우기 색깔입니다
+						});
+						fishAreas.push(currentPolygon);
+					}
+
+
 				}
 			}
 	});

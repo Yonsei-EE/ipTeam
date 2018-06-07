@@ -70,15 +70,19 @@ function makeSlick(){
 function showInsta() {
         if(insta_hide == false){
           document.getElementById("insta_button").innerHTML = "Instagram";
+		  document.getElementById("insta_button").style.fontSize = '.9em';
           document.getElementById("insta").style.display = "none";
+		  document.getElementById("info").style.display = "none";
           document.getElementById("map").style.height = '100%';
           insta_hide = true;
 		  map.relayout();
           return;
         }
         insta_hide = false;
-        document.getElementById("insta_button").innerHTML = "Close Instagram";
+        document.getElementById("insta_button").innerHTML = "Close";
+		document.getElementById("insta_button").style.fontSize = '1em';
         document.getElementById("insta").style.display = "block";
+		document.getElementById("info").style.display = "none";
         document.getElementById("map").style.height = '50%';
 		map.relayout();
 
