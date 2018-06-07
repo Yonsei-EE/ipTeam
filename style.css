@@ -76,5 +76,21 @@ label {
 	padding:5px;
 	margin-bottom:-2px;
 }
+#insta_user{
+	vertical-align:middle;
+}
+.instaspan{
+	position:relative;
+	top:14px;
+	left:10px;
+}
+.instaheart{
+	position:relative;
+	top:3px;
+}
+.locspan{
+	position:relative;
+	top:15px;
+}
 
 

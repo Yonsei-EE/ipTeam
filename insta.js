@@ -172,14 +172,21 @@ function showInsta() {
 
 					var username = document.createTextNode(insta_posts[post].username);
           var x = document.createElement("SPAN");
+          //x.style.lineHeight = "200";
+          x.className = "instaspan";
           x.appendChild(username);
           clone.querySelector("#insta_user").appendChild(x);
           var likes = document.createTextNode(insta_posts[post].likes);
           x = document.createElement("SPAN");
+          x.className = "instaheart";
           x.appendChild(likes);
           clone.querySelector("#likes").appendChild(x);
           var location = document.createTextNode(insta_posts[post].location_name);
-          clone.querySelector("#insta_location").appendChild(location);
+          
+          x = document.createElement("SPAN");
+          x.className = "locspan";
+          x.appendChild(location);
+          clone.querySelector("#insta_location").appendChild(x);
 
           //if(insta_posts[post].profile_pic != null){
           //  var profile_pic = document.createElement("img");
