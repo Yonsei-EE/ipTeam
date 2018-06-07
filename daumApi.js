@@ -102,8 +102,19 @@ function addMarker(position, iwContent, currentType) {
 		return;
 	}
 	
+	var markerImage = new daum.maps.MarkerImage(
+		'images/marker_resize.png',
+		new daum.maps.Size(160, 168),
+		{
+			offset: new daum.maps.Point(52,165),
+			alt: "Marker Image",
+			shape: "poly",
+			coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
+	);
+	
 	var marker = new daum.maps.Marker({
 		position: position,
+		image : markerImage,
 		clickable: true,
 	});
 
@@ -211,31 +222,52 @@ function addMarker(position, iwContent, currentType) {
 					currentMarker.named = true;
 					currentMarker.pw = myPW.value;
 					if(currentMarker.type === 'skate') {
-						/*
 						var markerImage = new daum.maps.MarkerImage(
-							'images/marker.png',
-							new daum.maps.Size(512, 512),
+							'images/skateMarker.png',
+							new daum.maps.Size(160, 168),
 							{
-								offset: new daum.maps.Point(256,510),
+								offset: new daum.maps.Point(52,165),
 								alt: "Marker Image",
-								`shape: "poly",
-								coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
-							}
+								shape: "poly",
+								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
 						);
 		
-						marker.image = markerImage;
-						*/
-	
+						marker.setImage(markerImage);
 						skateMarkers.push(marker);
 					}
-					else if(currentMarker.type === 'basket')
+					else if(currentMarker.type === 'basket') {
+						var markerImage = new daum.maps.MarkerImage(
+							'images/basketMarker.png',
+							new daum.maps.Size(160, 168),
+							{
+								offset: new daum.maps.Point(52,165),
+								alt: "Marker Image",
+								shape: "poly",
+								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
+						);
+		
+						marker.setImage(markerImage);
 						basketMarkers.push(marker);
-					else if(currentMarker.type === 'fish')
+					}
+					else if(currentMarker.type === 'fish') {
+						var markerImage = new daum.maps.MarkerImage(
+							'images/fishMarker.png',
+							new daum.maps.Size(160, 168),
+							{
+								offset: new daum.maps.Point(52,165),
+								alt: "Marker Image",
+								shape: "poly",
+								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
+						);
+		
+						marker.setImage(markerImage);
 						fishMarkers.push(marker);
+					}
 						
 					mapDiv.style.height = '100%';
 					infoDiv.style.height = '0%';
 					map.relayout();
+					currentMarker.setDraggable(false);
 					
 					saveMarker(currentMarker.getPosition(), currentMarker.infoWindow.getContent(), currentMarker.type, currentMarker.Id, currentMarker.pw, currentMarker.named);
 			});
@@ -274,50 +306,48 @@ function addMarker(position, iwContent, currentType) {
 			}
 		}
 	}
-
-
 	});
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
-		var pw = prompt("Enter password");
-		if(pw == this.pw) {
+		if(this.pw!='') {
+			var pw = prompt("Enter password");
+			if(pw == this.pw) {
+				myInfowindow.close();
+				marker.setMap(null);
+				clearInterval(interval);
+			}
+			else
+				alert("Wrong password!");
+		}
+		else {
 			myInfowindow.close();
 			marker.setMap(null);
 			clearInterval(interval);
 		}
-		else
-			alert("Wrong password!");
 	});
 
-	// 커피숍 카테고리가 클릭됐을 때
 	
 	if (currentType === 'area') {
 		areaMarkers.push(marker);
 	}
-	/*
-	var jsonText = JSON.stringify(marker.getPosition());
-	$.post('dataSend.php', {col: 'position', table: type, data: jsonText});
-	*/
 	else if (currentType === 'me') {
-/*
 		var markerImage = new daum.maps.MarkerImage(
-			'images/marker.png',
-			new daum.maps.Size(512, 512),
+			'images/person.png',
+			new daum.maps.Size(200, 200),
 			{
-				offset: new daum.maps.Point(256,510),
+				offset: new daum.maps.Point(102,178),
 				alt: "Marker Image",
 				shape: "poly",
-				coords: "60,193,60,217,62,165,70,133,84,104,103,76,125,51,146,34,169,21,191,12,213,6,234,1,252,1,268,0,292,3,319,11,343,21,366,35,387,50,405,70,420,88,432,109,443,133,449,156,452,184,453,207,449,239,438,271,418,311,429,293,401,336,379,366,356,392,329,424,306,452,289,471,270,496,257,511,242,494,222,469,200,442,174,412,145,380,123,355,100,321,83,293,71,262,64,239"
+				coords: "96,178,92,169,85,136,77,124,77,89,83,80,91,74,100,74,100,69,93,66,87,63,84,51,84,42,91,33,103,29,114,32,121,43,122,57,115,66,105,69,106,74,115,76,124,82,126,88,127,120,124,127,120,134,116,149,113,169,109,177"
 			}
 		);
 
-		marker.image = markerImage;
-		*/
+		marker.setImage(markerImage);
 		if(myMarker==null) {
 			myMarker = marker;
+			marker.setMap(map);
 		}
 	}
-	marker.setMap(map);
 	return marker;
 }
 

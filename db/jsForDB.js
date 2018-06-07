@@ -77,8 +77,57 @@ function loadMarkers(typeList) {
 						currentMarker.InfoWindow = new daum.maps.InfoWindow({ content : ref.iwContent });
 						currentMarker.Id = ref.id;
 						currentMarker.pw = ref.pw;
+						currentMarker.type = type;
 						currentMarker.named = ref.named;
+						currentMarker.setDraggable(false);
+
+						if(currentMarker.type === 'skate') {
+							var markerImage = new daum.maps.MarkerImage(
+								'images/skateMarker.png',
+								new daum.maps.Size(160, 168),
+								{
+									offset: new daum.maps.Point(52,165),
+									alt: "Marker Image",
+									shape: "poly",
+									coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"
+								}
+							);
+		
+							currentMarker.setImage(markerImage);
+							skateMarkers.push(currentMarker);
+						}
+						else if(currentMarker.type === 'basket') {
+							var markerImage = new daum.maps.MarkerImage(
+								'images/basketMarker.png',
+								new daum.maps.Size(160, 168),
+								{
+									offset: new daum.maps.Point(52,165),
+									alt: "Marker Image",
+									shape: "poly",
+									coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"			
+								}
+							);
+		
+							currentMarker.setImage(markerImage);
+							basketMarkers.push(currentMarker);
+						}
+						else if(currentMarker.type === 'fish') {
+							var markerImage = new daum.maps.MarkerImage(
+								'images/fishMarker.png',
+								new daum.maps.Size(160, 168),
+								{
+									offset: new daum.maps.Point(52,165),
+									alt: "Marker Image",
+									shape: "poly",
+									coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"	
+								}
+							);
+		
+							currentMarker.setImage(markerImage);
+							fishMarkers.push(currentMarker);
+						}
 					}
+				changeMarker('all');	
 				}
 		});
 	}
