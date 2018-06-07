@@ -124,7 +124,12 @@ function showInsta() {
 						for(var str in tagFilter){
 							if (data[i].tags.indexOf(tagFilter[str]) > -1){
 								insta_posts.push(createInstaObj(data[i].user, data[i].images, data[i].caption, data[i].location,data[i].likes,data[i].tags));
-								break;
+
+                //create daum marker
+                //
+                var latlng = new daum.maps.LatLng(data[i].location.latitude, data[i].location.longitude);
+                var  iwContent = '<div style="padding:5px;">This is me!</div>';
+                addMarker(latlng, iwContent, 'insta');
 							}	
 						}
 				}

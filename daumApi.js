@@ -263,6 +263,17 @@ function addMarker(position, iwContent, currentType) {
 						marker.setImage(markerImage);
 						fishMarkers.push(marker);
 					}
+          //INSTAGRAM
+          else if(currentMarker.type === 'insta'){
+            var markerImage = new daum.maps.MarkerImage(
+              'images/insta_pin.png',
+              new daum.maps.Size(96, 96),
+              {
+                offset: new.daum.maps.Point(48,49),
+                alt:  "Marker Image",
+                shape: "poly"
+              });
+          }
 						
 					mapDiv.style.height = '100%';
 					infoDiv.style.height = '0%';
@@ -422,6 +433,10 @@ function setSkateMarkers(map) {
 	for (var i = 0; i < skateMarkers.length; i++) {
 		skateMarkers[i].setMap(map);
 	}
+}
+
+function setInstaMarkers(map){
+
 }
 
 function setBasketMarkers(map) {

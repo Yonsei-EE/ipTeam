@@ -13,6 +13,7 @@ var skateMarkers = [];
 var basketMarkers = [];
 var fishMarkers = [];
 var areaMarkers = [];
+var instaMarkers = [];
 var areas = [];
 var skateAreas = [];
 var basketAreas = [];
