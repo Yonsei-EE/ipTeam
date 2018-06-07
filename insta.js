@@ -73,12 +73,14 @@ function showInsta() {
           document.getElementById("insta").style.display = "none";
           document.getElementById("map").style.height = '100%';
           insta_hide = true;
+		  map.relayout();
           return;
         }
         insta_hide = false;
         document.getElementById("insta_button").innerHTML = "Close Instagram";
         document.getElementById("insta").style.display = "block";
         document.getElementById("map").style.height = '50%';
+		map.relayout();
 
         if(insta_received){
           return;

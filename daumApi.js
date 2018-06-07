@@ -229,9 +229,7 @@ function addMarker(position, iwContent, currentType) {
 								offset: new daum.maps.Point(52,165),
 								alt: "Marker Image",
 								shape: "poly",
-								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
-						);
-		
+								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"								});
 						marker.setImage(markerImage);
 						skateMarkers.push(marker);
 					}
@@ -243,9 +241,7 @@ function addMarker(position, iwContent, currentType) {
 								offset: new daum.maps.Point(52,165),
 								alt: "Marker Image",
 								shape: "poly",
-								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
-						);
-		
+								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"								});
 						marker.setImage(markerImage);
 						basketMarkers.push(marker);
 					}
@@ -257,23 +253,22 @@ function addMarker(position, iwContent, currentType) {
 								offset: new daum.maps.Point(52,165),
 								alt: "Marker Image",
 								shape: "poly",
-								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
-						);
-		
+								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"								});
 						marker.setImage(markerImage);
 						fishMarkers.push(marker);
 					}
-          //INSTAGRAM
-          else if(currentMarker.type === 'insta'){
-            var markerImage = new daum.maps.MarkerImage(
-              'images/insta_pin.png',
-              new daum.maps.Size(96, 96),
-              {
-                offset: new.daum.maps.Point(48,49),
-                alt:  "Marker Image",
-                shape: "poly"
-              });
-          }
+          			else if(currentMarker.type === 'insta'){
+        			    var markerImage = new daum.maps.MarkerImage(
+        			      'images/insta_pin.png',
+        			      new daum.maps.Size(96, 96),
+        			      {
+        			        offset: new daum.maps.Point(48,49),
+        			        alt:  "Marker Image",
+        			        shape: "poly"
+        			      });
+						marker.setImage(markerImage);
+						instaMarkers.push(marker);
+        			}
 						
 					mapDiv.style.height = '100%';
 					infoDiv.style.height = '0%';
