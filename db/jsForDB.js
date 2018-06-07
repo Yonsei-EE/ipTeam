@@ -1,7 +1,5 @@
 function saveMarker(latlng, iwContent, type, id, pw, named) {
 
-	if(type == 'all')
-		return;
 	var forJson = dataTrans(latlng.getLat(), latlng.getLng(), iwContent, type, id, pw, named);
 	var jsonText = JSON.stringify(forJson);
 	$.post('./db/dataSend.php', {col: 'data', table: type, data: jsonText});
@@ -10,7 +8,6 @@ function saveMarker(latlng, iwContent, type, id, pw, named) {
 function deleteMarker(latlng, iwContent, type, id, pw, named) {
 	
 	var forJson = dataTrans(latlng.getLat(), latlng.getLng(), iwContent, type, id, pw, named);
-	//var jsonText = JSON.stringify(forJson);
 	$.post('./db/dataDelete.php', {col: 'data', table: type, data: forJson});
 }
 
@@ -35,13 +32,12 @@ function saveArea(markerSet, areaType) {
 	$.post('./db/dataSend.php', {col: 'data', table: 'area', data: jsonText});
 }
 
-function dataTrans(data1, data2, data3) {
+function dataTrans(data1, data2) {
 
 	var Obj = {
 
 		Lat: data1,
-		Lng: data2,
-		iwContent: data3
+		Lng: data2
 	};
 	return Obj;
 }
