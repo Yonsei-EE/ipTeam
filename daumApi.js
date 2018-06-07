@@ -155,13 +155,15 @@ function addMarker(position, iwContent, currentType) {
 			myForm.method='POST';
 			myForm.action='';
 
+			var fieldset = document.createElement('FIELDSET');
+			var p1 = document.createElement('P');
 			var myName = document.createElement('INPUT');
 			myName.type='TEXT';
 			myName.id='name';
-			myForm.appendChild(myName);
+			p1.appendChild(myName);
+			fieldset.appendChild(p1);
 
-			var br = document.createElement('BR');
-			myForm.appendChild(br);
+			var p2 = document.createElement('P');
 
 			var myType = document.createElement('SELECT');
 			myType.id='type';
@@ -184,33 +186,35 @@ function addMarker(position, iwContent, currentType) {
 			myType.appendChild(fishOption);
 			if(currentType!='me')
 				myType.value=currentType;
-			myForm.appendChild(myType);
+			p2.appendChild(myType);
+			fieldset.appendChild(p2);
 
-			var br = document.createElement('BR');
-			myForm.appendChild(br);
+			var p3 = document.createElement('P');
 
 			var myPW = document.createElement('INPUT');
 			myPW.type='PASSWORD';
 			myPW.id='pw';
-			myForm.appendChild(myPW);
+			p3.appendChild(myPW);
+			fieldset.appendChild(p3);
+			myForm.appendChild(fieldset);
 
 			var nameLabel = document.createElement("LABEL");
 			var nameLabelTxt = document.createTextNode("Name");
 			nameLabel.setAttribute("for", "name");
 			nameLabel.appendChild(nameLabelTxt);
-			myForm.insertBefore(nameLabel,myName);
+			p1.insertBefore(nameLabel,myName);
 
 			var typeLabel = document.createElement("LABEL");
 			var typeLabelTxt = document.createTextNode("Sport");
 			typeLabel.setAttribute("for", "type");
 			typeLabel.appendChild(typeLabelTxt);
-			myForm.insertBefore(typeLabel,myType);
+			p2.insertBefore(typeLabel,myType);
 
 			var pwLabel = document.createElement("LABEL");
 			var pwLabelTxt = document.createTextNode("PW");
 			pwLabel.setAttribute("for", "pw");
 			pwLabel.appendChild(pwLabelTxt);
-			myForm.insertBefore(pwLabel,myPW);
+			p3.insertBefore(pwLabel,myPW);
 
 			infoDiv.appendChild(myForm);
 			
