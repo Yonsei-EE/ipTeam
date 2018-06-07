@@ -348,6 +348,8 @@ function addMarker(position, iwContent, currentType) {
 			marker.setMap(map);
 		}
 	}
+	if(currentType!='me')
+			marker.setMap(map);
 	return marker;
 }
 
