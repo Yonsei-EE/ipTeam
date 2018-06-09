@@ -141,6 +141,7 @@ function addMarker(position, iwContent, currentType) {
 
 	marker.infoWindow = myInfowindow;
 
+	if(currentType!='area') {
 	daum.maps.event.addListener(marker, 'mouseover', function() {
 		myInfowindow.open(map, marker);
 	});
@@ -153,7 +154,7 @@ function addMarker(position, iwContent, currentType) {
 	daum.maps.event.addListener(marker, 'dragend', function() {
 		myInfowindow.open(map, marker);
 	});
-
+	}
 	marker.named = false;
 	marker.type = 'temp';
 	marker.clicked = 0;
@@ -382,13 +383,13 @@ function addMarker(position, iwContent, currentType) {
 	
 	if (currentType === 'area') {
 		var markerImage = new daum.maps.MarkerImage(
-			'images/person.png',
-			new daum.maps.Size(200, 200),
+			'images/red_pin.png',
+			new daum.maps.Size(150, 161),
 			{
-				offset: new daum.maps.Point(102,178),
+				offset: new daum.maps.Point(34,143),
 				alt: "Marker Image",
 				shape: "poly",
-				coords: "96,178,92,169,85,136,77,124,77,89,83,80,91,74,100,74,100,69,93,66,87,63,84,51,84,42,91,33,103,29,114,32,121,43,122,57,115,66,105,69,106,74,115,76,124,82,126,88,127,120,124,127,120,134,116,149,113,169,109,177"
+				coords: "13,138,19,148,34,152,48,150,42,139,62,113,79,118,96,114,108,107,114,92,117,79,113,65,132,57,130,32,115,19,95,15,81,24,81,42,53,47,38,67,43,93,51,107,33,136,42,139,23,133"
 			}
 		);
 		
