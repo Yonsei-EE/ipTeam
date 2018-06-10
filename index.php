@@ -158,7 +158,7 @@ if(isset($_GET['code'])) {
 										</span>
 										</div>
 										<div id="instalink"  style="top:5px;" class="small float-right col">
-										<a id="proflink" href="http://www.instagram.com" target="_blank"> 
+										<a id="proflink" href="http://www.instagram.com" target="_blank">
 											<button type="button" style="padding:3px;" class="btn-xs rounded btn-light">Insta Link</button>
 										</a>
 										</div>
