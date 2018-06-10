@@ -122,7 +122,7 @@ if(isset($_GET['code'])) {
 								else{
 
 
-								echo "<div class=\"col \"><img style=\"max-width: 100%\" width=\"64\" class='img-thumbnail' src=\"{$user_info["profile_picture"]}\" </div>"; 
+								echo "<div class=\"col \"><img style=\"width=\"64\" class='img-thumbnail' src=\"{$user_info["profile_picture"]}\" </div>"; 
 								echo "<div class=\"col-2 small\">{$user_info["username"]} </div>"; 
 
 								
