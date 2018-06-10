@@ -121,8 +121,11 @@ if(isset($_GET['code'])) {
 								}
 								else{
 
-								echo "<div class=\"col\"><img style=\"width=\"64\" class='img-thumbnail' src=\"{$user_info["profile_picture"]}\" /> </div>"; 
-								echo "<br> <div class=\"col-sm-2 small\">{$user_info["username"]} </div>"; 
+									echo "<div class=\"col\"><img style=\"width=\"64\" class='img-thumbnail' src=\"{$user_info["profile_picture"]}\" /> </div>"; 
+									echo "<div class =\"row\">";
+									echo "<div class=\"col-sm-2 small\">{$user_info["username"]} </div>"; 
+									echo "</div>";
+
 								
 								}	
 ?>
