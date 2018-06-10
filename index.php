@@ -9,7 +9,7 @@ define('INSTAGRAM_CLIENT_ID', 'f70ce127369142d4be12655a99e7f35e');
 /* Instagram App Client Secret */
 define('INSTAGRAM_CLIENT_SECRET', '4b289cff35b04765800852e9780b6c54');
 /* Instagram App Redirect Url */
-define('INSTAGRAM_REDIRECT_URI', 'https://ipteam.ga/working/instagram-dev/index.php');
+define('INSTAGRAM_REDIRECT_URI', 'https://ipteam.ga/working/jiseung/index.php');
 
 
 $login_url = 'https://www.instagram.com/oauth/authorize/?client_id=' . INSTAGRAM_CLIENT_ID . '&redirect_uri=' . urlencode(INSTAGRAM_REDIRECT_URI) . '&response_type=code&scope='. urlencode('basic public_content');
