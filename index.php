@@ -142,7 +142,7 @@ if(isset($_GET['code'])) {
 							<div id="instatemplate" class="border rounded h6">
 								<div class="row" style="vertical-align:middle;">
 									<div id="insta_user"  class="col-sm" style="vertical-align:middle;">
-										<img width="64" align="left" class='img-thumbnail' src="images/insta_pin.png" />
+										<img width="48" height="48" align="left" class='img-thumbnail' src="images/insta_pin.png" />
 									</div>
 									<div id="likes" class="text-right float-right col-sm">
 										<img width="32" align="right" src="images/insta_like.jpg" />
