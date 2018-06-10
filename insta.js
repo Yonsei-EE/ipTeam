@@ -83,7 +83,6 @@ function showInsta() {
           return;
         }
 
-          makeSlick();
         insta_hide = false;
         document.getElementById("insta_button").innerHTML = "[X] Instagram";
         document.getElementById("insta").style.display = "";
@@ -91,6 +90,7 @@ function showInsta() {
         map.relayout();
 
         if(insta_received){
+          makeSlick();
           return;
         }
         var lat;
