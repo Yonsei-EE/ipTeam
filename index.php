@@ -69,7 +69,7 @@ if(isset($_GET['code'])) {
 	<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid style="padding-right:0px;">
 		<div class="row" style="height:100%">
 				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
 					<div class="container-fluid">
@@ -111,10 +111,10 @@ if(isset($_GET['code'])) {
 						</div>
 						<div class="row">
 							<div class="button">
-								<button id="insta_button" class="btn btn-default btn-block" type="button">Instagram</button>
+								<button id="insta_button" class="btn btn-default btn-block" style="font-size:0.9em;" type="button">Instagram</button>
 							</div>
 						</div>
-						<div class="row border rounded " style="background-color: #f5f5f5;">
+						<div class="row border rounded" >
 							<?php
 								if ($_SESSION['logged_in'] == 0){
 									echo "<a href={$login_url}> <img src=\"images/insta_signin.png\" /> </a>";
