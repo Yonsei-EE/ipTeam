@@ -101,8 +101,9 @@ function showInsta() {
         var lng;
 
         if(!DEBUG_LOCATION){
-          lat = currentLocation.getLat();
-          lng = currentLocation.getLng();
+          var p = map.getCenter();
+          lat = p.getLat();
+          lng = p.getLng();;
         }
         else{
           lat = 37.565784;
