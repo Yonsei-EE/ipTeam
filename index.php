@@ -114,16 +114,16 @@ if(isset($_GET['code'])) {
 								<button id="insta_button" class="btn btn-default btn-block" style="font-size:0.9em;" type="button">Instagram</button>
 							</div>
 						</div>
-						<div class="row border rounded" >
+						<div class="row border" >
 							<?php
 								if ($_SESSION['logged_in'] == 0){
 									echo "<a href={$login_url}> <img src=\"images/insta_signin.png\" /> </a>";
 								}
 								else{
 
-									echo "<div class=\"col\"><img style=\"width=\"64\" class='img-thumbnail' src=\"{$user_info["profile_picture"]}\" /> </div>"; 
+									echo "<div class=\"col-sm-8\"><img style=\"width=\"64\" class='img-thumbnail' src=\"{$user_info["profile_picture"]}\" /> </div>"; 
 									echo "<div class =\"row\">";
-									echo "<div class=\"col-sm2 text-center small\">{$user_info["username"]} </div>"; 
+									echo "<div class=\"col-sm-2 text-center small\">{$user_info["username"]} </div>"; 
 									echo "</div>";
 
 								
