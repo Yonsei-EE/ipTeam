@@ -1,5 +1,7 @@
 var tagFilter = ["yonsei", "skate", "ipteam"];
 
+var initialized = false;
+
 
 
 var distance = 5000;
@@ -17,7 +19,10 @@ var insta_hide = true;
 document.getElementById("insta_button").addEventListener("click", showInsta, false);
 
 daum.maps.event.addListener(map, 'dragend', function() {
-  updateInsta();
+  if(initialized){
+        $('.insta-slide').slick('unslick');
+        $('.insta-photo').slick('unslick');
+        updateInsta();}
 });
 
 
@@ -90,7 +95,6 @@ function showInsta() {
         map.relayout();
 
         if(insta_received){
-          makeSlick();
           return;
         }
         var lat;
@@ -120,6 +124,7 @@ function showInsta() {
             }
         };
         xhr.send();
+        initialized = true;
         insta_received=true;
 }
 
