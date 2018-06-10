@@ -11,7 +11,7 @@ var access_token =  "7767454861.f70ce12.888f320125da4d6a823a27fce08aa7c7";
 
 //set true to debug location
 //(At Yonsei)
-const DEBUG_LOCATION = true;
+const DEBUG_LOCATION = false;
 
 var insta_hide = true;
 document.getElementById("insta_button").addEventListener("click", showInsta, false);
