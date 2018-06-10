@@ -86,7 +86,7 @@ function showInsta() {
           makeSlick();
         insta_hide = false;
         document.getElementById("insta_button").innerHTML = "[X] Instagram";
-        document.getElementById("insta").style.display = "block";
+        document.getElementById("insta").style.display = "";
         document.getElementById("map").style.height = '50%';
         map.relayout();
 
