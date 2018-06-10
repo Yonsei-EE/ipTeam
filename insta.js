@@ -82,6 +82,8 @@ function showInsta() {
           insta_hide = true;
           return;
         }
+
+          makeSlick();
         insta_hide = false;
         document.getElementById("insta_button").innerHTML = "[X] Instagram";
         document.getElementById("insta").style.display = "block";

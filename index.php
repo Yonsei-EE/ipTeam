@@ -114,7 +114,7 @@ if(isset($_GET['code'])) {
 								<button id="insta_button" class="btn btn-default btn-block" style="font-size:0.9em;" type="button">Instagram</button>
 							</div>
 						</div>
-						<div class="row border" >
+						<div class="row border rounded" >
 							<?php
 								if ($_SESSION['logged_in'] == 0){
 									echo "<a href={$login_url}> <img src=\"images/insta_signin.png\" /> </a>";
