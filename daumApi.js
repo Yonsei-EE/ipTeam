@@ -96,6 +96,19 @@ function apiGeolocationSuccess(position) {
 	currentLocation = new daum.maps.LatLng(position.coords.latitude, position.coords.longitude);
 }
 
+function clearInner(node) {
+		while(node.hasChildNodes()) {
+				clear(node.firstChild);
+		}
+}
+
+function clear(node) {
+		while(node.hasChildNodes()) {
+				clear(node.firstChild);
+		}
+		node.parentNode.removeChild(node);
+}
+
 function addMarker(position, iwContent, currentType) {
 	if(currentType == 'all') {
 		//alert("Please specify marker category.");
@@ -111,6 +124,8 @@ function addMarker(position, iwContent, currentType) {
 			shape: "poly",
 			coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
 	);
+
+  console.log(position);
 	
 	var marker = new daum.maps.Marker({
 		position: position,
@@ -128,6 +143,7 @@ function addMarker(position, iwContent, currentType) {
 
 	marker.infoWindow = myInfowindow;
 
+	if(currentType!='area') {
 	daum.maps.event.addListener(marker, 'mouseover', function() {
 		myInfowindow.open(map, marker);
 	});
@@ -140,28 +156,55 @@ function addMarker(position, iwContent, currentType) {
 	daum.maps.event.addListener(marker, 'dragend', function() {
 		myInfowindow.open(map, marker);
 	});
-
+	}
 	marker.named = false;
+	marker.type = 'temp';
+	marker.clicked = 0;
+
+  //Instagram 
+  if(currentType == 'insta'){
+        var markerImage = new daum.maps.MarkerImage(
+          'images/insta_pin.png',
+          new daum.maps.Size(32, 32),
+          {
+            offset: new daum.maps.Point(16,16),
+            alt:  "Marker Image",
+            shape: "poly",
+          });
+    marker.setImage(markerImage);
+    marker.setOpacity(0.4);
+    insta_posts[insta_posts.length -1].marker = marker;
+    marker.setMap(map);
+    return;
+  }
+
 
 	daum.maps.event.addListener(marker, 'click', function() {
 		if(currentType!='area'){
 		var mapDiv = document.getElementById('map');
 		var infoDiv = document.getElementById('info');
 		var currentMarker = this;
-		if(this.named == false) {
-			infoDiv.innerHTML = 'Enter your name and sport';
+		if(this.named == false && this.clicked==0) {
+			infoDiv.innerHTML = '';
+			currentId = 'empty';
+			marker.clicked++;
+			var h2 = document.createElement('H2');
+			h2.innerHTML = 'Enter your name and sport';
+			infoDiv.appendChild(h2);
 		 	var myForm = document.createElement('FORM');
 			myForm.name='myForm';
 			myForm.method='POST';
 			myForm.action='';
 
+			var fieldset = document.createElement('FIELDSET');
+			var p1 = document.createElement('P');
 			var myName = document.createElement('INPUT');
 			myName.type='TEXT';
 			myName.id='name';
-			myForm.appendChild(myName);
+			p1.appendChild(myName);
+			fieldset.appendChild(p1);
 
-			var br = document.createElement('BR');
-			myForm.appendChild(br);
+			var p2 = document.createElement('P');
 
 			var myType = document.createElement('SELECT');
 			myType.id='type';
@@ -184,33 +227,35 @@ function addMarker(position, iwContent, currentType) {
 			myType.appendChild(fishOption);
 			if(currentType!='me')
 				myType.value=currentType;
-			myForm.appendChild(myType);
+			p2.appendChild(myType);
+			fieldset.appendChild(p2);
 
-			var br = document.createElement('BR');
-			myForm.appendChild(br);
+			var p3 = document.createElement('P');
 
 			var myPW = document.createElement('INPUT');
 			myPW.type='PASSWORD';
 			myPW.id='pw';
-			myForm.appendChild(myPW);
+			p3.appendChild(myPW);
+			fieldset.appendChild(p3);
+			myForm.appendChild(fieldset);
 
 			var nameLabel = document.createElement("LABEL");
 			var nameLabelTxt = document.createTextNode("Name");
 			nameLabel.setAttribute("for", "name");
 			nameLabel.appendChild(nameLabelTxt);
-			myForm.insertBefore(nameLabel,myName);
+			p1.insertBefore(nameLabel,myName);
 
 			var typeLabel = document.createElement("LABEL");
 			var typeLabelTxt = document.createTextNode("Sport");
 			typeLabel.setAttribute("for", "type");
 			typeLabel.appendChild(typeLabelTxt);
-			myForm.insertBefore(typeLabel,myType);
+			p2.insertBefore(typeLabel,myType);
 
 			var pwLabel = document.createElement("LABEL");
 			var pwLabelTxt = document.createTextNode("PW");
 			pwLabel.setAttribute("for", "pw");
 			pwLabel.appendChild(pwLabelTxt);
-			myForm.insertBefore(pwLabel,myPW);
+			p3.insertBefore(pwLabel,myPW);
 
 			infoDiv.appendChild(myForm);
 			
@@ -229,9 +274,7 @@ function addMarker(position, iwContent, currentType) {
 								offset: new daum.maps.Point(52,165),
 								alt: "Marker Image",
 								shape: "poly",
-								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
-						);
-		
+								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"								});
 						marker.setImage(markerImage);
 						skateMarkers.push(marker);
 					}
@@ -243,9 +286,7 @@ function addMarker(position, iwContent, currentType) {
 								offset: new daum.maps.Point(52,165),
 								alt: "Marker Image",
 								shape: "poly",
-								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
-						);
-		
+								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"								});
 						marker.setImage(markerImage);
 						basketMarkers.push(marker);
 					}
@@ -257,42 +298,52 @@ function addMarker(position, iwContent, currentType) {
 								offset: new daum.maps.Point(52,165),
 								alt: "Marker Image",
 								shape: "poly",
-								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"							}
-						);
-		
+								coords: "53,164,44,139,34,116,23,97,13,83,5,68,1,54,3,40,11,23,24,11,38,4,51,0,67,2,78,9,89,17,100,33,104,51,96,76,83,93,71,114,61,139"								});
 						marker.setImage(markerImage);
 						fishMarkers.push(marker);
 					}
-          //INSTAGRAM
-          else if(currentMarker.type === 'insta'){
-            var markerImage = new daum.maps.MarkerImage(
-              'images/insta_pin.png',
-              new daum.maps.Size(96, 96),
-              { 
-                offset: new.daum.maps.Point(48,49),
-                alt:  "Marker Image",
-                shape: "poly"
-              });
-          }
-						
+					
 					mapDiv.style.height = '100%';
 					infoDiv.style.height = '0%';
+					clearInner(infoDiv);
 					map.relayout();
 					currentMarker.setDraggable(false);
-					
+
+					tempMarker = null;
+
 					saveMarker(currentMarker.getPosition(), currentMarker.infoWindow.getContent(), currentMarker.type, currentMarker.Id, currentMarker.pw, currentMarker.named);
 			});
 			btnTxt = document.createTextNode('Submit');
+			btn.style.float = "right";
+			btn.style.marginRight = '15px';
 			btn.appendChild(btnTxt);
 			infoDiv.appendChild(btn);
 
 			if(mapDiv.style.height == '100%') {
 				mapDiv.style.height = '50%';
+				info.style.display = "block";
 				infoDiv.style.height = '50%';
 				map.relayout();
 			}
 		}
+		else if(this.named == false && this.clicked == 1) {
+				mapDiv.style.height = '100%';
+				infoDiv.style.height = '0%';
+				map.relayout();
+				this.clicked++;
+		}
+		else if(this.named == false && this.clicked == 2) {
+				mapDiv.style.height = '50%';
+				infoDiv.style.display = "block";
+				infoDiv.style.height = '50%';
+				map.relayout();
+				this.clicked=1;
+		}
 		else {
+			if(tempMarker!=null)
+					tempMarker.clicked = 0;
+			if(tempPolygon!=null)
+					tempPolygon.clicked = 0;
 			if(currentId == this.Id) {
 				mapDiv.style.height = '100%';
 				infoDiv.style.height = '0%';
@@ -320,7 +371,12 @@ function addMarker(position, iwContent, currentType) {
 	});
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
-		if(this.pw!='') {
+		if(this.pw=='' || this.type == 'temp') {
+			myInfowindow.close();
+			marker.setMap(null);
+			clearInterval(interval);
+		}
+		else {
 			var pw = prompt("Enter password");
 			if(pw == this.pw) {
 				myInfowindow.close();
@@ -330,16 +386,24 @@ function addMarker(position, iwContent, currentType) {
 			else
 				alert("Wrong password!");
 		}
-		else {
-			myInfowindow.close();
-			marker.setMap(null);
-			clearInterval(interval);
-		}
 	});
 
 	
 	if (currentType === 'area') {
+		var markerImage = new daum.maps.MarkerImage(
+			'images/red_pin.png',
+			new daum.maps.Size(150, 161),
+			{
+				offset: new daum.maps.Point(34,143),
+				alt: "Marker Image",
+				shape: "poly",
+				coords: "13,138,19,148,34,152,48,150,42,139,62,113,79,118,96,114,108,107,114,92,117,79,113,65,132,57,130,32,115,19,95,15,81,24,81,42,53,47,38,67,43,93,51,107,33,136,42,139,23,133"
+			}
+		);
+		
 		areaMarkers.push(marker);
+		marker.setImage(markerImage);
+		marker.setMap(map);
 	}
 	else if (currentType === 'me') {
 		var markerImage = new daum.maps.MarkerImage(
@@ -359,8 +423,17 @@ function addMarker(position, iwContent, currentType) {
 			marker.setMap(map);
 		}
 	}
-	if(currentType!='me')
+	else {
+		if(tempMarker == null) {
+			tempMarker = marker;
 			marker.setMap(map);
+		}
+		else {
+			tempMarker.setPosition(position);
+			tempMarker.setMap(map);
+		}
+	}
+
 	return marker;
 }
 
@@ -436,6 +509,9 @@ function setSkateMarkers(map) {
 }
 
 function setInstaMarkers(map){
+for (var i = 0; i < skateMarkers.length; i++) {
+		instaMarkers[i].setMap(map);
+	}
 
 }
 
@@ -479,13 +555,22 @@ function addPolygon(polygonPath, currentType) {
 			content : '<div style="padding:5px;">Hello World!</div>'
 		});
 
+		console.log(center[0],center[1]);
+
 		var polygon = new daum.maps.Polygon({
    			path:polygonPath, // 그려질 다각형의 좌표 배열입니다
    			strokeWeight: 3, // 선의 두께입니다
    			strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
    			strokeStyle: 'longdash', // 선의 스타일입니다
-   			fillOpacity: 0.7 // 채우기 불투명도 입니다
+   			fillOpacity: 0.7, // 채우기 불투명도 입니다
+			strokeColor: '#363738', // 선의 색깔입니다
+			fillColor: '#f2f4f7', // 채우기 색깔입니다
 		});
+
+		polygon.infoWindow = myInfowindow;
+		polygon.clicked = 0;
+		polygon.type = currentType;
+		this.named = false;
 
 		var mouseoverOption = { 
 			//fillColor: '#EFFFED', // 채우기 색깔입니다
@@ -499,6 +584,7 @@ function addPolygon(polygonPath, currentType) {
 		};
 		
 		// 다각형에 마우스오버 이벤트를 등록합니다
+	
         daum.maps.event.addListener(polygon, 'mouseover', function() {
 	        // 다각형의 채우기 옵션을 변경합니다
     	    polygon.setOptions(mouseoverOption);
@@ -508,34 +594,178 @@ function addPolygon(polygonPath, currentType) {
             // 다각형의 채우기 옵션을 변경합니다
             polygon.setOptions(mouseoutOption); 
 			myInfowindow.close();
-        }); 
+        });
 		daum.maps.event.addListener(polygon, 'click', function() {
-			window.location.href = "https://www.naver.com";
+		var mapDiv = document.getElementById('map');
+		var infoDiv = document.getElementById('info');
+		var currentPolygon = this;
+		if(this.named == false && this.clicked==0) {
+			infoDiv.innerHTML = '';
+			currentId = 'empty';
+			currentPolygon.clicked++;
+			var h2 = document.createElement('H2');
+			h2.innerHTML = 'Enter the location and sport';
+			infoDiv.appendChild(h2);
+		 	var myForm = document.createElement('FORM');
+			myForm.name='myForm';
+			myForm.method='POST';
+			myForm.action='';
+
+			var fieldset = document.createElement('FIELDSET');
+			var p1 = document.createElement('P');
+			var myName = document.createElement('INPUT');
+			myName.type='TEXT';
+			myName.id='name';
+			p1.appendChild(myName);
+			fieldset.appendChild(p1);
+
+			var p2 = document.createElement('P');
+
+			var myType = document.createElement('SELECT');
+			myType.id='type';
+
+		    var skateOption = document.createElement("option");
+			skateOption.setAttribute("value", "skate");
+			var basketOption = document.createElement("option");
+			basketOption.setAttribute("value", "basket");
+			var fishOption = document.createElement("option");
+			fishOption.setAttribute("value", "fish");
+
+			var skateTxt = document.createTextNode("skateboarding");
+			skateOption.appendChild(skateTxt);
+			var basketTxt = document.createTextNode("basketball");
+			basketOption.appendChild(basketTxt);
+			var fishTxt = document.createTextNode("fishing");
+			fishOption.appendChild(fishTxt);
+			myType.appendChild(skateOption);
+		    myType.appendChild(basketOption);
+			myType.appendChild(fishOption);
+			myType.value=type;
+			p2.appendChild(myType);
+			fieldset.appendChild(p2);
+			myForm.appendChild(fieldset);
+
+			var nameLabel = document.createElement("LABEL");
+			var nameLabelTxt = document.createTextNode("Location");
+			nameLabel.setAttribute("for", "name");
+			nameLabel.appendChild(nameLabelTxt);
+			p1.insertBefore(nameLabel,myName);
+
+			var typeLabel = document.createElement("LABEL");
+			var typeLabelTxt = document.createTextNode("Sport");
+			typeLabel.setAttribute("for", "type");
+			typeLabel.appendChild(typeLabelTxt);
+			p2.insertBefore(typeLabel,myType);
+			infoDiv.appendChild(myForm);
+			
+			var btn = document.createElement('BUTTON');
+			btn.addEventListener('click', function() {
+					currentPolygon.Id = myName.value;
+					currentPolygon.type = myType.value;
+					currentPolygon.named = true;
+					if(currentPolygon.type === 'skate') {
+						currentPolygon.setOptions({
+			   				strokeColor: '#39DE2A', // 선의 색깔입니다
+			   				fillColor: '#A2FF99', // 채우기 색깔입니다
+						});
+						skateAreas.push(currentPolygon);
+					}
+			
+					else if(currentPolygon.type === 'basket') {
+						currentPolygon.setOptions({
+			   				strokeColor: '#ff3333', // 선의 색깔입니다
+			   				fillColor: '#ffb3b3', // 채우기 색깔입니다
+						});
+						basketAreas.push(currentPolygon);
+					}
+					else if(currentPolygon.type === 'fish') {
+						currentPolygon.setOptions({
+			   				strokeColor: '#6699ff', // 선의 색깔입니다
+			   				fillColor: '#ccddff', // 채우기 색깔입니다
+						});
+						fishAreas.push(currentPolygon);
+					}
+											
+					mapDiv.style.height = '100%';
+					infoDiv.style.height = '0%';
+					clearInner(infoDiv);
+					map.relayout();
+
+					tempPolygon = null;
+
+			});
+			btnTxt = document.createTextNode('Submit');
+			btn.style.float = "right";
+			btn.style.marginRight = '15px';
+			btn.appendChild(btnTxt);
+			infoDiv.appendChild(btn);
+
+			if(mapDiv.style.height == '100%') {
+				mapDiv.style.height = '50%';
+				infoDiv.style.display = 'block';
+				infoDiv.style.height = '50%';
+				map.relayout();
+			}
+		}
+		else if(this.named == false && this.clicked == 1) {
+				mapDiv.style.height = '100%';
+				infoDiv.style.height = '0%';
+				map.relayout();
+				this.clicked++;
+		}
+		else if(this.named == false && this.clicked == 2) {
+				mapDiv.style.height = '50%';
+				infoDiv.style.display = 'block';
+				infoDiv.style.height = '50%';
+				map.relayout();
+				this.clicked=1;
+		}
+		else {
+			if(tempMarker!=null)
+					tempMarker.clicked = 0;
+			if(tempPolygon!=null)
+					tempPolygon.clicked = 0;
+			if(currentId == this.Id) {
+				mapDiv.style.height = '100%';
+				infoDiv.style.height = '0%';
+				map.relayout();
+				currentId = 'empty';
+			}
+			else {
+				var str = 'This is ' + this.Id + '.';
+				if(this.type==='skate')
+					str += ' It is for skateboarding.';
+				else if(this.type==='basket')
+					str += ' It is for playing basketball.';
+				else if(this.type==='fish')
+					str += ' It is for fishing.';
+				infoDiv.innerHTML = str;
+				currentId = this.Id;
+				if(mapDiv.style.height == '100%') {
+					mapDiv.style.height = '50%';
+					infoDiv.style.height = '50%';
+					map.relayout();
+				}
+			}
+		}
 		});
 
-		polygon.setMap(map);
-
-		if(currentType === 'skate') {
-			polygon.setOptions({
-   				strokeColor: '#39DE2A', // 선의 색깔입니다
-   				fillColor: '#A2FF99', // 채우기 색깔입니다
-			});
-			skateAreas.push(polygon);
+		if(tempPolygon == null) {
+			tempPolygon = polygon;
+			polygon.setMap(map);
 		}
+		else {
+			tempPolygon.setPath(polygonPath);
+			center = [0,0];
+			for (i in polygonPath) {
+				center[0] += polygonPath[i].getLat();
+				center[1] += polygonPath[i].getLng();
+			}
+			center[0] /= polygonPath.length;
+			center[1] /= polygonPath.length;
 
-		else if(currentType === 'basket') {
-			polygon.setOptions({
-   				strokeColor: '#ff3333', // 선의 색깔입니다
-   				fillColor: '#ffb3b3', // 채우기 색깔입니다
-			});
-			basketAreas.push(polygon);
-		}
-		else if(currentType === 'fish') {
-			polygon.setOptions({
-   				strokeColor: '#6699ff', // 선의 색깔입니다
-   				fillColor: '#ccddff', // 채우기 색깔입니다
-			});
-			fishAreas.push(polygon);
+			tempPolygon.infoWindow.setPosition(new daum.maps.LatLng(center[0], center[1]));
+			tempPolygon.setMap(map);
 		}
 
 		// 지도에 다각형을 표시합니다
@@ -546,4 +776,7 @@ function addPolygon(polygonPath, currentType) {
 		setAreaMarkers(null);
 		areaMarkers = [];
 		areas.push(polygon);
+
+		return polygon;
+
 }
