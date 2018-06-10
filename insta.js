@@ -127,18 +127,17 @@ function showInsta() {
 
                 //create daum marker
                 //
-                var latlng = new daum.maps.LatLng(data[i].location.latitude, data[i].location.longitude);
-                var  iwContent = '<div style="padding:5px;">This is me!</div>';
-                addMarker(latlng, iwContent, 'insta');
+                //var latlng = new daum.maps.LatLng(data[i].location.latitude, data[i].location.longitude);
+                //var  iwContent = '<div style="padding:5px;">This is me!</div>';
+                //addMarker(latlng, iwContent, 'insta');
 							}	
 						}
 				}
 			}
 
 			function createInstaObj(user, images, caption, location, likes, tags){
-
-				//time is in linux timestamp format,  needs to be converted to date
 				var post = {username:user.username,
+                    user_id:, user.id,
 				 						profile_pic:user.profile_picture,
 										image_thumb: images.thumbnail.url,
 									  image: images.standard_resolution.url,
@@ -152,8 +151,6 @@ function showInsta() {
 										};	
 
 				return post;
-
-
 			}
 
 
@@ -177,7 +174,6 @@ function showInsta() {
 
 					var username = document.createTextNode(insta_posts[post].username);
           var x = document.createElement("SPAN");
-          //x.style.lineHeight = "200";
           x.className = "instaspan";
           x.appendChild(username);
           clone.querySelector("#insta_user").appendChild(x);
@@ -199,8 +195,6 @@ function showInsta() {
           //  profile_pic.src = insta_posts[post].profile_pic;
           //  profile_div.appendChild(profile_pic);
           //}
-					//profile_div.appendChild(username);
-         // profile_div.appendChild(likes);
 
           var thumb = document.createElement("div");
           var thumb_img = document.createElement("img");

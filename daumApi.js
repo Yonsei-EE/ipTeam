@@ -268,7 +268,7 @@ function addMarker(position, iwContent, currentType) {
             var markerImage = new daum.maps.MarkerImage(
               'images/insta_pin.png',
               new daum.maps.Size(96, 96),
-              {
+              { 
                 offset: new.daum.maps.Point(48,49),
                 alt:  "Marker Image",
                 shape: "poly"

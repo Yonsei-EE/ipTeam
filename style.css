@@ -97,4 +97,7 @@ label {
 	top:15px;
 }
 
-
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
