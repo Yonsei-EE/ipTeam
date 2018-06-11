@@ -358,6 +358,7 @@ function addMarker(position, iwContent, currentType) {
 					str += ' He is playing basketball.';
 				else if(this.type==='fish')
 					str += ' He is fishing.';
+				str += "\nTime: " + this.created;
 				infoDiv.innerHTML = str;
 				currentId = this.Id;
 				if(mapDiv.style.height == '100%') {
@@ -741,6 +742,7 @@ function addPolygon(polygonPath, currentType) {
 					str += ' It is for playing basketball.';
 				else if(this.type==='fish')
 					str += ' It is for fishing.';
+				//str += "\nTime: " + this.created;
 				infoDiv.innerHTML = str;
 				currentId = this.Id;
 				if(mapDiv.style.height == '100%') {

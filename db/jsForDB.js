@@ -89,6 +89,7 @@ function loadMarkers(typeList) {
 						currentMarker.named = ref.named;
 						currentMarker.setDraggable(false);
 						currentMarker.created = lDO[objNum][1];
+						console.log(currentMarker.created);
 
 						if(currentMarker.type === 'skate') {
 							var markerImage = new daum.maps.MarkerImage(
@@ -174,6 +175,7 @@ function loadArea() {
 					currentPolygon = addPolygon(polygonPath, ref.type);
 					currentPolygon.Id = ref.id;
 					currentPolygon.named = ref.named;
+					currentPolygon.created = lDO[objNum][1];
 
 					if(currentPolygon.type === 'skate') {
 						currentPolygon.setOptions({
