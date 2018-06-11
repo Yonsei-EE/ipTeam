@@ -372,6 +372,7 @@ function addMarker(position, iwContent, currentType) {
 
 	daum.maps.event.addListener(marker, 'rightclick', function() {
 		if(this.pw=='' || this.type == 'temp') {
+			deleteMarker(this.getPosition(), this.infoWindow.getContent(), this.type, this.Id, this.pw, this.named);
 			myInfowindow.close();
 			marker.setMap(null);
 			clearInterval(interval);
@@ -379,6 +380,7 @@ function addMarker(position, iwContent, currentType) {
 		else {
 			var pw = prompt("Enter password");
 			if(pw == this.pw) {
+				deleteMarker(this.getPosition(), this.infoWindow.getContent(), this.type, this.Id, this.pw, this.named);
 				myInfowindow.close();
 				marker.setMap(null);
 				clearInterval(interval);
@@ -570,7 +572,7 @@ function addPolygon(polygonPath, currentType) {
 		polygon.infoWindow = myInfowindow;
 		polygon.clicked = 0;
 		polygon.type = currentType;
-		this.named = false;
+		polygon.named = false;
 
 		var mouseoverOption = { 
 			//fillColor: '#EFFFED', // 채우기 색깔입니다
@@ -685,7 +687,7 @@ function addPolygon(polygonPath, currentType) {
 						});
 						fishAreas.push(currentPolygon);
 					}
-											
+					saveArea(currentPolygon.getPath(), currentPolygon.type, currentPolygon.Id, currentPolygon.named);
 					mapDiv.style.height = '100%';
 					infoDiv.style.height = '0%';
 					clearInner(infoDiv);

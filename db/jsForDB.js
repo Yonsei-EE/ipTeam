@@ -1,17 +1,21 @@
 function saveMarker(latlng, iwContent, type, id, pw, named) {
 
-	if(type == 'all')
-		return;
-	var forJson = dataTrans(latlng.getLat(), latlng.getLng(), iwContent, id, pw, named);
+	var forJson = dataTrans(latlng.getLat(), latlng.getLng(), iwContent, type, id, pw, named);
 	var jsonText = JSON.stringify(forJson);
 	$.post('./db/dataSend.php', {col: 'data', table: type, data: jsonText});
 }
 
-function saveArea(markerSet, areaType) {
+function deleteMarker(latlng, iwContent, type, id, pw, named) {
+	
+	var forJson = dataTrans(latlng.getLat(), latlng.getLng(), iwContent, type, id, pw, named);
+	$.post('./db/dataDelete.php', {col: 'data', table: type, data: forJson});
+}
+
+function saveArea(markerSet, areaType, id, flag) {
 	
 	var jsonArr = new Array();
 	for(num in markerSet) {
-		var tempLatLng = markerSet[num].getPosition();
+		var tempLatLng = markerSet[num];
 		var tempObj = dataTrans(tempLatLng.getLat(), tempLatLng.getLng());
 		var jsonMarker = JSON.stringify(tempObj);
 		jsonArr.push(tempLatLng);
@@ -21,34 +25,36 @@ function saveArea(markerSet, areaType) {
 	var Obj = {
 		
 		Path: pathText,
-		type: areaType
-	}
+		type: areaType,
+		id: id,
+		named: flag
+	};
 	
 	var jsonText = JSON.stringify(Obj);
 	$.post('./db/dataSend.php', {col: 'data', table: 'area', data: jsonText});
 }
 
-function dataTrans(data1, data2, data3) {
+function dataTrans(data1, data2) {
 
 	var Obj = {
 
 		Lat: data1,
-		Lng: data2,
-		iwContent: data3
+		Lng: data2
 	};
 	return Obj;
 }
 
-function dataTrans(data1, data2, data3, data4, data5, data6) {
+function dataTrans(data1, data2, data3, data4, data5, data6, data7) {
 
 	var Obj = {
 
 		Lat: data1,
 		Lng: data2,
 		iwContent: data3,
-		id: data4,
-		pw: data5,
-		named: data6
+		type: data4,
+		id: data5,
+		pw: data6,
+		named: data7
 	};
 	return Obj;
 }
@@ -64,7 +70,7 @@ function loadMarkers(typeList) {
 		$.ajax({
 
 			method:"GET", url:"./db/dataReceive.php", async:false,
-			data:{col: 'data', table: type},
+			data:{col: 'data', col2: 'created', table: type},
 			success:
 				function (data, status) {
 
@@ -72,7 +78,7 @@ function loadMarkers(typeList) {
 					
 					for (var objNum in lDO) {
 
-						var ref = JSON.parse(lDO[objNum]);
+						var ref = JSON.parse(lDO[objNum][0]);
 						var tempLatLng = new daum.maps.LatLng(ref.Lat, ref.Lng);
 
 						currentMarker = addMarker(tempLatLng, ref.iwContent, type);
@@ -82,6 +88,7 @@ function loadMarkers(typeList) {
 						currentMarker.type = type;
 						currentMarker.named = ref.named;
 						currentMarker.setDraggable(false);
+						currentMarker.created = lDO[objNum][1];
 
 						if(currentMarker.type === 'skate') {
 							var markerImage = new daum.maps.MarkerImage(
@@ -142,7 +149,7 @@ function loadArea() {
 	$.ajax({
 
 		method:"GET", url:"./db/dataReceive.php", async:false,
-		data:{col: 'data', table: 'area'},
+		data:{col: 'data', col2: 'created', table: 'area'},
 		success:
 			function (data, status) {
 
@@ -150,7 +157,7 @@ function loadArea() {
 				
 				for (var objNum in lDO) {
 
-					var ref = JSON.parse(lDO[objNum]);
+					var ref = JSON.parse(lDO[objNum][0]);
 					if(ref.type == 'all')
 						continue;
 					
@@ -165,7 +172,8 @@ function loadArea() {
 					}
 
 					currentPolygon = addPolygon(polygonPath, ref.type);
-					currentPolygon.named = false;
+					currentPolygon.Id = ref.id;
+					currentPolygon.named = ref.named;
 
 					if(currentPolygon.type === 'skate') {
 						currentPolygon.setOptions({
@@ -190,7 +198,7 @@ function loadArea() {
 						fishAreas.push(currentPolygon);
 					}
 
-
+					tempPolygon = null;
 				}
 			}
 	});

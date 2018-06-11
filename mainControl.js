@@ -54,7 +54,7 @@ document.getElementById("setArea").addEventListener("click", function() {
 });
 
 document.getElementById("createPolyline").addEventListener("click", function() {
-	saveArea(areaMarkers, prevType);
+
 	addPolygon([], prevType);
 	type = prevType;
 });
